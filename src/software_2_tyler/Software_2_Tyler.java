@@ -33,11 +33,38 @@ public class Software_2_Tyler extends Application{
         
         //Raw SQL INSERT Statement
         
-        String insertStatement = "INSERT INTO countries(country, create_Date, created_By, last_Update, last_Updated_By) VALUES('US', '2021-09-07 00:00:00', 'admin', '2021-09-07 00:00:00', 'admin')";
+        //String insertStatement = "INSERT INTO countries(country, create_Date, created_By, last_Update, last_Updated_By) VALUES('US', '2021-09-07 00:00:00', 'admin', '2021-09-07 00:00:00', 'admin')";
+        
+        /*
+        
+        // Variable Insert
+        String countryName = "Canada";
+        String createDate = "2021-09-07 00:00:00";
+        String createdBy = "admin";
+        String lastUpdate = "2021-09-07 00:00:00";
+        String lastUpdatedBy = "admin";
+        String insertStatement = "INSERT INTO countries(country, create_Date, created_By, last_Update, last_Updated_By)" + 
+                "VALUES(" + 
+                "'" + countryName + "'," +
+                "'" + createDate + "'," +
+                "'" + createdBy + "'," +
+                "'" + lastUpdate + "'," +
+                "'" + lastUpdatedBy + "'" +
+                ")";
+                
+        */
+        
+        
+        //Update statement
+        //String updateStatement = "UPDATE countries SET country = 'Japan' WHERE country = 'Canada'";
+        
+        
+        //Delete Statement
+        //String deleteStatement = "DELETE FROM countries WHERE country = 'Japan'";
         
         
         //Execute SQL statement
-        //statement.execute(insertStatement);
+        //statement.execute(deleteStatement);
         
         //Confirm rows affected
         if(statement.getUpdateCount() > 0) {
