@@ -15,6 +15,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  *
@@ -29,49 +33,27 @@ public class Software_2_Tyler extends Application{
         //Initialize connection with Database
         DBConnection.startConnection();
         DBQuery.setStatement(DBConnection.getConnection()); //Create Statement Object
-        Statement statement = (Statement) DBQuery.getStatement(); //Set Statement reference
-        
-        //Raw SQL INSERT Statement
-        
-        //String insertStatement = "INSERT INTO countries(country, create_Date, created_By, last_Update, last_Updated_By) VALUES('US', '2021-09-07 00:00:00', 'admin', '2021-09-07 00:00:00', 'admin')";
-        
-        /*
-        
-        // Variable Insert
-        String countryName = "Canada";
-        String createDate = "2021-09-07 00:00:00";
-        String createdBy = "admin";
-        String lastUpdate = "2021-09-07 00:00:00";
-        String lastUpdatedBy = "admin";
-        String insertStatement = "INSERT INTO countries(country, create_Date, created_By, last_Update, last_Updated_By)" + 
-                "VALUES(" + 
-                "'" + countryName + "'," +
-                "'" + createDate + "'," +
-                "'" + createdBy + "'," +
-                "'" + lastUpdate + "'," +
-                "'" + lastUpdatedBy + "'" +
-                ")";
-                
-        */
+        Statement statement = DBQuery.getStatement(); //Set Statement reference
         
         
-        //Update statement
-        //String updateStatement = "UPDATE countries SET country = 'Japan' WHERE country = 'Canada'";
+        String selectStatement = "SELECT * FROM countries";
         
+        statement.execute(selectStatement);
+        ResultSet rs = statement.getResultSet();
         
-        //Delete Statement
-        //String deleteStatement = "DELETE FROM countries WHERE country = 'Japan'";
-        
-        
-        //Execute SQL statement
-        //statement.execute(deleteStatement);
-        
-        //Confirm rows affected
-        if(statement.getUpdateCount() > 0) {
-            System.out.println(statement.getUpdateCount() + " Rows affected");
-        } else {
-            System.out.println("No Rows affected");
+        while(rs.next()) {
+            int countryID = rs.getInt("Country_ID");
+            String countryName = rs.getString("Country");
+            LocalDate date = rs.getDate("Create_Date").toLocalDate();
+            LocalTime time = rs.getTime("Create_Date").toLocalTime();
+            String createdBy = rs.getString("Created_By");
+            LocalDateTime lastUpdate = rs.getTimestamp("Last_Update").toLocalDateTime();
+            String updatedBy = rs.getString("Last_Updated_By");
+            
+            System.out.println(countryID + " | " + countryName + " | " + date + time + " | " + createdBy + " | " + lastUpdate + " | " + updatedBy);
+            
         }
+        
         
         
         launch(args);
