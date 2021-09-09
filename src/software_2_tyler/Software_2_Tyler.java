@@ -36,7 +36,7 @@ public class Software_2_Tyler extends Application{
         Statement statement = DBQuery.getStatement(); //Set Statement reference
         
         
-        String selectStatement = "SELECT * FROM countries";
+        String selectStatement = "SELECT * FROM appointments";
         
         statement.execute(selectStatement);
         ResultSet rs = statement.getResultSet();
