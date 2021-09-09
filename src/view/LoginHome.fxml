@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginHomeController">
+   <children>
+      <AnchorPane layoutX="579.0" layoutY="300.0" prefHeight="240.0" prefWidth="381.0" style="-fx-background-color: white; -fx-border-radius: 10 10 10 10; -fx-background-radius: 10 10 10 10;">
+         <children>
+            <AnchorPane layoutX="122.0" layoutY="26.0" prefHeight="58.0" prefWidth="137.0">
+               <children>
+                  <Label layoutX="13.0" layoutY="8.0" text="Please Log In">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="invalidLabel" layoutX="33.0" layoutY="35.0" text="Invalid Login!" textFill="RED" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="73.0" layoutY="89.0" prefHeight="94.0" prefWidth="235.0">
+               <children>
+                  <TextField fx:id="usernameTextField" layoutX="77.0" layoutY="17.0" />
+                  <TextField fx:id="passwordTextField" layoutX="77.0" layoutY="53.0" />
+                  <Label layoutX="11.0" layoutY="21.0" text="Username:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="15.0" layoutY="57.0" text="Password:">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Button layoutX="207.0" layoutY="183.0" mnemonicParsing="false" onAction="#onActionLogin" style="-fx-background-color: #D3D3D3; -fx-text-fill: black;" text="Log In">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="122.0" layoutY="183.0" mnemonicParsing="false" onAction="#onActionExit" style="-fx-background-color: #D3D3D3; -fx-text-fill: black;" text="Exit">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

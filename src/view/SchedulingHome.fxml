@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SchedulingHomeController">
+   <children>
+      <TableView fx:id="tableAppointments" layoutX="41.0" layoutY="123.0" prefHeight="562.0" prefWidth="925.0">
+        <columns>
+          <TableColumn fx:id="apptCol" prefWidth="108.80005264282227" text="Appointment ID" />
+          <TableColumn fx:id="titleCol" prefWidth="60.00001525878906" text="Title" />
+          <TableColumn fx:id="descCol" prefWidth="115.99998474121094" text="Description" />
+          <TableColumn fx:id="locationCol" prefWidth="93.06668090820312" text="Location" />
+          <TableColumn fx:id="contactCol" prefWidth="93.33331298828125" text="Contact" />
+          <TableColumn fx:id="typeCol" prefWidth="67.7332763671875" text="Type" />
+          <TableColumn fx:id="startCol" prefWidth="150.13330078125" text="Start Date and Time" />
+          <TableColumn fx:id="endCol" prefWidth="130.13330078125" text="End Date and Time" />
+          <TableColumn fx:id="customerCol" minWidth="0.0" prefWidth="107.73333740234375" text="Customer ID" />
+        </columns>
+      </TableView>
+      <Label layoutX="41.0" layoutY="59.0" prefHeight="37.0" prefWidth="305.0" text="Appointments Scheduling" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
