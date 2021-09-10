@@ -28,6 +28,7 @@ public class Software_2_Tyler extends Application{
 
     /**
      * @param args the command line arguments
+     * @throws java.sql.SQLException
      */
     public static void main(String[] args) throws SQLException {
         //Initialize connection with Database
@@ -42,15 +43,17 @@ public class Software_2_Tyler extends Application{
         ResultSet rs = statement.getResultSet();
         
         while(rs.next()) {
-            int countryID = rs.getInt("Country_ID");
-            String countryName = rs.getString("Country");
-            LocalDate date = rs.getDate("Create_Date").toLocalDate();
+            int apptID = rs.getInt("Appointment_ID");
+            String title = rs.getString("Title");
+            String desc = rs.getString("Description");
+            String location = rs.getString("Location");
+            String type = rs.getString("Type");
+            LocalDate start = rs.getDate("Create_Date").toLocalDate();
             LocalTime time = rs.getTime("Create_Date").toLocalTime();
             String createdBy = rs.getString("Created_By");
             LocalDateTime lastUpdate = rs.getTimestamp("Last_Update").toLocalDateTime();
             String updatedBy = rs.getString("Last_Updated_By");
             
-            System.out.println(countryID + " | " + countryName + " | " + date + time + " | " + createdBy + " | " + lastUpdate + " | " + updatedBy);
             
         }
         
