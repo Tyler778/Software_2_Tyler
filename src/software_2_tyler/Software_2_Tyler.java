@@ -20,6 +20,7 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Locale;
 
 /**
  *
@@ -32,6 +33,9 @@ public class Software_2_Tyler extends Application{
      * @throws java.sql.SQLException
      */
     public static void main(String[] args) throws SQLException {
+        //French?
+        Locale.setDefault(new Locale("fr"));
+        
         //Initialize connection with Database
         DBConnection.startConnection();
         

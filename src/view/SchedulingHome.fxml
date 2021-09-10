@@ -10,19 +10,18 @@
    <children>
       <TableView fx:id="tableAppointments" layoutX="41.0" layoutY="123.0" prefHeight="562.0" prefWidth="925.0">
         <columns>
-          <TableColumn fx:id="apptCol" prefWidth="108.80005264282227" text="Appointment ID" />
-          <TableColumn fx:id="titleCol" prefWidth="60.00001525878906" text="Title" />
-          <TableColumn fx:id="descCol" prefWidth="115.99998474121094" text="Description" />
-          <TableColumn fx:id="locationCol" prefWidth="93.06668090820312" text="Location" />
-          <TableColumn fx:id="contactCol" prefWidth="60.79998779296875" text="Contact" />
-          <TableColumn fx:id="typeCol" prefWidth="87.20001220703125" text="Type" />
-            <TableColumn prefWidth="92.800048828125" text="Start Date" />
-          <TableColumn fx:id="startCol" prefWidth="67.20001220703125" text="Start Time" />
-          <TableColumn fx:id="endCol" prefWidth="288.0" text="End Date and Time" />
-          <TableColumn fx:id="customerCol" minWidth="0.0" prefWidth="31.9998779296875" text="Customer ID" />
+          <TableColumn fx:id="apptCol" prefWidth="96.0" text="Appointment ID" />
+          <TableColumn fx:id="titleCol" prefWidth="85.0" text="Title" />
+          <TableColumn fx:id="descCol" prefWidth="105.0" text="Description" />
+          <TableColumn fx:id="locationCol" prefWidth="88.0" text="Location" />
+          <TableColumn fx:id="contactCol" prefWidth="90.0" text="Contact" />
+          <TableColumn fx:id="typeCol" prefWidth="122.0" text="Type" />
+            <TableColumn fx:id="startCol" prefWidth="129.0" text="Start Date and Time" />
+          <TableColumn fx:id="endCol" prefWidth="128.0" text="End Date and Time" />
+          <TableColumn fx:id="customerCol" minWidth="0.0" prefWidth="81.0" text="Customer ID" />
         </columns>
       </TableView>
-      <Label layoutX="41.0" layoutY="59.0" prefHeight="37.0" prefWidth="305.0" text="Appointments Scheduling" textFill="WHITE">
+      <Label layoutX="41.0" layoutY="59.0" prefHeight="37.0" prefWidth="305.0" text="Appointment Scheduling" textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
