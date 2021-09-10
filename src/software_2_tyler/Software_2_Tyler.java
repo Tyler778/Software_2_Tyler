@@ -5,6 +5,7 @@
  */
 package software_2_tyler;
 
+import DBAccess.DBAppointments;
 import Utilities.DBConnection;
 import Utilities.DBQuery;
 //import com.mysql.cj.xdevapi.Statement;
@@ -33,29 +34,8 @@ public class Software_2_Tyler extends Application{
     public static void main(String[] args) throws SQLException {
         //Initialize connection with Database
         DBConnection.startConnection();
-        DBQuery.setStatement(DBConnection.getConnection()); //Create Statement Object
-        Statement statement = DBQuery.getStatement(); //Set Statement reference
         
-        
-        String selectStatement = "SELECT * FROM appointments";
-        
-        statement.execute(selectStatement);
-        ResultSet rs = statement.getResultSet();
-        
-        while(rs.next()) {
-            int apptID = rs.getInt("Appointment_ID");
-            String title = rs.getString("Title");
-            String desc = rs.getString("Description");
-            String location = rs.getString("Location");
-            String type = rs.getString("Type");
-            LocalDate start = rs.getDate("Create_Date").toLocalDate();
-            LocalTime time = rs.getTime("Create_Date").toLocalTime();
-            String createdBy = rs.getString("Created_By");
-            LocalDateTime lastUpdate = rs.getTimestamp("Last_Update").toLocalDateTime();
-            String updatedBy = rs.getString("Last_Updated_By");
-            
-            
-        }
+        System.out.println(DBAppointments.loadAppointments());
         
         
         

@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import model.Appointment;
 
 /**
  * FXML Controller class
@@ -21,25 +22,25 @@ public class SchedulingHomeController implements Initializable {
 
     
     @FXML
-    private TableView<?> tableAppointments;
+    private TableView<Appointment> tableAppointments;
     @FXML
-    private TableColumn<?, ?> apptCol;
+    private TableColumn<Appointment, ?> apptCol;
     @FXML
-    private TableColumn<?, ?> titleCol;
+    private TableColumn<Appointment, ?> titleCol;
     @FXML
-    private TableColumn<?, ?> descCol;
+    private TableColumn<Appointment, ?> descCol;
     @FXML
-    private TableColumn<?, ?> locationCol;
+    private TableColumn<Appointment, ?> locationCol;
     @FXML
-    private TableColumn<?, ?> contactCol;
+    private TableColumn<Appointment, ?> contactCol;
     @FXML
-    private TableColumn<?, ?> typeCol;
+    private TableColumn<Appointment, ?> typeCol;
     @FXML
-    private TableColumn<?, ?> startCol;
+    private TableColumn<Appointment, ?> startCol;
     @FXML
-    private TableColumn<?, ?> endCol;
+    private TableColumn<Appointment, ?> endCol;
     @FXML
-    private TableColumn<?, ?> customerCol;
+    private TableColumn<Appointment, ?> customerCol;
 
     /**
      * Initializes the controller class.

@@ -5,21 +5,26 @@
  */
 package model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  *
  * @author tyler
  */
-public class Appointments {
+public class Appointment {
     private int id;
     private String title;
     private String desc;
     private String location;
     private String type;
-    private LocalDateTime start;
-    private LocalDateTime end;
-    private LocalDateTime createDate;
+    private LocalDate startDate;
+    private LocalTime startTime;
+    private LocalDate endDate;
+    private LocalTime endTime;
+    private LocalDate createDate;
+    private LocalTime createTime;
     private String createdBy;
     private LocalDateTime lastUpdate;
     private String updatedBy;
@@ -27,15 +32,18 @@ public class Appointments {
     private int userID;
     private int contactID;
 
-    public Appointments(int id, String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createdBy, LocalDateTime lastUpdate, String updatedBy, int customerID, int userID, int contactID) {
+    public Appointment(int id, String title, String desc, String location, String type, LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime, LocalDate createDate, LocalTime createTime, String createdBy, LocalDateTime lastUpdate, String updatedBy, int customerID, int userID, int contactID) {
         this.id = id;
         this.title = title;
         this.desc = desc;
         this.location = location;
         this.type = type;
-        this.start = start;
-        this.end = end;
+        this.startDate = startDate;
+        this.startTime = startTime;
+        this.endDate = endDate;
+        this.endTime = endTime;
         this.createDate = createDate;
+        this.createTime = createTime;
         this.createdBy = createdBy;
         this.lastUpdate = lastUpdate;
         this.updatedBy = updatedBy;
@@ -84,28 +92,52 @@ public class Appointments {
         this.type = type;
     }
 
-    public LocalDateTime getStart() {
-        return start;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setStart(LocalDateTime start) {
-        this.start = start;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
-    public LocalDateTime getEnd() {
-        return end;
+    public LocalTime getStartTime() {
+        return startTime;
     }
 
-    public void setEnd(LocalDateTime end) {
-        this.end = end;
+    public void setStartTime(LocalTime startTime) {
+        this.startTime = startTime;
     }
 
-    public LocalDateTime getCreateDate() {
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(LocalTime endTime) {
+        this.endTime = endTime;
+    }
+
+    public LocalDate getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
+    public void setCreateDate(LocalDate createDate) {
         this.createDate = createDate;
+    }
+
+    public LocalTime getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(LocalTime createTime) {
+        this.createTime = createTime;
     }
 
     public String getCreatedBy() {
@@ -155,11 +187,13 @@ public class Appointments {
     public void setContactID(int contactID) {
         this.contactID = contactID;
     }
+
     
-   
+
     
     
     
     
     
 }
+
