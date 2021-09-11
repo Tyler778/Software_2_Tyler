@@ -8,6 +8,7 @@ package model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.sql.Timestamp;
 
 /**
  *
@@ -19,33 +20,27 @@ public class Appointment {
     private String desc;
     private String location;
     private String type;
-    private LocalDate startDate;
-    private LocalTime startTime;
-    private LocalDate endDate;
-    private LocalTime endTime;
-    private LocalDate createDate;
-    private LocalTime createTime;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
+    private LocalDateTime createDateTime;
     private String createdBy;
-    private LocalDateTime lastUpdate;
+    private Timestamp updateTimestamp;
     private String updatedBy;
     private int customerID;
     private int userID;
     private int contactID;
 
-    public Appointment(int id, String title, String desc, String location, String type, LocalDate startDate, LocalTime startTime, LocalDate endDate, LocalTime endTime, LocalDate createDate, LocalTime createTime, String createdBy, LocalDateTime lastUpdate, String updatedBy, int customerID, int userID, int contactID) {
+    public Appointment(int id, String title, String desc, String location, String type, LocalDateTime startDateTime, LocalDateTime endDateTime, LocalDateTime createDateTime, String createdBy, Timestamp updateTimestamp, String updatedBy, int customerID, int userID, int contactID) {
         this.id = id;
         this.title = title;
         this.desc = desc;
         this.location = location;
         this.type = type;
-        this.startDate = startDate;
-        this.startTime = startTime;
-        this.endDate = endDate;
-        this.endTime = endTime;
-        this.createDate = createDate;
-        this.createTime = createTime;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
+        this.createDateTime = createDateTime;
         this.createdBy = createdBy;
-        this.lastUpdate = lastUpdate;
+        this.updateTimestamp = updateTimestamp;
         this.updatedBy = updatedBy;
         this.customerID = customerID;
         this.userID = userID;
@@ -92,52 +87,28 @@ public class Appointment {
         this.type = type;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public void setStartDateTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
     }
 
-    public LocalTime getStartTime() {
-        return startTime;
+    public LocalDateTime getEndDateTime() {
+        return endDateTime;
     }
 
-    public void setStartTime(LocalTime startTime) {
-        this.startTime = startTime;
+    public void setEndDateTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
+    public LocalDateTime getCreateDateTime() {
+        return createDateTime;
     }
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
-    public LocalTime getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(LocalTime endTime) {
-        this.endTime = endTime;
-    }
-
-    public LocalDate getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(LocalDate createDate) {
-        this.createDate = createDate;
-    }
-
-    public LocalTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalTime createTime) {
-        this.createTime = createTime;
+    public void setCreateDateTime(LocalDateTime createDateTime) {
+        this.createDateTime = createDateTime;
     }
 
     public String getCreatedBy() {
@@ -148,12 +119,12 @@ public class Appointment {
         this.createdBy = createdBy;
     }
 
-    public LocalDateTime getLastUpdate() {
-        return lastUpdate;
+    public Timestamp getUpdateTimestamp() {
+        return updateTimestamp;
     }
 
-    public void setLastUpdate(LocalDateTime lastUpdate) {
-        this.lastUpdate = lastUpdate;
+    public void setUpdateTimestamp(Timestamp updateTimestamp) {
+        this.updateTimestamp = updateTimestamp;
     }
 
     public String getUpdatedBy() {
@@ -188,10 +159,6 @@ public class Appointment {
         this.contactID = contactID;
     }
 
-    
-
-    
-    
     
     
     
