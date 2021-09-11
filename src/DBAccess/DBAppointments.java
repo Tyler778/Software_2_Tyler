@@ -30,7 +30,6 @@ public class DBAppointments {
     
     
     public static ObservableList<Appointment> loadAppointments () throws SQLException {
-        DBConnection.getConnection();
         DBQuery.setStatement(DBConnection.getConnection());
         Statement statement = DBQuery.getStatement();
         
