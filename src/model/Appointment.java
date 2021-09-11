@@ -24,13 +24,13 @@ public class Appointment {
     private LocalDateTime endDateTime;
     private LocalDateTime createDateTime;
     private String createdBy;
-    private Timestamp updateTimestamp;
+    private LocalDateTime updateDateTime;
     private String updatedBy;
     private int customerID;
     private int userID;
     private int contactID;
 
-    public Appointment(int id, String title, String desc, String location, String type, LocalDateTime startDateTime, LocalDateTime endDateTime, LocalDateTime createDateTime, String createdBy, Timestamp updateTimestamp, String updatedBy, int customerID, int userID, int contactID) {
+    public Appointment(int id, String title, String desc, String location, String type, LocalDateTime startDateTime, LocalDateTime endDateTime, LocalDateTime createDateTime, String createdBy, LocalDateTime updateDateTime, String updatedBy, int customerID, int userID, int contactID) {
         this.id = id;
         this.title = title;
         this.desc = desc;
@@ -40,7 +40,7 @@ public class Appointment {
         this.endDateTime = endDateTime;
         this.createDateTime = createDateTime;
         this.createdBy = createdBy;
-        this.updateTimestamp = updateTimestamp;
+        this.updateDateTime = updateDateTime;
         this.updatedBy = updatedBy;
         this.customerID = customerID;
         this.userID = userID;
@@ -119,12 +119,12 @@ public class Appointment {
         this.createdBy = createdBy;
     }
 
-    public Timestamp getUpdateTimestamp() {
-        return updateTimestamp;
+    public LocalDateTime getUpdateDateTime() {
+        return updateDateTime;
     }
 
-    public void setUpdateTimestamp(Timestamp updateTimestamp) {
-        this.updateTimestamp = updateTimestamp;
+    public void setUpdateDateTime(LocalDateTime updateDateTime) {
+        this.updateDateTime = updateDateTime;
     }
 
     public String getUpdatedBy() {
@@ -159,6 +159,7 @@ public class Appointment {
         this.contactID = contactID;
     }
 
+    
     
     
     

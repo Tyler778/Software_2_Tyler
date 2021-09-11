@@ -46,19 +46,29 @@ public class DBAppointments {
             String desc = apptSet.getString("Description");
             String location = apptSet.getString("Location");
             String type = apptSet.getString("Type");
+            
             LocalDate startDate = apptSet.getDate("Start").toLocalDate();
             LocalTime startTime = apptSet.getTime("Start").toLocalTime();
+            LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
+            
             LocalDate endDate = apptSet.getDate("End").toLocalDate();
             LocalTime endTime = apptSet.getTime("End").toLocalTime();
+            LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
+            
             LocalDate createDate = apptSet.getDate("Create_Date").toLocalDate();
             LocalTime createTime = apptSet.getTime("Create_Date").toLocalTime();
+            LocalDateTime createDateTime = LocalDateTime.of(createDate, createTime);
+            
+            
             String createdBy = apptSet.getString("Created_By");
             LocalDateTime lastUpdate = apptSet.getTimestamp("Last_Update").toLocalDateTime();
+            
+            
             String updatedBy = apptSet.getString("Last_Updated_By");
             int customerID = apptSet.getInt("Customer_ID");
             int userID = apptSet.getInt("User_ID");
             int contactID = apptSet.getInt("Contact_ID");
-            Appointment apt1 = new Appointment(apptID, title, desc, location, type, startDate, startTime, endDate, endTime, createDate, createTime, createdBy, lastUpdate, updatedBy, customerID, userID, contactID);
+            Appointment apt1 = new Appointment(apptID, title, desc, location, type, startDateTime, endDateTime, createDateTime, createdBy, lastUpdate, updatedBy, customerID, userID, contactID);
             allAppointments.add(apt1);
         }
         
