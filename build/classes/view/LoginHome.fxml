@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="timeZoneLabel" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: grey;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginHomeController">
    <children>
-      <AnchorPane layoutX="579.0" layoutY="300.0" prefHeight="240.0" prefWidth="381.0" style="-fx-background-color: white; -fx-border-radius: 10 10 10 10; -fx-background-radius: 10 10 10 10;">
+      <AnchorPane layoutX="770.0" layoutY="300.0" prefHeight="240.0" prefWidth="381.0" style="-fx-background-color: white; -fx-border-radius: 10 10 10 10; -fx-background-radius: 10 10 10 10;">
          <children>
             <AnchorPane layoutX="122.0" layoutY="26.0" prefHeight="58.0" prefWidth="137.0">
                <children>
