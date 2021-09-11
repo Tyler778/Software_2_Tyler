@@ -13,7 +13,7 @@
          <children>
             <TableView fx:id="tableAppointments" layoutX="14.0" layoutY="76.0" prefHeight="562.0" prefWidth="925.0" style="-fx-background-radius: 10 10 10 10;">
               <columns>
-                <TableColumn fx:id="apptCol" prefWidth="96.0" text="Appointment ID" />
+                <TableColumn fx:id="apptIDCol" prefWidth="96.0" text="Appointment ID" />
                 <TableColumn fx:id="titleCol" prefWidth="85.0" text="Title" />
                 <TableColumn fx:id="descCol" prefWidth="105.0" text="Description" />
                 <TableColumn fx:id="locationCol" prefWidth="88.0" text="Location" />

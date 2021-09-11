@@ -34,12 +34,11 @@ public class Software_2_Tyler extends Application{
      */
     public static void main(String[] args) throws SQLException {
         //French?
-        Locale.setDefault(new Locale("fr"));
+        //Locale.setDefault(new Locale("fr"));
         
         //Initialize connection with Database
         DBConnection.startConnection();
         
-        System.out.println(DBAppointments.loadAppointments());
         
         
         
