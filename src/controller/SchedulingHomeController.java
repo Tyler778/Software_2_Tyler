@@ -47,7 +47,7 @@ public class SchedulingHomeController implements Initializable {
     @FXML
     private TableColumn<Appointment, LocalDateTime> endCol;
     @FXML
-    private TableColumn<Appointment, ?> customerCol;
+    private TableColumn<Appointment, Integer> customerCol;
     
 
     /**
@@ -67,6 +67,7 @@ public class SchedulingHomeController implements Initializable {
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         startCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
         endCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
+        customerCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         
         
     }    
