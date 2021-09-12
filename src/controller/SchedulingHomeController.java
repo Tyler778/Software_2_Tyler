@@ -6,6 +6,7 @@
 package controller;
 
 import DBAccess.DBAppointments;
+import DBAccess.DBCustomers;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
