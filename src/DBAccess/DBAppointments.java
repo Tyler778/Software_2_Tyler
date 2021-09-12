@@ -34,7 +34,7 @@ public class DBAppointments {
         Statement statement = DBQuery.getStatement();
         
         
-        String selectApptStatement = "SELECT * FROM appointments";
+        String selectApptStatement = "SELECT * FROM AppointmentTable;";
         
         statement.execute(selectApptStatement);
         ResultSet apptSet = statement.getResultSet();
@@ -67,7 +67,8 @@ public class DBAppointments {
             int customerID = apptSet.getInt("Customer_ID");
             int userID = apptSet.getInt("User_ID");
             int contactID = apptSet.getInt("Contact_ID");
-            Appointment apt1 = new Appointment(apptID, title, desc, location, type, startDateTime, endDateTime, createDateTime, createdBy, lastUpdate, updatedBy, customerID, userID, contactID);
+            String contactName = apptSet.getString("Contact_Name");
+            Appointment apt1 = new Appointment(apptID, title, desc, location, type, startDateTime, endDateTime, createDateTime, createdBy, lastUpdate, updatedBy, customerID, userID, contactID, contactName);
             allAppointments.add(apt1);
         }
         
