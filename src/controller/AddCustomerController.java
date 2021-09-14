@@ -7,7 +7,10 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
+import model.Customers;
 
 /**
  * FXML Controller class
@@ -16,6 +19,17 @@ import javafx.fxml.Initializable;
  */
 public class AddCustomerController implements Initializable {
 
+    @FXML
+    private TextField customerTextField;
+    @FXML
+    private TextField addressTextField;
+    @FXML
+    private TextField nameTextField;
+    @FXML
+    private TextField postalTextField;
+    @FXML
+    private TextField phoneTextField;
+
     /**
      * Initializes the controller class.
      */
@@ -23,5 +37,20 @@ public class AddCustomerController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    
+    
+    
+    
+    
+    
+    public void sendCustomer(Customers customer) {
+        customerTextField.setText(String.valueOf(customer.getId()));
+        addressTextField.setText(String.valueOf(customer.getAddress()));
+        nameTextField.setText(String.valueOf(customer.getCustomerName()));
+        postalTextField.setText(String.valueOf(customer.getPostalCode()));
+        phoneTextField.setText(String.valueOf(customer.getPhone()));
+        
+    }
     
 }
