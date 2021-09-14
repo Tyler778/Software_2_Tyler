@@ -41,13 +41,13 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <TableView layoutX="14.0" layoutY="76.0" prefHeight="200.0" prefWidth="540.0">
+            <TableView fx:id="tableCustomers" layoutX="14.0" layoutY="76.0" prefHeight="200.0" prefWidth="540.0">
               <columns>
-                <TableColumn prefWidth="77.0" text="Customer ID" />
-                <TableColumn prefWidth="109.0" text="Name" />
-                  <TableColumn prefWidth="168.0" text="Address" />
-                  <TableColumn prefWidth="74.0" text="Postal Code" />
-                  <TableColumn prefWidth="111.0" text="Phone Number" />
+                <TableColumn fx:id="customerIDCol" prefWidth="77.0" text="Customer ID" />
+                <TableColumn fx:id="nameCol" prefWidth="109.0" text="Name" />
+                  <TableColumn fx:id="addressCol" prefWidth="168.0" text="Address" />
+                  <TableColumn fx:id="postalCol" prefWidth="74.0" text="Postal Code" />
+                  <TableColumn fx:id="phoneCol" prefWidth="111.0" text="Phone Number" />
               </columns>
             </TableView>
             <Button layoutX="484.0" layoutY="290.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Delete" />

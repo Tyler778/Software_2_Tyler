@@ -19,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Appointment;
+import model.Customers;
 
 /**
  * FXML Controller class
@@ -49,6 +50,18 @@ public class SchedulingHomeController implements Initializable {
     private TableColumn<Appointment, LocalDateTime> endCol;
     @FXML
     private TableColumn<Appointment, Integer> customerCol;
+    @FXML
+    private TableView<Customers> tableCustomers;
+    @FXML
+    private TableColumn<Customers, ?> customerIDCol;
+    @FXML
+    private TableColumn<Customers, ?> nameCol;
+    @FXML
+    private TableColumn<Customers, ?> addressCol;
+    @FXML
+    private TableColumn<Customers, ?> postalCol;
+    @FXML
+    private TableColumn<Customers, ?> phoneCol;
     
 
     /**
