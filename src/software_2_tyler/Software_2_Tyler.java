@@ -6,6 +6,7 @@
 package software_2_tyler;
 
 import DBAccess.DBAppointments;
+import DBAccess.DBCustomers;
 import Utilities.DBConnection;
 import Utilities.DBQuery;
 //import com.mysql.cj.xdevapi.Statement;
@@ -38,6 +39,19 @@ public class Software_2_Tyler extends Application{
         
         //Initialize connection with Database
         DBConnection.startConnection();
+        
+        
+        try {
+                DBCustomers.loadCustomers();
+            } catch (SQLException ex) {
+                System.out.println("SQL EXCEPTION");
+       
+            }  
+            try {
+                DBAppointments.loadAppointments();
+            } catch (SQLException ex) {
+                System.out.println("SQL EXCEPTION");
+            }
         
         
         

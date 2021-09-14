@@ -37,6 +37,9 @@ import model.Manager;
 public class SchedulingHomeController implements Initializable {
     Stage stage;
     Parent scene;
+    
+    Boolean reloadData = false;
+    
 
     
     @FXML
@@ -79,17 +82,33 @@ public class SchedulingHomeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if (reloadData) {
+            try {
+                DBCustomers.loadCustomers();
+            } catch (SQLException ex) {
+                System.out.println("SQL EXCEPTION");
+       
+            }  
+            try {
+                DBAppointments.loadAppointments();
+            } catch (SQLException ex) {
+                System.out.println("SQL EXCEPTION");
+            }
+        }
+        
+        /*
         try {
             DBCustomers.loadCustomers();
         } catch (SQLException ex) {
-            Logger.getLogger(SchedulingHomeController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("SQL EXCEPTION");
        
         }  
         try {
             DBAppointments.loadAppointments();
         } catch (SQLException ex) {
-            Logger.getLogger(SchedulingHomeController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("SQL EXCEPTION");
         }
+*/
         
         
         
@@ -154,17 +173,10 @@ public class SchedulingHomeController implements Initializable {
             stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
             Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
+            stage.show();
         } catch(Exception e) {
             System.out.println("Select a Customer");
         }
-        
-        
-        
-        
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/view/ModifyCustomer.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
     }
 
     @FXML
