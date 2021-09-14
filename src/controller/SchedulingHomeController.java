@@ -53,15 +53,15 @@ public class SchedulingHomeController implements Initializable {
     @FXML
     private TableView<Customers> tableCustomers;
     @FXML
-    private TableColumn<Customers, ?> customerIDCol;
+    private TableColumn<Customers, Integer> customerIDCol;
     @FXML
-    private TableColumn<Customers, ?> nameCol;
+    private TableColumn<Customers, String> nameCol;
     @FXML
-    private TableColumn<Customers, ?> addressCol;
+    private TableColumn<Customers, String> addressCol;
     @FXML
-    private TableColumn<Customers, ?> postalCol;
+    private TableColumn<Customers, String> postalCol;
     @FXML
-    private TableColumn<Customers, ?> phoneCol;
+    private TableColumn<Customers, String> phoneCol;
     
 
     /**
@@ -83,6 +83,19 @@ public class SchedulingHomeController implements Initializable {
         endCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
         customerCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
+        
+        try {
+            tableCustomers.setItems(DBCustomers.loadCustomers());
+        } catch (SQLException ex) {
+            Logger.getLogger(SchedulingHomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        customerIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        
+        
         
         
     }    
