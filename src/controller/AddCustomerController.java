@@ -42,15 +42,4 @@ public class AddCustomerController implements Initializable {
     
     
     
-    
-    
-    public void sendCustomer(Customers customer) {
-        customerTextField.setText(String.valueOf(customer.getId()));
-        addressTextField.setText(String.valueOf(customer.getAddress()));
-        nameTextField.setText(String.valueOf(customer.getCustomerName()));
-        postalTextField.setText(String.valueOf(customer.getPostalCode()));
-        phoneTextField.setText(String.valueOf(customer.getPhone()));
-        
-    }
-    
 }
