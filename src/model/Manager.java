@@ -36,10 +36,10 @@ public class Manager {
         return allAppointments;
     }
     
-    public static boolean deleteAllAppointments() {
+    public static ObservableList<Appointment> deleteAllAppointments() {
         for (Appointment apt : allAppointments) {
             allAppointments.remove(apt);
         }
-        return true;
+        return allAppointments;
     }
 }
