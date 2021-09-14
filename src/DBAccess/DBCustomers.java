@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import model.Manager;
 
 /**
  *
@@ -23,12 +24,11 @@ import java.time.LocalTime;
  */
 public class DBCustomers {
     
-    //init observable list of customers
-    private static ObservableList<Customers>allCustomers = FXCollections.observableArrayList();
     
     
     
-    public static ObservableList<Customers> loadCustomers () throws SQLException {
+    public static void loadCustomers () throws SQLException {
+        Manager.deleteAllCustomers();
         DBQuery.setStatement(DBConnection.getConnection());
         Statement statement = DBQuery.getStatement();
         
@@ -54,9 +54,7 @@ public class DBCustomers {
             int divisionID = cSet.getInt("Division_ID");
             
             Customers cust1 = new Customers(customerID, customerName, customerAddress, postal, phone, createDateTime, createdBy, lastUpdate, updatedBy, divisionID);
-            allCustomers.add(cust1);
+            Manager.addCustomer(cust1);
         }
-        
-        return allCustomers;
     }
 }

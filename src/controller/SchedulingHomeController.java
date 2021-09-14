@@ -80,13 +80,16 @@ public class SchedulingHomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Manager.deleteAllAppointments();
-        
-        
         try {
-            tableAppointments.setItems(DBAppointments.loadAppointments());
+            DBCustomers.loadCustomers();
+            DBAppointments.loadAppointments();
         } catch (SQLException ex) {
             Logger.getLogger(SchedulingHomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        
+        tableAppointments.setItems(Manager.getAllAppointments());
         apptIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descCol.setCellValueFactory(new PropertyValueFactory<>("desc"));
@@ -97,11 +100,7 @@ public class SchedulingHomeController implements Initializable {
         customerCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
         
-        try {
-            tableCustomers.setItems(DBCustomers.loadCustomers());
-        } catch (SQLException ex) {
-            Logger.getLogger(SchedulingHomeController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        tableCustomers.setItems(Manager.getAllCustomers());
         customerIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));

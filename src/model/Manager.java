@@ -42,4 +42,23 @@ public class Manager {
         }
         return allAppointments;
     }
+    
+    
+    
+    
+    //Customers
+    public static void addCustomer (Customers cust) {
+        allCustomers.add(cust);
+    }
+    
+    public static ObservableList<Customers> getAllCustomers() {
+        return allCustomers;
+    }
+    
+    public static ObservableList<Customers> deleteAllCustomers() {
+        for (Customers cust : allCustomers) {
+            allCustomers.remove(cust);
+        }
+        return allCustomers;
+    }
 }

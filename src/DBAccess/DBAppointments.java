@@ -9,13 +9,12 @@ import Utilities.DBConnection;
 import Utilities.DBQuery;
 import java.sql.Statement;
 import java.sql.SQLException;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import model.Appointment;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import model.Manager;
 
 /**
  *
@@ -24,12 +23,11 @@ import java.time.LocalTime;
 public class DBAppointments {
     
     
-    //init observable list of appointments
-    private static ObservableList<Appointment>allAppointments = FXCollections.observableArrayList();
     
     
     
-    public static ObservableList<Appointment> loadAppointments () throws SQLException {
+    public static void loadAppointments () throws SQLException {
+        Manager.deleteAllAppointments();
         DBQuery.setStatement(DBConnection.getConnection());
         Statement statement = DBQuery.getStatement();
         
@@ -69,11 +67,13 @@ public class DBAppointments {
             int contactID = apptSet.getInt("Contact_ID");
             String contactName = apptSet.getString("Contact_Name");
             Appointment apt1 = new Appointment(apptID, title, desc, location, type, startDateTime, endDateTime, createDateTime, createdBy, lastUpdate, updatedBy, customerID, userID, contactID, contactName);
-            allAppointments.add(apt1);
+            
+            Manager.addAppointment(apt1);
+            
+            
+            
         }
-        
-        return allAppointments;
-        
+                
     }
     
     
