@@ -27,6 +27,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointment;
 import model.Customers;
+import model.Manager;
 
 /**
  * FXML Controller class
@@ -78,6 +79,9 @@ public class SchedulingHomeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Manager.deleteAllAppointments();
+        
+        
         try {
             tableAppointments.setItems(DBAppointments.loadAppointments());
         } catch (SQLException ex) {

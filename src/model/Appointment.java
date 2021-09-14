@@ -48,6 +48,8 @@ public class Appointment {
         this.contactID = contactID;
         this.contactName = contactName;
     }
+    
+    
 
     public int getId() {
         return id;
