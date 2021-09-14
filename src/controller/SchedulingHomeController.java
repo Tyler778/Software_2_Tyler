@@ -137,6 +137,23 @@ public class SchedulingHomeController implements Initializable {
 
     @FXML
     private void onActionModifyCustomer(ActionEvent event) throws IOException {
+        
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/ModifyCustomer.fxml"));
+            loader.load();
+            ModifyCustomerController ModCusController = loader.getController();
+            ModCusController.sendCustomer(tableCustomers.getSelectionModel().getSelectedItem());
+            stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+        } catch(Exception e) {
+            System.out.println("Select a Customer");
+        }
+        
+        
+        
+        
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/view/ModifyCustomer.fxml"));
         stage.setScene(new Scene(scene));
