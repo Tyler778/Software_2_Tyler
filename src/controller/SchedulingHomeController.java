@@ -7,6 +7,7 @@ package controller;
 
 import DBAccess.DBAppointments;
 import DBAccess.DBCustomers;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
@@ -15,10 +16,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import model.Appointment;
 import model.Customers;
 
@@ -28,6 +34,8 @@ import model.Customers;
  * @author tyler
  */
 public class SchedulingHomeController implements Initializable {
+    Stage stage;
+    Parent scene;
 
     
     @FXML
@@ -102,27 +110,45 @@ public class SchedulingHomeController implements Initializable {
     }    
 
     @FXML
-    private void onActionAddAppointment(ActionEvent event) {
+    private void onActionAddAppointment(ActionEvent event) throws IOException {
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/view/AddAppointment.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     @FXML
-    private void onActionModifyAppointment(ActionEvent event) {
+    private void onActionModifyAppointment(ActionEvent event) throws IOException {
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/view/ModifyAppointment.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     @FXML
     private void onActionDeleteAppointment(ActionEvent event) {
+        
     }
 
     @FXML
     private void onActionDeleteCustomer(ActionEvent event) {
+        
     }
 
     @FXML
-    private void onActionModifyCustomer(ActionEvent event) {
+    private void onActionModifyCustomer(ActionEvent event) throws IOException {
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/view/ModifyCustomer.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     @FXML
-    private void onActionAddCustomer(ActionEvent event) {
+    private void onActionAddCustomer(ActionEvent event) throws IOException {
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/view/AddCustomer.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
     
 }
