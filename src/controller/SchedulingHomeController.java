@@ -79,9 +79,13 @@ public class SchedulingHomeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Manager.deleteAllAppointments();
         try {
             DBCustomers.loadCustomers();
+        } catch (SQLException ex) {
+            Logger.getLogger(SchedulingHomeController.class.getName()).log(Level.SEVERE, null, ex);
+       
+        }  
+        try {
             DBAppointments.loadAppointments();
         } catch (SQLException ex) {
             Logger.getLogger(SchedulingHomeController.class.getName()).log(Level.SEVERE, null, ex);

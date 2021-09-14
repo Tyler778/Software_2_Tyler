@@ -64,13 +64,13 @@ public class ModifyCustomerController implements Initializable {
     private void onActionSaveCustomer(ActionEvent event) {
     }
 
+
     @FXML
-    private void onActionCancelModifyingPart(ActionEvent event) throws IOException {
+    private void onActionCancelModifyingCustomer(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/view/SchedulingHome.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
-        
     }
     
 }

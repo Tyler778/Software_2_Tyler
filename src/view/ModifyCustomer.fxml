@@ -20,7 +20,7 @@
             <TextField fx:id="postalTextField" layoutX="183.0" layoutY="168.0" />
             <TextField fx:id="phoneTextField" layoutX="183.0" layoutY="218.0" />
             <Button layoutX="91.0" layoutY="345.0" mnemonicParsing="false" onAction="#onActionSaveCustomer" text="Save" />
-            <Button layoutX="409.0" layoutY="345.0" mnemonicParsing="false" onAction="#onActionCancelModifyingPart" text="Cancel" />
+            <Button layoutX="409.0" layoutY="345.0" mnemonicParsing="false" onAction="#onActionCancelModifyingCustomer" text="Cancel" />
          </children>
       </AnchorPane>
    </children>
