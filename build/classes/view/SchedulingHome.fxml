@@ -29,9 +29,9 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button layoutX="642.0" layoutY="655.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Add" />
-            <Button layoutX="749.0" layoutY="655.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Modify" />
-            <Button layoutX="856.0" layoutY="655.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Delete" />
+            <Button layoutX="642.0" layoutY="655.0" mnemonicParsing="false" onAction="#onActionAddAppointment" prefHeight="25.0" prefWidth="70.0" text="Add" />
+            <Button layoutX="749.0" layoutY="655.0" mnemonicParsing="false" onAction="#onActionModifyAppointment" prefHeight="25.0" prefWidth="70.0" text="Modify" />
+            <Button layoutX="856.0" layoutY="655.0" mnemonicParsing="false" onAction="#onActionDeleteAppointment" prefHeight="25.0" prefWidth="70.0" text="Delete" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="1049.0" layoutY="54.0" prefHeight="349.0" prefWidth="591.0" style="-fx-background-color: #6C96C1; -fx-background-radius: 10 10 10 10;">
@@ -50,9 +50,9 @@
                   <TableColumn fx:id="phoneCol" prefWidth="111.0" text="Phone Number" />
               </columns>
             </TableView>
-            <Button layoutX="484.0" layoutY="290.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Delete" />
-            <Button layoutX="377.0" layoutY="290.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Modify" />
-            <Button layoutX="271.0" layoutY="290.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Add" />
+            <Button layoutX="484.0" layoutY="290.0" mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="25.0" prefWidth="70.0" text="Delete" />
+            <Button layoutX="377.0" layoutY="290.0" mnemonicParsing="false" onAction="#onActionModifyCustomer" prefHeight="25.0" prefWidth="70.0" text="Modify" />
+            <Button layoutX="271.0" layoutY="290.0" mnemonicParsing="false" onAction="#onActionAddCustomer" prefHeight="25.0" prefWidth="70.0" text="Add" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="1049.0" layoutY="429.0" prefHeight="141.0" prefWidth="591.0" style="-fx-background-color: #6C96C1; -fx-background-radius: 10 10 10 10;">

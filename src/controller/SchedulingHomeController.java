@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -99,5 +100,29 @@ public class SchedulingHomeController implements Initializable {
         
         
     }    
+
+    @FXML
+    private void onActionAddAppointment(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionModifyAppointment(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionDeleteAppointment(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionDeleteCustomer(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionModifyCustomer(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionAddCustomer(ActionEvent event) {
+    }
     
 }
