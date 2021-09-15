@@ -83,17 +83,7 @@ public class SchedulingHomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if (reloadData) {
-            try {
-                DBCustomers.loadCustomers();
-            } catch (SQLException ex) {
-                System.out.println("SQL EXCEPTION");
-       
-            }  
-            try {
-                DBAppointments.loadAppointments();
-            } catch (SQLException ex) {
-                System.out.println("SQL EXCEPTION");
-            }
+            reloadData();
         }
         
         /*
@@ -185,6 +175,22 @@ public class SchedulingHomeController implements Initializable {
         scene = FXMLLoader.load(getClass().getResource("/view/AddCustomer.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
+    }
+    
+    
+    
+    private void reloadData() {
+        try {
+                DBCustomers.loadCustomers();
+            } catch (SQLException ex) {
+                System.out.println("SQL EXCEPTION");
+       
+            }  
+            try {
+                DBAppointments.loadAppointments();
+            } catch (SQLException ex) {
+                System.out.println("SQL EXCEPTION");
+            }
     }
     
 }
