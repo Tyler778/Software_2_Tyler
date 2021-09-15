@@ -7,10 +7,13 @@
             <file>file:/C:/Users/tyler/Documents/NetBeansProjects/Software_2_Tyler/src/model/Appointment.java</file>
             <file>file:/C:/Users/tyler/Documents/NetBeansProjects/Software_2_Tyler/src/model/Manager.java</file>
             <file>file:/C:/Users/tyler/Documents/NetBeansProjects/Software_2_Tyler/src/DBAccess/DBAppointments.java</file>
+            <file>file:/C:/Users/tyler/Documents/NetBeansProjects/Software_2_Tyler/src/software_2_tyler/Software_2_Tyler.java</file>
             <file>file:/C:/Users/tyler/Documents/NetBeansProjects/Software_2_Tyler/src/DBAccess/DBCustomers.java</file>
             <file>file:/C:/Users/tyler/Documents/NetBeansProjects/Software_2_Tyler/src/controller/SchedulingHomeController.java</file>
-            <file>file:/C:/Users/tyler/Documents/NetBeansProjects/Software_2_Tyler/src/controller/ModifyAppointmentController.java</file>
+            <file>file:/C:/Users/tyler/Documents/NetBeansProjects/Software_2_Tyler/src/DBAccess/DBDivisions.java</file>
             <file>file:/C:/Users/tyler/Documents/NetBeansProjects/Software_2_Tyler/src/controller/ModifyCustomerController.java</file>
+            <file>file:/C:/Users/tyler/Documents/NetBeansProjects/Software_2_Tyler/src/model/Divisions.java</file>
+            <file>file:/C:/Users/tyler/Documents/NetBeansProjects/Software_2_Tyler/src/controller/ModifyAppointmentController.java</file>
         </group>
     </open-files>
 </project-private>

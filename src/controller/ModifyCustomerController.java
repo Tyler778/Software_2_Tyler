@@ -55,7 +55,7 @@ public class ModifyCustomerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        divisionBox.setValue("Division Production");
+        divisionBox.setValue("Ohio");
         divisionBox.setItems(Manager.getAllDivisionNames());
         //divisionBox.setValue("Division Production");
         // TODO
@@ -70,6 +70,7 @@ public class ModifyCustomerController implements Initializable {
         nameTextField.setText(String.valueOf(customer.getCustomerName()));
         postalTextField.setText(String.valueOf(customer.getPostalCode()));
         phoneTextField.setText(String.valueOf(customer.getPhone()));
+        //divisionBox.setValue("")
         
     }
 
