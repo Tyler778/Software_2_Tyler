@@ -86,20 +86,6 @@ public class SchedulingHomeController implements Initializable {
             reloadData();
         }
         
-        /*
-        try {
-            DBCustomers.loadCustomers();
-        } catch (SQLException ex) {
-            System.out.println("SQL EXCEPTION");
-       
-        }  
-        try {
-            DBAppointments.loadAppointments();
-        } catch (SQLException ex) {
-            System.out.println("SQL EXCEPTION");
-        }
-*/
-        
         
         
         tableAppointments.setItems(Manager.getAllAppointments());
@@ -135,10 +121,19 @@ public class SchedulingHomeController implements Initializable {
 
     @FXML
     private void onActionModifyAppointment(ActionEvent event) throws IOException {
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/view/ModifyAppointment.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/view/ModifyAppointment.fxml"));
+            loader.load();
+            ModifyAppointmentController ModApptController = loader.getController();
+            ModApptController.sendAppointment(tableAppointments.getSelectionModel().getSelectedItem());
+            stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+            Parent scene = loader.getRoot();
+            stage.setScene(new Scene(scene));
+            stage.show();
+        } catch(Exception e) {
+            System.out.println("Select an Appointment");
+        }
     }
 
     @FXML
@@ -191,6 +186,11 @@ public class SchedulingHomeController implements Initializable {
             } catch (SQLException ex) {
                 System.out.println("SQL EXCEPTION");
             }
+    }
+
+    @FXML
+    private void onActionExit(ActionEvent event) {
+        System.exit(0);
     }
     
 }
