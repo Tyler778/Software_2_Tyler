@@ -42,6 +42,7 @@ public class DBDivisions {
             int countryID = dSet.getInt("COUNTRY_ID");
             Divisions div = new Divisions(divID, divName, countryID);
             Manager.addDivision(div);
+            Manager.addDivisionName(divName);
         }
     }
     

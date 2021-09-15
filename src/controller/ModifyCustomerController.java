@@ -46,7 +46,7 @@ public class ModifyCustomerController implements Initializable {
     @FXML
     private TextField phoneTextField;
     @FXML
-    private ChoiceBox<Divisions> divisionBox;
+    private ChoiceBox<String> divisionBox;
     
     
 
@@ -55,8 +55,8 @@ public class ModifyCustomerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //divisionBox.setValue("Division Production");
-        divisionBox.setItems(Manager.getAllDivisions());
+        divisionBox.setValue("Division Production");
+        divisionBox.setItems(Manager.getAllDivisionNames());
         //divisionBox.setValue("Division Production");
         // TODO
     }    

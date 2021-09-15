@@ -19,7 +19,7 @@ public class Manager {
     private static ObservableList<Customers>allCustomers = FXCollections.observableArrayList();
     private static ObservableList<Appointment>allAppointments = FXCollections.observableArrayList();
     private static ObservableList<Divisions>allDivisions = FXCollections.observableArrayList();
-    
+    private static ObservableList<String>allDivisionsNames = FXCollections.observableArrayList();
     
     
     
@@ -66,6 +66,12 @@ public class Manager {
     //Divisions
     public static void addDivision (Divisions div) {
         allDivisions.add(div);
+    }
+    public static void addDivisionName (String name) {
+        allDivisionsNames.add(name);
+    }
+    public static ObservableList<String> getAllDivisionNames() {
+        return allDivisionsNames;
     }
     
     public static ObservableList<Divisions> getAllDivisions() {
