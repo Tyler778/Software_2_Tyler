@@ -22,8 +22,9 @@ public class Customers {
     private LocalDateTime updateDateTime;
     private String updatedBy;
     private int divID;
+    private String divName;
 
-    public Customers(int id, String customerName, String address, String postalCode, String phone, LocalDateTime createDateTime, String createdBy, LocalDateTime updateDateTime, String updatedBy, int divID) {
+    public Customers(int id, String customerName, String address, String postalCode, String phone, LocalDateTime createDateTime, String createdBy, LocalDateTime updateDateTime, String updatedBy, int divID, String divName) {
         this.id = id;
         this.customerName = customerName;
         this.address = address;
@@ -34,6 +35,7 @@ public class Customers {
         this.updateDateTime = updateDateTime;
         this.updatedBy = updatedBy;
         this.divID = divID;
+        this.divName = divName;
     }
 
     public int getId() {
@@ -114,6 +116,14 @@ public class Customers {
 
     public void setDivID(int divID) {
         this.divID = divID;
+    }
+
+    public String getDivName() {
+        return divName;
+    }
+
+    public void setDivName(String divName) {
+        this.divName = divName;
     }
     
     

@@ -32,7 +32,7 @@ public class DBCustomers {
         DBQuery.setStatement(DBConnection.getConnection());
         Statement statement = DBQuery.getStatement();
         
-        String selectCustomersStatement = "SELECT * FROM customers";
+        String selectCustomersStatement = "SELECT * FROM WJ07nX6.CustomersTablewithDivisionName;";
         
         statement.execute(selectCustomersStatement);
         ResultSet cSet = statement.getResultSet();
@@ -52,8 +52,9 @@ public class DBCustomers {
             LocalDateTime lastUpdate = cSet.getTimestamp("Last_Update").toLocalDateTime();
             String updatedBy = cSet.getString("Last_Updated_By");
             int divisionID = cSet.getInt("Division_ID");
+            String divName = cSet.getString("Division");
             
-            Customers cust1 = new Customers(customerID, customerName, customerAddress, postal, phone, createDateTime, createdBy, lastUpdate, updatedBy, divisionID);
+            Customers cust1 = new Customers(customerID, customerName, customerAddress, postal, phone, createDateTime, createdBy, lastUpdate, updatedBy, divisionID, divName);
             Manager.addCustomer(cust1);
         }
     }
