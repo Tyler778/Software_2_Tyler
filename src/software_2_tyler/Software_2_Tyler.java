@@ -7,6 +7,7 @@ package software_2_tyler;
 
 import DBAccess.DBAppointments;
 import DBAccess.DBCustomers;
+import DBAccess.DBDivisions;
 import Utilities.DBConnection;
 import Utilities.DBQuery;
 //import com.mysql.cj.xdevapi.Statement;
@@ -52,6 +53,8 @@ public class Software_2_Tyler extends Application{
             } catch (SQLException ex) {
                 System.out.println("SQL EXCEPTION");
             }
+            
+            DBDivisions.loadDivisions();
         
         
         

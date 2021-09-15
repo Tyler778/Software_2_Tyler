@@ -68,6 +68,6 @@
             <Button layoutX="87.0" layoutY="75.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Report 1" />
          </children>
       </AnchorPane>
-      <Button layoutX="1846.0" layoutY="1026.0" mnemonicParsing="false" onAction="#onActionExit" text="Exit" />
+      <Button layoutX="1764.0" layoutY="927.0" mnemonicParsing="false" onAction="#onActionExit" text="Exit" />
    </children>
 </AnchorPane>

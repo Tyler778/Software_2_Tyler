@@ -8,6 +8,8 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +17,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Customers;
+import model.Divisions;
+import model.Manager;
 
 /**
  * FXML Controller class
@@ -25,6 +30,7 @@ import model.Customers;
  * @author tyler
  */
 public class ModifyCustomerController implements Initializable {
+    
     
     Stage stage;
     Parent scene;
@@ -39,12 +45,19 @@ public class ModifyCustomerController implements Initializable {
     private TextField postalTextField;
     @FXML
     private TextField phoneTextField;
+    @FXML
+    private ChoiceBox<Divisions> divisionBox;
+    
+    
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //divisionBox.setValue("Division Production");
+        divisionBox.setItems(Manager.getAllDivisions());
+        //divisionBox.setValue("Division Production");
         // TODO
     }    
     

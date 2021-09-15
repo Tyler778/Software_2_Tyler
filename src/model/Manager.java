@@ -18,7 +18,7 @@ public class Manager {
     
     private static ObservableList<Customers>allCustomers = FXCollections.observableArrayList();
     private static ObservableList<Appointment>allAppointments = FXCollections.observableArrayList();
-    
+    private static ObservableList<Divisions>allDivisions = FXCollections.observableArrayList();
     
     
     
@@ -60,5 +60,22 @@ public class Manager {
             allCustomers.remove(cust);
         }
         return allCustomers;
+    }
+    
+    
+    //Divisions
+    public static void addDivision (Divisions div) {
+        allDivisions.add(div);
+    }
+    
+    public static ObservableList<Divisions> getAllDivisions() {
+        return allDivisions;
+    }
+    
+    public static ObservableList<Divisions> deleteAllDivisions() {
+        for (Divisions div : allDivisions) {
+            allDivisions.remove(div);
+        }
+        return allDivisions;
     }
 }
