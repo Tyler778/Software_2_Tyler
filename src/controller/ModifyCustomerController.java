@@ -24,7 +24,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Customers;
 import model.Divisions;
@@ -106,10 +108,11 @@ public class ModifyCustomerController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    private void loadDivisions(InputMethodEvent event) throws SQLException {
-        divisionBox.setItems(Manager.getDivisionsBasedOnCountry(countryBox.getValue()));
-        divisionBox.setValue(null);
-    }
     
+    @FXML
+    private void comboAction(ActionEvent event) throws SQLException {
+        divisionBox.setItems(Manager.getDivisionsBasedOnCountry(countryBox.getValue()));
+        
+    }
+
 }
