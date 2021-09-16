@@ -5,6 +5,12 @@
  */
 package model;
 
+import DBAccess.DBAppointments;
+import DBAccess.DBCountries;
+import DBAccess.DBCredentials;
+import DBAccess.DBCustomers;
+import DBAccess.DBDivisions;
+import java.sql.SQLException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -20,10 +26,18 @@ public class Manager {
     private static ObservableList<Appointment>allAppointments = FXCollections.observableArrayList();
     private static ObservableList<Divisions>allDivisions = FXCollections.observableArrayList();
     private static ObservableList<String>allDivisionsNames = FXCollections.observableArrayList();
+    private static ObservableList<Countries>allCountries = FXCollections.observableArrayList();
+    private static ObservableList<String>allCountryNames = FXCollections.observableArrayList();
     
-    
-    
-    
+    //Load all Data
+    public static void loadData() throws SQLException {
+        DBCustomers.loadCustomers();
+        DBAppointments.loadAppointments();
+        DBCountries.loadCountries();
+        DBDivisions.loadDivisions();
+        DBCredentials.loadUsers();
+        
+    }
     
     
     //Appointments
@@ -78,10 +92,28 @@ public class Manager {
         return allDivisions;
     }
     
-    public static ObservableList<Divisions> deleteAllDivisions() {
+    public static void deleteAllDivisions() {
         for (Divisions div : allDivisions) {
             allDivisions.remove(div);
         }
-        return allDivisions;
+    }
+    
+    //Countries
+    public static void addCountry (Countries country) {
+        allCountries.add(country);
+    }
+    public static void addCountryName (String name) {
+        allCountryNames.add(name);
+    }
+    public static ObservableList<String> getAllCountryNames() {
+        return allCountryNames;
+    }
+    public static ObservableList<Countries> getAllCountries() {
+        return allCountries;
+    }
+    public static void deleteAllCountries() {
+        for (Countries country : allCountries) {
+            allCountries.remove(country);
+        }
     }
 }

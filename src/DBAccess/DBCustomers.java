@@ -53,8 +53,9 @@ public class DBCustomers {
             String updatedBy = cSet.getString("Last_Updated_By");
             int divisionID = cSet.getInt("Division_ID");
             String divName = cSet.getString("Division");
+            String country = cSet.getString("Country_ID");
             
-            Customers cust1 = new Customers(customerID, customerName, customerAddress, postal, phone, createDateTime, createdBy, lastUpdate, updatedBy, divisionID, divName);
+            Customers cust1 = new Customers(customerID, customerName, customerAddress, postal, phone, createDateTime, createdBy, lastUpdate, updatedBy, divisionID, divName, country);
             Manager.addCustomer(cust1);
         }
     }

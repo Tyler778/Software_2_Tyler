@@ -8,7 +8,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ModifyCustomerController">
     <children>
-      <AnchorPane layoutX="687.0" layoutY="341.0" prefHeight="398.0" prefWidth="546.0">
+      <AnchorPane layoutX="687.0" layoutY="341.0" prefHeight="467.0" prefWidth="546.0">
          <children>
             <Label layoutX="59.0" layoutY="48.0" prefHeight="18.0" prefWidth="72.0" text="Customer ID" />
             <Label layoutX="59.0" layoutY="171.0" prefHeight="18.0" prefWidth="72.0" text="Postal Code" />
@@ -20,10 +20,14 @@
             <TextField fx:id="nameTextField" layoutX="183.0" layoutY="84.0" />
             <TextField fx:id="postalTextField" layoutX="183.0" layoutY="168.0" />
             <TextField fx:id="phoneTextField" layoutX="183.0" layoutY="218.0" />
-            <Button layoutX="91.0" layoutY="345.0" mnemonicParsing="false" onAction="#onActionSaveCustomer" text="Save" />
-            <Button layoutX="409.0" layoutY="345.0" mnemonicParsing="false" onAction="#onActionCancelModifyingCustomer" text="Cancel" />
-            <ChoiceBox fx:id="divisionBox" layoutX="183.0" layoutY="261.0" prefWidth="150.0" />
-            <Label layoutX="59.0" layoutY="265.0" text="Division" />
+            <Button layoutX="95.0" layoutY="409.0" mnemonicParsing="false" onAction="#onActionSaveCustomer" text="Save" />
+            <Button layoutX="402.0" layoutY="409.0" mnemonicParsing="false" onAction="#onActionCancelModifyingCustomer" text="Cancel" />
+            <ChoiceBox fx:id="divisionBox" layoutX="183.0" layoutY="316.0" prefWidth="150.0" />
+            <Label layoutX="59.0" layoutY="320.0" text="Division" />
+            <ChoiceBox fx:id="countryBox" layoutX="183.0" layoutY="264.0" onInputMethodTextChanged="#loadDivisions" prefWidth="150.0" />
+            <Label layoutX="59.0" layoutY="268.0" text="Country" />
+            <Label layoutX="402.0" layoutY="31.0" text="Appointments:" />
+            <Label fx:id="appointmentTotal" layoutX="489.0" layoutY="31.0" text="0" underline="true" />
          </children>
       </AnchorPane>
    </children>

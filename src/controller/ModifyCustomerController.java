@@ -5,8 +5,12 @@
  */
 package controller;
 
+import Utilities.DBConnection;
+import Utilities.DBQuery;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +22,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
 import model.Customers;
 import model.Divisions;
@@ -47,6 +53,10 @@ public class ModifyCustomerController implements Initializable {
     private TextField phoneTextField;
     @FXML
     private ChoiceBox<String> divisionBox;
+    @FXML
+    private ChoiceBox<String> countryBox;
+    @FXML
+    private Label appointmentTotal;
     
     
 
@@ -57,6 +67,7 @@ public class ModifyCustomerController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         //divisionBox.setValue("Ohio");
         divisionBox.setItems(Manager.getAllDivisionNames());
+        countryBox.setItems(Manager.getAllCountryNames());
         //divisionBox.setValue("Division Production");
         // TODO
     }    
@@ -71,11 +82,17 @@ public class ModifyCustomerController implements Initializable {
         postalTextField.setText(String.valueOf(customer.getPostalCode()));
         phoneTextField.setText(String.valueOf(customer.getPhone()));
         divisionBox.setValue(String.valueOf(customer.getDivName()));
+        countryBox.setValue(String.valueOf(customer.getCountry()));
         
     }
 
     @FXML
-    private void onActionSaveCustomer(ActionEvent event) {
+    private void onActionSaveCustomer(ActionEvent event) throws SQLException {
+        //DBQuery.setStatement(DBConnection.getConnection());
+        //Statement statement = DBQuery.getStatement();
+        System.out.println(divisionBox.getValue());
+        String saveCustomerStatement;
+        
     }
 
 
@@ -85,6 +102,10 @@ public class ModifyCustomerController implements Initializable {
         scene = FXMLLoader.load(getClass().getResource("/view/SchedulingHome.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
+    }
+
+    @FXML
+    private void loadDivisions(InputMethodEvent event) {
     }
     
 }

@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import Utilities.DBConnection;
+import model.Manager;
 /**
  *
  * @author tyler
@@ -18,8 +19,7 @@ import Utilities.DBConnection;
 public class DBCountries {
     
     
-    public static ObservableList<Countries> getAllCountries() {
-        ObservableList<Countries> clist = FXCollections.observableArrayList();
+    public static void loadCountries() {
         
         
         
@@ -33,14 +33,12 @@ public class DBCountries {
                 int countryId = rs.getInt("Country_ID");
                 String countryName = rs.getString("Country");
                 Countries C = new Countries(countryId, countryName);
-                clist.add(C);
+                Manager.addCountry(C);
+                Manager.addCountryName(countryName);
             }
             
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-        
-        return clist;
     }
 }
