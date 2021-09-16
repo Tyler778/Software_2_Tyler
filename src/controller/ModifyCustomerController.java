@@ -32,6 +32,7 @@ import model.Customers;
 import model.Divisions;
 import model.Manager;
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
 
 /**
  * FXML Controller class
@@ -127,6 +128,8 @@ public class ModifyCustomerController implements Initializable {
                 + "', Address = '" + addressTextField.getText()
                 + "', Postal_Code = '" + postalTextField.getText()
                 + "', Phone = '" + phoneTextField.getText()
+                + "', Last_Update = '" + String.valueOf(LocalDateTime.now())
+                + "', Last_Update_By = 'test'"
                 + "', Division_ID = '" + divID
                 + "' WHERE Customer_ID = '" + customerTextField.getText() + "'";
         

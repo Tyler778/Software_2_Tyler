@@ -79,6 +79,10 @@ public class Manager {
     public static void addCustomer (Customers cust) {
         allCustomers.add(cust);
     }
+    public static void removeCustomer (Customers cust) throws SQLException {
+        allCustomers.remove(cust);
+        DBCustomers.deleteCustomer(cust);
+    }
     
     public static ObservableList<Customers> getAllCustomers() {
         return allCustomers;

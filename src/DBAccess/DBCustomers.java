@@ -60,4 +60,15 @@ public class DBCustomers {
         }
     }
     
+    
+    
+    public static void deleteCustomer (Customers customer) throws SQLException {
+        DBQuery.setStatement(DBConnection.getConnection());
+        Statement statement = DBQuery.getStatement();
+        String id = String.valueOf(customer.getId());
+        String deleteStatement = "DELETE FROM customers WHERE Customer_ID = '" + id + "'";
+        statement.execute(deleteStatement);
+        
+    }
+    
 }

@@ -7,11 +7,15 @@ package controller;
 
 import DBAccess.DBAppointments;
 import DBAccess.DBCustomers;
+import Utilities.DBConnection;
+import Utilities.DBQuery;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
@@ -28,6 +32,7 @@ import javafx.stage.Stage;
 import model.Appointment;
 import model.Customers;
 import model.Manager;
+import java.sql.Statement;
 
 /**
  * FXML Controller class
@@ -127,7 +132,9 @@ public class SchedulingHomeController implements Initializable {
     }
 
     @FXML
-    private void onActionDeleteCustomer(ActionEvent event) {
+    private void onActionDeleteCustomer(ActionEvent event) throws SQLException {
+        Manager.removeCustomer(tableCustomers.getSelectionModel().getSelectedItem());
+
         
     }
 
