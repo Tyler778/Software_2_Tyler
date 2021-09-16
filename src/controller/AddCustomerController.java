@@ -5,8 +5,11 @@
  */
 package controller;
 
+import Utilities.DBConnection;
+import Utilities.DBQuery;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +22,10 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Customers;
+import java.sql.Statement;
+import java.time.LocalDateTime;
+import model.Divisions;
+import model.Manager;
 
 /**
  * FXML Controller class
@@ -50,16 +57,50 @@ public class AddCustomerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        countryBox.setItems(Manager.getAllCountryNames());
+        // TODOf
     }    
 
     @FXML
-    private void comboAction(ActionEvent event) {
+    private void comboAction(ActionEvent event) throws SQLException {
+        divisionBox.setItems(Manager.getDivisionsBasedOnCountry(countryBox.getValue()));
         
     }
 
     @FXML
-    private void onActionAddCustomer(ActionEvent event) {
+    private void onActionAddCustomer(ActionEvent event) throws SQLException, IOException {
+        String timeStamp = String.valueOf(LocalDateTime.now());
+        
+        String divID = null;
+        for(Divisions div : Manager.getAllDivisions()) {
+            if(divisionBox.getValue().equals(div.getName())) {
+                divID = String.valueOf(div.getId());
+            }
+        }
+        
+        
+        DBQuery.setStatement(DBConnection.getConnection());
+        Statement statement = DBQuery.getStatement();
+        String addStatement = "INSERT INTO customers (Customer_Name, Address, Postal_Code, Phone, Create_Date, Created_By, Last_Update, Last_Updated_By, Division_ID)"
+                + " VALUES ('"
+                + nameTextField.getText() + "', '"
+                + addressTextField.getText() + "', '"
+                + postalTextField.getText() + "', '"
+                + phoneTextField.getText() + "', '"
+                + timeStamp + "', '"
+                + "test', '"
+                + timeStamp + "', '"
+                + "test', '" 
+                + divID + "');";
+        System.out.println(addStatement);
+        statement.execute(addStatement);
+        SchedulingHomeController.reloadData = true;
+        
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/view/SchedulingHome.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
+              
     }
 
     @FXML
