@@ -38,7 +38,7 @@ public class SchedulingHomeController implements Initializable {
     Stage stage;
     Parent scene;
     
-    Boolean reloadData = false;
+    public static Boolean reloadData = false;
     
 
     
@@ -82,33 +82,18 @@ public class SchedulingHomeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (reloadData) {
-            reloadData();
+        if(reloadData) {
+            try {
+                reloadData();
+            } catch (SQLException ex) {
+                Logger.getLogger(SchedulingHomeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
         
         
-        tableAppointments.setItems(Manager.getAllAppointments());
-        apptIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-        descCol.setCellValueFactory(new PropertyValueFactory<>("desc"));
-        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-        startCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
-        endCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
-        customerCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
-        contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
-        
-        tableCustomers.setItems(Manager.getAllCustomers());
-        customerIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
-        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
-        postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
-        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        
-        
-        
-        
+        dataIntoTable();
+
     }    
 
     @FXML
@@ -172,20 +157,11 @@ public class SchedulingHomeController implements Initializable {
         stage.show();
     }
     
+
     
-    
-    private void reloadData() {
-        try {
-                DBCustomers.loadCustomers();
-            } catch (SQLException ex) {
-                System.out.println("SQL EXCEPTION");
-       
-            }  
-            try {
-                DBAppointments.loadAppointments();
-            } catch (SQLException ex) {
-                System.out.println("SQL EXCEPTION");
-            }
+    private void reloadData() throws SQLException {
+        Manager.deleteData();
+        Manager.loadData();
     }
 
     @FXML
@@ -193,8 +169,24 @@ public class SchedulingHomeController implements Initializable {
         System.exit(0);
     }
     
-    private void prepareReload() {
+    private void dataIntoTable() {
+        tableAppointments.setItems(Manager.getAllAppointments());
+        apptIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descCol.setCellValueFactory(new PropertyValueFactory<>("desc"));
+        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
+        customerCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
         
+        tableCustomers.setItems(Manager.getAllCustomers());
+        customerIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("customerName"));
+        addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
     }
     
 }

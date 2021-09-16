@@ -110,6 +110,11 @@ public class ModifyCustomerController implements Initializable {
     @FXML
     private void onActionSaveCustomer(ActionEvent event) throws IOException {
         
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/view/SchedulingHome.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
+        
         try{
             DBQuery.setStatement(DBConnection.getConnection());
             Statement statement = DBQuery.getStatement();
@@ -125,30 +130,14 @@ public class ModifyCustomerController implements Initializable {
         } catch(SQLException e) {
             System.out.println(e);
         }
-        /*
-        try{
-            Manager.deleteData();
-            
-        } catch(SQLException e) {
-            System.out.println(e);
-        }
-        
-        try{
-            Manager.loadData();
-        } catch(SQLException e) {
-            System.out.println(e);
-        }
-        
-        
-        */
-        
+        SchedulingHomeController.reloadData = true;
         
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/view/SchedulingHome.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
         
-        
+ 
     }
 
 

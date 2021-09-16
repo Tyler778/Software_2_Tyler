@@ -47,7 +47,6 @@ public class Software_2_Tyler extends Application{
         
         
         
-        
         launch(args);
         
         

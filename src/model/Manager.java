@@ -65,9 +65,11 @@ public class Manager {
     }
     
     public static void deleteAllAppointments() {
+        ObservableList<Appointment>holdAppt = FXCollections.observableArrayList();
         for (Appointment apt : allAppointments) {
-            allAppointments.remove(apt);
+            holdAppt.add(apt);
         }
+        allAppointments.removeAll(holdAppt);
     }
     
     
@@ -83,9 +85,11 @@ public class Manager {
     }
     
     public static void deleteAllCustomers() {
+        ObservableList<Customers>holdCust = FXCollections.observableArrayList();
         for (Customers cust : allCustomers) {
-            allCustomers.remove(cust);
+            holdCust.add(cust);
         }
+        allCustomers.removeAll(holdCust);
     }
     
     
@@ -105,9 +109,11 @@ public class Manager {
     }
     
     public static void deleteAllDivisions() {
+        ObservableList<Divisions>holdDiv = FXCollections.observableArrayList();
         for (Divisions div : allDivisions) {
-            allDivisions.remove(div);
+            holdDiv.add(div);
         }
+        allDivisions.removeAll(holdDiv);
     }
     
     public static ObservableList<String> getDivisionsBasedOnCountry(String countryName) throws SQLException {
@@ -146,9 +152,11 @@ public class Manager {
         return allCountries;
     }
     public static void deleteAllCountries() {
+        ObservableList<Countries>holdCountry = FXCollections.observableArrayList();
         for (Countries country : allCountries) {
-            allCountries.remove(country);
+            holdCountry.add(country);
         }
+        allCountries.removeAll(holdCountry);
     }
     
     
