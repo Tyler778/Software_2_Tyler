@@ -110,10 +110,13 @@ public class ModifyCustomerController implements Initializable {
     @FXML
     private void onActionSaveCustomer(ActionEvent event) throws IOException {
         
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/view/SchedulingHome.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        String divID = null;
+        
+        for(Divisions div : Manager.getAllDivisions()) {
+            if(divisionBox.getValue().equals(div.getName())) {
+                divID = String.valueOf(div.getId());
+            }
+        }
         
         try{
             DBQuery.setStatement(DBConnection.getConnection());
@@ -124,6 +127,7 @@ public class ModifyCustomerController implements Initializable {
                 + "', Address = '" + addressTextField.getText()
                 + "', Postal_Code = '" + postalTextField.getText()
                 + "', Phone = '" + phoneTextField.getText()
+                + "', Division_ID = '" + divID
                 + "' WHERE Customer_ID = '" + customerTextField.getText() + "'";
         
             statement.execute(updateStatement);
