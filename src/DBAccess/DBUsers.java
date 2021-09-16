@@ -12,17 +12,16 @@ import javafx.collections.ObservableList;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import model.Manager;
 import model.Users;
 
 /**
  *
  * @author tyler
  */
-public class DBCredentials {
-    private static ObservableList<Users>allUsers = FXCollections.observableArrayList();
+public class DBUsers {
     
-    
-    public static ObservableList<Users> loadUsers () throws SQLException {
+    public static void loadUsers () throws SQLException {
         DBQuery.setStatement(DBConnection.getConnection());
         
         Statement statement = DBQuery.getStatement();
@@ -37,10 +36,10 @@ public class DBCredentials {
             int userID = usersSet.getInt("User_ID");
             String name = usersSet.getString("User_Name");
             String password = usersSet.getString("Password");
+            Users user = new Users(userID, name, password);
+            Manager.addUser(user);
                     
         }
-        
-        return allUsers;
     }
     
     

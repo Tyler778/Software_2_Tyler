@@ -7,7 +7,7 @@ package model;
 
 import DBAccess.DBAppointments;
 import DBAccess.DBCountries;
-import DBAccess.DBCredentials;
+import DBAccess.DBUsers;
 import DBAccess.DBCustomers;
 import DBAccess.DBDivisions;
 import Utilities.DBConnection;
@@ -32,14 +32,14 @@ public class Manager {
     private static ObservableList<String>allDivisionsNames = FXCollections.observableArrayList();
     private static ObservableList<Countries>allCountries = FXCollections.observableArrayList();
     private static ObservableList<String>allCountryNames = FXCollections.observableArrayList();
-    
+    private static ObservableList<Users>allUsers = FXCollections.observableArrayList();
     //Load all Data
     public static void loadData() throws SQLException {
         DBCustomers.loadCustomers();
         DBAppointments.loadAppointments();
         DBCountries.loadCountries();
         DBDivisions.loadDivisions();
-        DBCredentials.loadUsers();
+        DBUsers.loadUsers();
         
     }
     
@@ -49,6 +49,7 @@ public class Manager {
         deleteAllCustomers();
         deleteAllDivisions();
         deleteAllCountries();
+        deleteAllUsers();
         
         
     }
@@ -166,6 +167,20 @@ public class Manager {
     
     
     //Credentials
+    
+    public static void addUser (Users user) {
+        allUsers.add(user);
+    }
+    
+    public static void deleteAllUsers() {
+        ObservableList<Users>holdUsers = FXCollections.observableArrayList();
+        for (Users user : allUsers) {
+            holdUsers.add(user);
+        }
+        allUsers.removeAll(holdUsers);
+    }
+    
+    
     
     //TODO
 }

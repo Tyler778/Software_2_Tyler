@@ -15,19 +15,11 @@ public class Users {
     private int id;
     private String name;
     private String password;
-    private LocalDateTime createDate;
-    private String createdBy;
-    private LocalDateTime lastUpdate;
-    private String updatedBy;
 
-    public Users(int id, String name, String password, LocalDateTime createDate, String createdBy, LocalDateTime lastUpdate, String updatedBy) {
+    public Users(int id, String name, String password) {
         this.id = id;
         this.name = name;
         this.password = password;
-        this.createDate = createDate;
-        this.createdBy = createdBy;
-        this.lastUpdate = lastUpdate;
-        this.updatedBy = updatedBy;
     }
 
     public int getId() {
@@ -54,38 +46,5 @@ public class Users {
         this.password = password;
     }
 
-    public LocalDateTime getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(LocalDateTime createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
-    public LocalDateTime getLastUpdate() {
-        return lastUpdate;
-    }
-
-    public void setLastUpdate(LocalDateTime lastUpdate) {
-        this.lastUpdate = lastUpdate;
-    }
-
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
-    }
-    
-    
     
 }

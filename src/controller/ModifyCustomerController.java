@@ -129,10 +129,10 @@ public class ModifyCustomerController implements Initializable {
                 + "', Postal_Code = '" + postalTextField.getText()
                 + "', Phone = '" + phoneTextField.getText()
                 + "', Last_Update = '" + String.valueOf(LocalDateTime.now())
-                + "', Last_Update_By = 'test'"
+                + "', Last_Updated_By = 'test"
                 + "', Division_ID = '" + divID
                 + "' WHERE Customer_ID = '" + customerTextField.getText() + "'";
-        
+            System.out.println(updateStatement);
             statement.execute(updateStatement);
         } catch(SQLException e) {
             System.out.println(e);

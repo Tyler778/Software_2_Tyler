@@ -92,7 +92,6 @@ public class AddCustomerController implements Initializable {
                 + timeStamp + "', '"
                 + "test', '" 
                 + divID + "');";
-        System.out.println(addStatement);
         statement.execute(addStatement);
         SchedulingHomeController.reloadData = true;
         
