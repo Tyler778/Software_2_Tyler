@@ -31,6 +31,7 @@ import javafx.stage.Stage;
 import model.Customers;
 import model.Divisions;
 import model.Manager;
+import java.sql.ResultSet;
 
 /**
  * FXML Controller class
@@ -86,7 +87,23 @@ public class ModifyCustomerController implements Initializable {
         
         divisionBox.setItems(Manager.getDivisionsBasedOnCountry(customer.getCountry()));
         divisionBox.setValue(String.valueOf(customer.getDivName()));
+        appointmentTotal.setText(appointmentCount(customer));
         
+        
+    }
+    private String appointmentCount(Customers customer) throws SQLException {
+        
+        DBQuery.setStatement(DBConnection.getConnection());
+        Statement statement = DBQuery.getStatement();
+        String countAppt = "SELECT COUNT(Appointment_ID) FROM appointments WHERE Customer_ID = '" + customer.getId() + "'";
+        statement.execute(countAppt);
+        ResultSet cAppt = statement.getResultSet();
+        String appointmentTotal = null;
+        while (cAppt.next()) {
+            String count = String.valueOf(cAppt.getInt("COUNT(Appointment_ID)"));
+            appointmentTotal = count;
+        }
+        return appointmentTotal;
         
     }
 
