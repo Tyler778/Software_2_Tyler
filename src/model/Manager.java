@@ -10,7 +10,11 @@ import DBAccess.DBCountries;
 import DBAccess.DBCredentials;
 import DBAccess.DBCustomers;
 import DBAccess.DBDivisions;
+import Utilities.DBConnection;
+import Utilities.DBQuery;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -96,6 +100,28 @@ public class Manager {
         for (Divisions div : allDivisions) {
             allDivisions.remove(div);
         }
+    }
+    
+    public static ObservableList<String> getDivisionsBasedOnCountry(String countryName) throws SQLException {
+        DBQuery.setStatement(DBConnection.getConnection());
+        Statement statement = DBQuery.getStatement();
+        ObservableList<String>currentDivisions = FXCollections.observableArrayList();
+        int countryID = 0;
+        for (Countries country : Manager.getAllCountries()) {
+            if(countryName.equals(country.getName())) {
+                countryID = country.getId();
+            }
+        }
+        String selectDivisionsBasedOnCountry = "SELECT Division FROM first_level_divisions WHERE COUNTRY_ID = '" + countryID + "'";
+        
+        statement.execute(selectDivisionsBasedOnCountry);
+        ResultSet divSet = statement.getResultSet();
+        
+        while (divSet.next()) {
+            String divName = divSet.getString("Division");
+            currentDivisions.add(divName);
+        }
+        return currentDivisions;
     }
     
     //Countries

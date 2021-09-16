@@ -66,8 +66,6 @@ public class ModifyCustomerController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //divisionBox.setValue("Ohio");
-        divisionBox.setItems(Manager.getAllDivisionNames());
-        countryBox.setItems(Manager.getAllCountryNames());
         //divisionBox.setValue("Division Production");
         // TODO
     }    
@@ -75,14 +73,18 @@ public class ModifyCustomerController implements Initializable {
     
     
     
-    public void sendCustomer(Customers customer) {
+    public void sendCustomer(Customers customer) throws SQLException {
         customerTextField.setText(String.valueOf(customer.getId()));
         addressTextField.setText(String.valueOf(customer.getAddress()));
         nameTextField.setText(String.valueOf(customer.getCustomerName()));
         postalTextField.setText(String.valueOf(customer.getPostalCode()));
         phoneTextField.setText(String.valueOf(customer.getPhone()));
-        divisionBox.setValue(String.valueOf(customer.getDivName()));
+        countryBox.setItems(Manager.getAllCountryNames());
         countryBox.setValue(String.valueOf(customer.getCountry()));
+        
+        divisionBox.setItems(Manager.getDivisionsBasedOnCountry(customer.getCountry()));
+        divisionBox.setValue(String.valueOf(customer.getDivName()));
+        
         
     }
 
@@ -105,7 +107,9 @@ public class ModifyCustomerController implements Initializable {
     }
 
     @FXML
-    private void loadDivisions(InputMethodEvent event) {
+    private void loadDivisions(InputMethodEvent event) throws SQLException {
+        divisionBox.setItems(Manager.getDivisionsBasedOnCountry(countryBox.getValue()));
+        divisionBox.setValue(null);
     }
     
 }
