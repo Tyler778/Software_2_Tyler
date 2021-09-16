@@ -43,6 +43,16 @@ public class Manager {
         
     }
     
+    //Delete all Data
+    public static void deleteData() throws SQLException {
+        deleteAllAppointments();
+        deleteAllCustomers();
+        deleteAllDivisions();
+        deleteAllCountries();
+        
+        
+    }
+    
     
     //Appointments
     public static void addAppointment (Appointment apt) {
@@ -54,11 +64,10 @@ public class Manager {
         return allAppointments;
     }
     
-    public static ObservableList<Appointment> deleteAllAppointments() {
+    public static void deleteAllAppointments() {
         for (Appointment apt : allAppointments) {
             allAppointments.remove(apt);
         }
-        return allAppointments;
     }
     
     
@@ -73,11 +82,10 @@ public class Manager {
         return allCustomers;
     }
     
-    public static ObservableList<Customers> deleteAllCustomers() {
+    public static void deleteAllCustomers() {
         for (Customers cust : allCustomers) {
             allCustomers.remove(cust);
         }
-        return allCustomers;
     }
     
     
@@ -142,4 +150,10 @@ public class Manager {
             allCountries.remove(country);
         }
     }
+    
+    
+    
+    //Credentials
+    
+    //TODO
 }

@@ -193,4 +193,8 @@ public class SchedulingHomeController implements Initializable {
         System.exit(0);
     }
     
+    private void prepareReload() {
+        
+    }
+    
 }

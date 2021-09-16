@@ -59,4 +59,5 @@ public class DBCustomers {
             Manager.addCustomer(cust1);
         }
     }
+    
 }
