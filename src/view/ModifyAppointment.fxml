@@ -66,8 +66,8 @@
             <TextField fx:id="typeTextField" layoutX="221.0" layoutY="264.0" />
             <TextField fx:id="titleTextField" layoutX="221.0" layoutY="77.0" />
             <TextField fx:id="customerIDTextField" layoutX="221.0" layoutY="419.0" />
-            <Button layoutX="694.0" layoutY="608.0" mnemonicParsing="false" onAction="#onActionCancelModifyAppt" text="Cancel" />
-            <Button layoutX="244.0" layoutY="608.0" mnemonicParsing="false" onAction="#onActionSaveAppt" text="Save" />
+            <Button layoutX="694.0" layoutY="608.0" mnemonicParsing="false" onAction="#onActionCancelModifyAppointment" text="Cancel" />
+            <Button layoutX="244.0" layoutY="608.0" mnemonicParsing="false" onAction="#onActionSaveAppointment" text="Save" />
             <ComboBox fx:id="startHourCombo" layoutX="441.0" layoutY="317.0" prefHeight="25.0" prefWidth="59.0" />
             <ComboBox fx:id="endHourCombo" layoutX="441.0" layoutY="367.0" prefHeight="25.0" prefWidth="59.0" />
             <ComboBox fx:id="startMinuteCombo" layoutX="529.0" layoutY="317.0" prefHeight="25.0" prefWidth="59.0" />

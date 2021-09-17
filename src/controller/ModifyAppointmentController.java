@@ -77,17 +77,6 @@ public class ModifyAppointmentController implements Initializable {
         // TODO
     }    
 
-    @FXML
-    private void onActionCancelModifyAppt(ActionEvent event) throws IOException {
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/view/SchedulingHome.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
-    }
-
-    @FXML
-    private void onActionSaveAppt(ActionEvent event) {
-    }
     
     
     
@@ -114,6 +103,20 @@ public class ModifyAppointmentController implements Initializable {
             minutesOL.add(String.valueOf(minutes));
             minutes ++;
         }
+    }
+
+
+    @FXML
+    private void onActionCancelModifyAppointment(ActionEvent event) throws IOException {
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/view/SchedulingHome.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
+    }
+
+    @FXML
+    private void onActionSaveAppointment(ActionEvent event) {
+        
     }
     
 }

@@ -122,6 +122,7 @@ public class SchedulingHomeController implements Initializable {
             stage.setScene(new Scene(scene));
             stage.show();
         } catch(Exception e) {
+            System.out.println(e);
             System.out.println("Select an Appointment");
         }
     }
