@@ -7,6 +7,10 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -116,7 +120,18 @@ public class ModifyAppointmentController implements Initializable {
 
     @FXML
     private void onActionSaveAppointment(ActionEvent event) {
+        gatherStart();
         
+    }
+    
+    
+    
+    private LocalDateTime gatherStart() {
+        LocalDateTime startDateTime = null;
+        
+        startDateTime = LocalDateTime.of(startDatePicker.getValue(), LocalTime.parse(startHourCombo.getValue() + startMinuteCombo.getValue()));
+        System.out.println(startDateTime);
+        return startDateTime;
     }
     
 }
