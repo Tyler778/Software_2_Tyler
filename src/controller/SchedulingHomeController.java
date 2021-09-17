@@ -128,7 +128,8 @@ public class SchedulingHomeController implements Initializable {
     }
 
     @FXML
-    private void onActionDeleteAppointment(ActionEvent event) {
+    private void onActionDeleteAppointment(ActionEvent event) throws SQLException {
+        Manager.removeAppointment(tableAppointments.getSelectionModel().getSelectedItem());
         
     }
 

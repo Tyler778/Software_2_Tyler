@@ -76,5 +76,15 @@ public class DBAppointments {
                 
     }
     
+    public static void deleteAppointment(Appointment apt) throws SQLException {
+        DBQuery.setStatement(DBConnection.getConnection());
+        Statement statement = DBQuery.getStatement();
+        String id = String.valueOf(apt.getId());
+        String deleteStatement = "DELETE FROM appointments WHERE Appointment_ID = '" + id + "'";
+        statement.execute(deleteStatement);
+    }
+    
+    
+    
     
 }

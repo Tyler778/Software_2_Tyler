@@ -72,6 +72,10 @@ public class Manager {
         }
         allAppointments.removeAll(holdAppt);
     }
+    public static void removeAppointment (Appointment apt) throws SQLException {
+        allAppointments.remove(apt);
+        DBAppointments.deleteAppointment(apt);
+    }
     
     
     
