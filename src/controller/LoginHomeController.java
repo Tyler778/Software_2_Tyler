@@ -19,6 +19,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import model.Manager;
+import model.Users;
 
 /**
  * FXML Controller class
@@ -49,26 +51,14 @@ public class LoginHomeController implements Initializable {
     
     
     public boolean validateUser() {
-        boolean usernameCheck = false;
-        boolean passwordCheck = false;
-        boolean valid = false;
-        if (usernameTextField.getText().equals("test")) {
-            usernameCheck = true;
+        boolean validCredentials = false;
+        for(Users user : Manager.getAllUsers()) {
+            if(usernameTextField.getText().equals(user.getName()) && passwordTextField.getText().equals(user.getPassword())) {
+                validCredentials = true;
+            }
         }
-        else {
-            usernameCheck = false;
-        }
-        if (passwordTextField.getText().equals("test")) {
-            passwordCheck = true;
-        }
-        else {
-            passwordCheck = false;
-        }
-        if (usernameCheck && passwordCheck) {
-            valid = true;
-        }
-        return valid;
-    };
+        return validCredentials;
+    }
 
     @FXML
     private void onActionExit(ActionEvent event) {

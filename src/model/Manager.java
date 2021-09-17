@@ -180,7 +180,9 @@ public class Manager {
         allUsers.removeAll(holdUsers);
     }
     
-    
+    public static ObservableList<Users> getAllUsers() {
+        return allUsers;
+    }
     
     //TODO
 }
