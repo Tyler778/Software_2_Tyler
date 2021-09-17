@@ -7,7 +7,6 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -92,6 +91,9 @@ public class ModifyAppointmentController implements Initializable {
         locationTextField.setText(String.valueOf(appt.getLocation()));
         contactTextField.setText(String.valueOf(appt.getContactName()));
         typeTextField.setText(String.valueOf(appt.getType()));
+        startDatePicker.setValue(appt.getStartDateTime().toLocalDate());
+        endDatePicker.setValue(appt.getEndDateTime().toLocalDate());
+        
         
         
         
@@ -121,6 +123,7 @@ public class ModifyAppointmentController implements Initializable {
     @FXML
     private void onActionSaveAppointment(ActionEvent event) {
         gatherStart();
+        gatherEnd();
         
     }
     
@@ -129,9 +132,17 @@ public class ModifyAppointmentController implements Initializable {
     private LocalDateTime gatherStart() {
         LocalDateTime startDateTime = null;
         
-        startDateTime = LocalDateTime.of(startDatePicker.getValue(), LocalTime.parse(startHourCombo.getValue() + startMinuteCombo.getValue()));
+        startDateTime = LocalDateTime.of(startDatePicker.getValue(),LocalTime.of(Integer.valueOf(startHourCombo.getValue()), Integer.valueOf(startMinuteCombo.getValue())));
         System.out.println(startDateTime);
         return startDateTime;
+    }
+    
+    private LocalDateTime gatherEnd() {
+        LocalDateTime endDateTime = null;
+        
+        endDateTime = LocalDateTime.of(endDatePicker.getValue(),LocalTime.of(Integer.valueOf(endHourCombo.getValue()), Integer.valueOf(endMinuteCombo.getValue())));
+        System.out.println(endDateTime);
+        return endDateTime;
     }
     
 }

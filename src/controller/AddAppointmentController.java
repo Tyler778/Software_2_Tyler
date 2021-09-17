@@ -7,6 +7,8 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -85,6 +87,8 @@ public class AddAppointmentController implements Initializable {
 
     @FXML
     private void onActionAddAppointment(ActionEvent event) {
+        gatherStart();
+        gatherEnd();
     }
     
     
@@ -99,6 +103,22 @@ public class AddAppointmentController implements Initializable {
             minutesOL.add(String.valueOf(minutes));
             minutes ++;
         }
+    }
+    
+    private LocalDateTime gatherStart() {
+        LocalDateTime startDateTime = null;
+        
+        startDateTime = LocalDateTime.of(startDatePicker.getValue(),LocalTime.of(Integer.valueOf(startHourCombo.getValue()), Integer.valueOf(startMinuteCombo.getValue())));
+        System.out.println(startDateTime);
+        return startDateTime;
+    }
+    
+    private LocalDateTime gatherEnd() {
+        LocalDateTime endDateTime = null;
+        
+        endDateTime = LocalDateTime.of(endDatePicker.getValue(),LocalTime.of(Integer.valueOf(endHourCombo.getValue()), Integer.valueOf(endMinuteCombo.getValue())));
+        System.out.println(endDateTime);
+        return endDateTime;
     }
     
 }
