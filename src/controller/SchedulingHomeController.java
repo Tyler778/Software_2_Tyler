@@ -33,6 +33,7 @@ import model.Appointment;
 import model.Customers;
 import model.Manager;
 import java.sql.Statement;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -80,6 +81,14 @@ public class SchedulingHomeController implements Initializable {
     private TableColumn<Customers, String> postalCol;
     @FXML
     private TableColumn<Customers, String> phoneCol;
+    @FXML
+    private Label aptDeleteMsg;
+    @FXML
+    private Label aptModifyMsg;
+    @FXML
+    private Label custModifyMsg;
+    @FXML
+    private Label custDeleteMsg;
     
 
     /**
@@ -87,6 +96,10 @@ public class SchedulingHomeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        aptDeleteMsg.setVisible(false);
+        aptModifyMsg.setVisible(false);
+        custModifyMsg.setVisible(false);
+        custDeleteMsg.setVisible(false);
         if(reloadData) {
             try {
                 reloadData();
@@ -122,21 +135,33 @@ public class SchedulingHomeController implements Initializable {
             stage.setScene(new Scene(scene));
             stage.show();
         } catch(Exception e) {
-            System.out.println(e);
-            System.out.println("Select an Appointment");
+            aptDeleteMsg.setVisible(false);
+            aptModifyMsg.setVisible(true);
         }
     }
 
     @FXML
     private void onActionDeleteAppointment(ActionEvent event) throws SQLException {
-        Manager.removeAppointment(tableAppointments.getSelectionModel().getSelectedItem());
+        
+        try {
+            Manager.removeAppointment(tableAppointments.getSelectionModel().getSelectedItem());
+        } catch (Exception e) {
+            aptModifyMsg.setVisible(false);
+            aptDeleteMsg.setVisible(true);
+        }
+        
         
     }
 
     @FXML
     private void onActionDeleteCustomer(ActionEvent event) throws SQLException {
-        Manager.removeCustomer(tableCustomers.getSelectionModel().getSelectedItem());
-
+        try {
+            Manager.removeCustomer(tableCustomers.getSelectionModel().getSelectedItem());
+        } catch (Exception e) {
+            custModifyMsg.setVisible(false);
+            custDeleteMsg.setVisible(true);
+        }
+        
         
     }
 
@@ -154,7 +179,8 @@ public class SchedulingHomeController implements Initializable {
             stage.setScene(new Scene(scene));
             stage.show();
         } catch(Exception e) {
-            System.out.println("Select a Customer");
+            custModifyMsg.setVisible(true);
+            custDeleteMsg.setVisible(false);
         }
     }
 

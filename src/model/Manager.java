@@ -33,6 +33,7 @@ public class Manager {
     private static ObservableList<Countries>allCountries = FXCollections.observableArrayList();
     private static ObservableList<String>allCountryNames = FXCollections.observableArrayList();
     private static ObservableList<Users>allUsers = FXCollections.observableArrayList();
+    private static ObservableList<Contacts>allContacts = FXCollections.observableArrayList();
     //Load all Data
     public static void loadData() throws SQLException {
         DBCustomers.loadCustomers();
@@ -188,5 +189,24 @@ public class Manager {
         return allUsers;
     }
     
-    //TODO
+    
+    
+    //Contacts
+    
+    public static void addContact (Contacts contact) {
+        allContacts.add(contact);
+    }
+    public static void deleteAllContacts() {
+        ObservableList<Contacts>holdContacts = FXCollections.observableArrayList();
+        for(Contacts contact : allContacts) {
+            holdContacts.add(contact);
+        }
+        allContacts.removeAll(holdContacts);
+    }
+    
+    public static ObservableList<Contacts> getAllContacts() {
+        return allContacts;
+    }
+    
+    
 }
