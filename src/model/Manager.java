@@ -6,6 +6,7 @@
 package model;
 
 import DBAccess.DBAppointments;
+import DBAccess.DBContacts;
 import DBAccess.DBCountries;
 import DBAccess.DBUsers;
 import DBAccess.DBCustomers;
@@ -34,6 +35,9 @@ public class Manager {
     private static ObservableList<String>allCountryNames = FXCollections.observableArrayList();
     private static ObservableList<Users>allUsers = FXCollections.observableArrayList();
     private static ObservableList<Contacts>allContacts = FXCollections.observableArrayList();
+    private static ObservableList<String>allContactNames = FXCollections.observableArrayList();
+    
+    
     //Load all Data
     public static void loadData() throws SQLException {
         DBCustomers.loadCustomers();
@@ -41,6 +45,7 @@ public class Manager {
         DBCountries.loadCountries();
         DBDivisions.loadDivisions();
         DBUsers.loadUsers();
+        DBContacts.loadContacts();
         
     }
     
@@ -51,6 +56,7 @@ public class Manager {
         deleteAllDivisions();
         deleteAllCountries();
         deleteAllUsers();
+        deleteAllContacts();
         
         
     }
@@ -157,6 +163,14 @@ public class Manager {
     }
     public static ObservableList<String> getAllCountryNames() {
         return allCountryNames;
+    }
+    
+    public static void deleteAllCountryNames() {
+        ObservableList<String>holdCountryNames = FXCollections.observableArrayList();
+        for (String country : allCountryNames) {
+            holdCountryNames.add(country);
+        }
+        allCountryNames.removeAll(holdCountryNames);
     }
     public static ObservableList<Countries> getAllCountries() {
         return allCountries;
