@@ -23,6 +23,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Manager;
 
 /**
  * FXML Controller class
@@ -48,8 +49,6 @@ public class AddAppointmentController implements Initializable {
     @FXML
     private TextField locationTextField;
     @FXML
-    private TextField contactTextField;
-    @FXML
     private TextField typeTextField;
     @FXML
     private TextField titleTextField;
@@ -63,6 +62,8 @@ public class AddAppointmentController implements Initializable {
     private ComboBox<String> startMinuteCombo;
     @FXML
     private ComboBox<String> endMinuteCombo;
+    @FXML
+    private ComboBox<String> contactCombo;
 
     /**
      * Initializes the controller class.
@@ -74,6 +75,10 @@ public class AddAppointmentController implements Initializable {
         endHourCombo.setItems(hoursOL);
         startMinuteCombo.setItems(minutesOL);
         endMinuteCombo.setItems(minutesOL);
+        contactCombo.setItems(Manager.getAllContactNames());
+
+        
+        
         // TODO
     }    
 

@@ -81,7 +81,7 @@ public class ModifyAppointmentController implements Initializable {
         endHourCombo.setItems(hoursOL);
         startMinuteCombo.setItems(minutesOL);
         endMinuteCombo.setItems(minutesOL);
-        
+        contactCombo.setItems(Manager.getAllContactNames());
         // TODO
     }    
 
@@ -101,7 +101,6 @@ public class ModifyAppointmentController implements Initializable {
         startMinuteCombo.setValue(String.valueOf(appt.getStartDateTime().getMinute()));
         endHourCombo.setValue(String.valueOf(appt.getEndDateTime().getHour()));
         endMinuteCombo.setValue(String.valueOf(appt.getEndDateTime().getMinute()));
-        contactCombo.setItems(Manager.getAllContactNames());
         contactCombo.setValue(appt.getContactName());
         
         

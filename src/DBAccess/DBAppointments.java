@@ -15,6 +15,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import model.Manager;
+import java.sql.PreparedStatement;
+import java.sql.Timestamp;
 
 /**
  *
@@ -77,30 +79,42 @@ public class DBAppointments {
     }
     
     public static void deleteAppointment(Appointment apt) throws SQLException {
-        DBQuery.setStatement(DBConnection.getConnection());
-        Statement statement = DBQuery.getStatement();
-        String id = String.valueOf(apt.getId());
-        String deleteStatement = "DELETE FROM appointments WHERE Appointment_ID = '" + id + "'";
-        statement.execute(deleteStatement);
+        String deleteAppointment = "DELETE FROM appointments WHERE Appointment_ID = ?";
+        PreparedStatement deleteAppointmentPS = DBConnection.getConnection().prepareStatement(deleteAppointment);
+        deleteAppointmentPS.setInt(1, apt.getId());
+        
+        deleteAppointmentPS.executeUpdate();
     }
     
-    public static void updateAppointment(Integer id, String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end, Integer contactID) throws SQLException {
-        DBQuery.setStatement(DBConnection.getConnection());
-        Statement statement = DBQuery.getStatement();
+    public static void updateAppointment(Integer id, String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createBy, Timestamp lastUpdate, String updatedBy, Integer customerID, Integer userID, Integer contactID) throws SQLException {
         
-        String updateStatement = "UPDATE appointments "
-                + "SET Title = '" + title + "', "
-                + "Description = '" + desc + "', "
-                + "Location = '" + location + "', "
-                + "Type = '" + type + "', "
-                + "Start = '" + start + "', "
-                + "End = '" + end + "', "
-                + "Contact_ID = '" + contactID + "' "
-                + "WHERE Appointment_ID = '" + id + "';";
-        System.out.println(updateStatement);
-        statement.execute(updateStatement);
-                
-                
+        String updateStatement = "UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Create_Date = ?, Created_By = ?, Last_Update = ?, Last_Updated_By = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?;";
+        PreparedStatement updateStatementPS = DBConnection.getConnection().prepareStatement(updateStatement);
+
+        updateStatementPS.setString(1, title);
+        updateStatementPS.setString(2, desc);
+        updateStatementPS.setString(3, location);
+        updateStatementPS.setString(4, type);
+        updateStatementPS.setTimestamp(5, Timestamp.valueOf(start));
+        updateStatementPS.setTimestamp(6, Timestamp.valueOf(end));
+        updateStatementPS.setTimestamp(7, Timestamp.valueOf(createDate));
+        updateStatementPS.setString(8, createBy);
+        updateStatementPS.setTimestamp(9, lastUpdate);
+        updateStatementPS.setString(10, updatedBy);
+        updateStatementPS.setInt(12, customerID);
+        updateStatementPS.setInt(13, userID);
+        updateStatementPS.setInt(14, contactID);
+        updateStatementPS.setInt(15, id);
+        
+        updateStatementPS.executeUpdate();
+       
+    }
+    
+    public static void addAppointment(String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createBy, Timestamp lastUpdate, String updateBy, Integer customerID, Integer userID, Integer contactID) throws SQLException {
+
+        
+        
+        //String addAppointment = "INSERT INTO appointments"
     }
     
     
