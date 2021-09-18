@@ -70,7 +70,7 @@ public class DBAppointments {
             String contactName = apptSet.getString("Contact_Name");
             Appointment apt1 = new Appointment(apptID, title, desc, location, type, startDateTime, endDateTime, createDateTime, createdBy, lastUpdate, updatedBy, customerID, userID, contactID, contactName);
             
-            Manager.addAppointment(apt1);
+            Manager.addAppointmentNODB(apt1);
             
             
             
@@ -110,9 +110,29 @@ public class DBAppointments {
        
     }
     
-    public static void addAppointment(String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createBy, Timestamp lastUpdate, String updateBy, Integer customerID, Integer userID, Integer contactID) throws SQLException {
+    public static void addAppointment(String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createBy, Timestamp lastUpdate, String updatedBy, Integer customerID, Integer userID, Integer contactID) throws SQLException {
 
+        String addStatement = "INSERT INTO appointments(Title, Description, Location, Type, Start, End, Create_Date, Created_By, Last_Update, Last_Updated_By, Customer_ID, User_ID, Contact_ID)"
+                + " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        PreparedStatement addStatementPS = DBConnection.getConnection().prepareStatement(addStatement);
         
+        addStatementPS.setString(1, title);
+        addStatementPS.setString(2, desc);
+        addStatementPS.setString(3, location);
+        addStatementPS.setString(4, type);
+        addStatementPS.setTimestamp(5, Timestamp.valueOf(start));
+        addStatementPS.setTimestamp(6, Timestamp.valueOf(end));
+        addStatementPS.setTimestamp(7, Timestamp.valueOf(createDate));
+        addStatementPS.setString(8, createBy);
+        addStatementPS.setTimestamp(9, lastUpdate);
+        addStatementPS.setString(10, updatedBy);
+        addStatementPS.setInt(11, customerID);
+        addStatementPS.setInt(12, userID);
+        addStatementPS.setInt(13, contactID);
+        
+        System.out.println(addStatementPS);
+        
+        addStatementPS.executeUpdate();
         
         //String addAppointment = "INSERT INTO appointments"
     }

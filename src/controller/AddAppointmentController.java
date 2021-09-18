@@ -7,6 +7,9 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
@@ -23,6 +26,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Contacts;
 import model.Manager;
 
 /**
@@ -95,9 +99,30 @@ public class AddAppointmentController implements Initializable {
     }
 
     @FXML
-    private void onActionAddAppointment(ActionEvent event) {
+    private void onActionAddAppointment(ActionEvent event) throws SQLException, IOException {
         gatherStart();
         gatherEnd();
+        Manager.addAppointment(
+        titleTextField.getText(),
+        descTextField.getText(),
+        locationTextField.getText(),
+        typeTextField.getText(),
+        gatherStart(),
+        gatherEnd(),
+        createDate(),
+        LoginHomeController.userLoggedIn,
+        gatherTimestamp(),
+        LoginHomeController.userLoggedIn,
+        custIDCombo.getValue(),
+        userIDCombo.getValue(),
+        getContactID(contactCombo.getValue())
+        );
+        SchedulingHomeController.reloadData = true;
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/view/SchedulingHome.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
+        
     }
     
     
@@ -128,6 +153,24 @@ public class AddAppointmentController implements Initializable {
         endDateTime = LocalDateTime.of(endDatePicker.getValue(),LocalTime.of(Integer.valueOf(endHourCombo.getValue()), Integer.valueOf(endMinuteCombo.getValue())));
         System.out.println(endDateTime);
         return endDateTime;
+    }
+    private static LocalDateTime createDate() {
+        LocalDateTime current = null;
+        current = LocalDateTime.now();
+        return current;
+        
+    }
+    private Timestamp gatherTimestamp() {
+        return Timestamp.from(Instant.now());
+    }
+    private Integer getContactID(String name) {
+        int cID = 0;
+        for(Contacts contact : Manager.getAllContacts()) {
+            if(name.equals(contact.getName())) {
+                cID = contact.getId();
+            }
+        }
+        return cID;
     }
     
 }

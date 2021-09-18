@@ -69,8 +69,12 @@ public class Manager {
     
     
     //Appointments
-    public static void addAppointment (Appointment apt) {
-        allAppointments.add(apt);
+    public static void addAppointmentNODB(Appointment appt) {
+        allAppointments.add(appt);
+    }
+    
+    public static void addAppointment (String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createBy, Timestamp lastUpdate, String updatedBy, Integer customerID, Integer userID, Integer contactID) throws SQLException {
+        DBAppointments.addAppointment(title, desc, location, type, start, end, createDate, createBy, lastUpdate, updatedBy, customerID, userID, contactID);
     }
     
     
@@ -92,6 +96,8 @@ public class Manager {
     public static void updateAppointment (Integer id, String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createBy, Timestamp lastUpdate, String updatedBy, Integer customerID, Integer userID, Integer contactID) throws SQLException {
         DBAppointments.updateAppointment(id, title, desc, location, type, start, end, createDate, createBy, lastUpdate, updatedBy, customerID, userID, contactID);
     }
+    
+    
     
     
     
@@ -264,6 +270,11 @@ public class Manager {
     }
     
     public static ObservableList<String> getAllContactNames() {
+        ObservableList<String>holdContactName = FXCollections.observableArrayList();
+        for (String contact : allContactNames) {
+            holdContactName.add(contact);
+        }
+        allContactNames.removeAll(holdContactName);
         for(Contacts contact : Manager.getAllContacts()) {
             allContactNames.add(contact.getName());
         }
