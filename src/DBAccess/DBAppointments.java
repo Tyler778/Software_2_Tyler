@@ -84,6 +84,24 @@ public class DBAppointments {
         statement.execute(deleteStatement);
     }
     
+    public static void updateAppointment(Integer id, String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end) throws SQLException {
+        DBQuery.setStatement(DBConnection.getConnection());
+        Statement statement = DBQuery.getStatement();
+        
+        String updateStatement = "UPDATE appointments "
+                + "SET Title = '" + title + "', "
+                + "Description = '" + desc + "', "
+                + "Location = '" + location + "', "
+                + "Type = '" + type + "', "
+                + "Start = '" + start + "', "
+                + "End = '" + end + "' "
+                + "WHERE Appointment_ID = '" + id + "';";
+        System.out.println(updateStatement);
+        statement.execute(updateStatement);
+                
+                
+    }
+    
     
     
     

@@ -5,8 +5,10 @@
  */
 package controller;
 
+import DBAccess.DBAppointments;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -93,7 +95,10 @@ public class ModifyAppointmentController implements Initializable {
         typeTextField.setText(String.valueOf(appt.getType()));
         startDatePicker.setValue(appt.getStartDateTime().toLocalDate());
         endDatePicker.setValue(appt.getEndDateTime().toLocalDate());
-        
+        startHourCombo.setValue(String.valueOf(appt.getStartDateTime().getHour()));
+        startMinuteCombo.setValue(String.valueOf(appt.getStartDateTime().getMinute()));
+        endHourCombo.setValue(String.valueOf(appt.getEndDateTime().getHour()));
+        endMinuteCombo.setValue(String.valueOf(appt.getEndDateTime().getMinute()));
         
         
         
@@ -121,9 +126,16 @@ public class ModifyAppointmentController implements Initializable {
     }
 
     @FXML
-    private void onActionSaveAppointment(ActionEvent event) {
+    private void onActionSaveAppointment(ActionEvent event) throws SQLException, IOException {
         gatherStart();
         gatherEnd();
+        DBAppointments.updateAppointment(Integer.valueOf(apptTextField.getText()), titleTextField.getText(), descTextField.getText(), locationTextField.getText(), typeTextField.getText(), gatherStart(), gatherEnd());
+        SchedulingHomeController.reloadData = true;
+        
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/view/SchedulingHome.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
         
     }
     

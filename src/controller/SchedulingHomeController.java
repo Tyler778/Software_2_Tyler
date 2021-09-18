@@ -89,6 +89,8 @@ public class SchedulingHomeController implements Initializable {
     private Label custModifyMsg;
     @FXML
     private Label custDeleteMsg;
+    @FXML
+    private TableColumn<?, ?> userCol;
     
 
     /**
@@ -216,6 +218,7 @@ public class SchedulingHomeController implements Initializable {
         endCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
         customerCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         contactCol.setCellValueFactory(new PropertyValueFactory<>("contactName"));
+        userCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
         
         tableCustomers.setItems(Manager.getAllCustomers());
         customerIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
