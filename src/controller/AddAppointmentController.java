@@ -53,8 +53,6 @@ public class AddAppointmentController implements Initializable {
     @FXML
     private TextField titleTextField;
     @FXML
-    private TextField customerIDTextField;
-    @FXML
     private ComboBox<String> startHourCombo;
     @FXML
     private ComboBox<String> endHourCombo;
@@ -64,6 +62,10 @@ public class AddAppointmentController implements Initializable {
     private ComboBox<String> endMinuteCombo;
     @FXML
     private ComboBox<String> contactCombo;
+    @FXML
+    private ComboBox<Integer> custIDCombo;
+    @FXML
+    private ComboBox<Integer> userIDCombo;
 
     /**
      * Initializes the controller class.
@@ -76,6 +78,8 @@ public class AddAppointmentController implements Initializable {
         startMinuteCombo.setItems(minutesOL);
         endMinuteCombo.setItems(minutesOL);
         contactCombo.setItems(Manager.getAllContactNames());
+        custIDCombo.setItems(Manager.getAllCustomerIDs());
+        userIDCombo.setItems(Manager.getAllUserIDs());
 
         
         

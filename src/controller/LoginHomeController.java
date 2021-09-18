@@ -31,6 +31,7 @@ import model.Users;
 public class LoginHomeController implements Initializable {
     Stage stage;
     Parent scene;
+    public static String userLoggedIn = null;
 
     @FXML
     private TextField usernameTextField;
@@ -58,6 +59,7 @@ public class LoginHomeController implements Initializable {
         for(Users user : Manager.getAllUsers()) {
             if(usernameTextField.getText().equals(user.getName()) && passwordTextField.getText().equals(user.getPassword())) {
                 validCredentials = true;
+                userLoggedIn = user.getName();
             }
         }
         return validCredentials;

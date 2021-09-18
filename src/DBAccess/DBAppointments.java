@@ -101,10 +101,10 @@ public class DBAppointments {
         updateStatementPS.setString(8, createBy);
         updateStatementPS.setTimestamp(9, lastUpdate);
         updateStatementPS.setString(10, updatedBy);
-        updateStatementPS.setInt(12, customerID);
-        updateStatementPS.setInt(13, userID);
-        updateStatementPS.setInt(14, contactID);
-        updateStatementPS.setInt(15, id);
+        updateStatementPS.setInt(11, customerID);
+        updateStatementPS.setInt(12, userID);
+        updateStatementPS.setInt(13, contactID);
+        updateStatementPS.setInt(14, id);
         
         updateStatementPS.executeUpdate();
        

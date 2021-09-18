@@ -29,6 +29,8 @@ import javafx.stage.Stage;
 import model.Appointment;
 import model.Contacts;
 import model.Manager;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 /**
  * FXML Controller class
@@ -42,6 +44,9 @@ public class ModifyAppointmentController implements Initializable {
     
     Stage stage;
     Parent scene;
+    
+    public LocalDateTime createDate = null;
+    public String createdBy = null;
 
     @FXML
     private DatePicker endDatePicker;
@@ -108,6 +113,8 @@ public class ModifyAppointmentController implements Initializable {
         contactCombo.setValue(appt.getContactName());
         custIDCombo.setValue(appt.getCustomerID());
         userIDCombo.setValue(appt.getUserID());
+        createDate = appt.getCreateDateTime();
+        createdBy = appt.getCreatedBy();
         
         
         
@@ -140,7 +147,22 @@ public class ModifyAppointmentController implements Initializable {
         gatherStart();
         gatherEnd();
         
-        //Manager.updateAppointment();
+        Manager.updateAppointment(
+        Integer.valueOf(apptTextField.getText()),
+        titleTextField.getText(),
+        descTextField.getText(),
+        locationTextField.getText(),
+        typeTextField.getText(),
+        gatherStart(),
+        gatherEnd(),
+        createDate,
+        createdBy,
+        gatherTimestamp(),
+        LoginHomeController.userLoggedIn,
+        custIDCombo.getValue(),
+        userIDCombo.getValue(),
+        getContactID(contactCombo.getValue())
+        );
         
         SchedulingHomeController.reloadData = true;
         
@@ -176,6 +198,10 @@ public class ModifyAppointmentController implements Initializable {
             }
         }
         return cID;
+    }
+    
+    private Timestamp gatherTimestamp() {
+        return Timestamp.from(Instant.now());
     }
     
 }
