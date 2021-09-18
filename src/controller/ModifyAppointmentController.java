@@ -27,6 +27,8 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.Appointment;
+import model.Contacts;
+import model.Manager;
 
 /**
  * FXML Controller class
@@ -52,8 +54,6 @@ public class ModifyAppointmentController implements Initializable {
     @FXML
     private TextField locationTextField;
     @FXML
-    private TextField contactTextField;
-    @FXML
     private TextField typeTextField;
     @FXML
     private TextField titleTextField;
@@ -67,12 +67,15 @@ public class ModifyAppointmentController implements Initializable {
     private ComboBox<String> startMinuteCombo;
     @FXML
     private ComboBox<String> endMinuteCombo;
+    @FXML
+    private ComboBox<String> contactCombo;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Manager.deleteAllContactNames();
         fillObservableLists();
         startHourCombo.setItems(hoursOL);
         endHourCombo.setItems(hoursOL);
@@ -91,7 +94,6 @@ public class ModifyAppointmentController implements Initializable {
         titleTextField.setText(String.valueOf(appt.getTitle()));
         descTextField.setText(String.valueOf(appt.getDesc()));
         locationTextField.setText(String.valueOf(appt.getLocation()));
-        contactTextField.setText(String.valueOf(appt.getContactName()));
         typeTextField.setText(String.valueOf(appt.getType()));
         startDatePicker.setValue(appt.getStartDateTime().toLocalDate());
         endDatePicker.setValue(appt.getEndDateTime().toLocalDate());
@@ -99,6 +101,9 @@ public class ModifyAppointmentController implements Initializable {
         startMinuteCombo.setValue(String.valueOf(appt.getStartDateTime().getMinute()));
         endHourCombo.setValue(String.valueOf(appt.getEndDateTime().getHour()));
         endMinuteCombo.setValue(String.valueOf(appt.getEndDateTime().getMinute()));
+        contactCombo.setItems(Manager.getAllContactNames());
+        contactCombo.setValue(appt.getContactName());
+        
         
         
         
@@ -129,7 +134,9 @@ public class ModifyAppointmentController implements Initializable {
     private void onActionSaveAppointment(ActionEvent event) throws SQLException, IOException {
         gatherStart();
         gatherEnd();
-        DBAppointments.updateAppointment(Integer.valueOf(apptTextField.getText()), titleTextField.getText(), descTextField.getText(), locationTextField.getText(), typeTextField.getText(), gatherStart(), gatherEnd());
+        
+        
+        DBAppointments.updateAppointment(Integer.valueOf(apptTextField.getText()), titleTextField.getText(), descTextField.getText(), locationTextField.getText(), typeTextField.getText(), gatherStart(), gatherEnd(), getContactID(contactCombo.getValue()));
         SchedulingHomeController.reloadData = true;
         
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -155,6 +162,15 @@ public class ModifyAppointmentController implements Initializable {
         endDateTime = LocalDateTime.of(endDatePicker.getValue(),LocalTime.of(Integer.valueOf(endHourCombo.getValue()), Integer.valueOf(endMinuteCombo.getValue())));
         System.out.println(endDateTime);
         return endDateTime;
+    }
+    private Integer getContactID(String name) {
+        int cID = 0;
+        for(Contacts contact : Manager.getAllContacts()) {
+            if(name.equals(contact.getName())) {
+                cID = contact.getId();
+            }
+        }
+        return cID;
     }
     
 }

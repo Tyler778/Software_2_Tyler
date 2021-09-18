@@ -84,7 +84,7 @@ public class DBAppointments {
         statement.execute(deleteStatement);
     }
     
-    public static void updateAppointment(Integer id, String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end) throws SQLException {
+    public static void updateAppointment(Integer id, String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end, Integer contactID) throws SQLException {
         DBQuery.setStatement(DBConnection.getConnection());
         Statement statement = DBQuery.getStatement();
         
@@ -94,7 +94,8 @@ public class DBAppointments {
                 + "Location = '" + location + "', "
                 + "Type = '" + type + "', "
                 + "Start = '" + start + "', "
-                + "End = '" + end + "' "
+                + "End = '" + end + "', "
+                + "Contact_ID = '" + contactID + "' "
                 + "WHERE Appointment_ID = '" + id + "';";
         System.out.println(updateStatement);
         statement.execute(updateStatement);

@@ -57,6 +57,8 @@ public class Manager {
         deleteAllCountries();
         deleteAllUsers();
         deleteAllContacts();
+        deleteAllContactNames();
+        deleteAllDivisionNames();
         
         
     }
@@ -130,6 +132,13 @@ public class Manager {
             holdDiv.add(div);
         }
         allDivisions.removeAll(holdDiv);
+    }
+    public static void deleteAllDivisionNames() {
+        ObservableList<String>holdDivisionNames = FXCollections.observableArrayList();
+        for (String division : allDivisionsNames) {
+            holdDivisionNames.add(division);
+        }
+        allDivisionsNames.removeAll(holdDivisionNames);
     }
     
     public static ObservableList<String> getDivisionsBasedOnCountry(String countryName) throws SQLException {
@@ -220,6 +229,21 @@ public class Manager {
     
     public static ObservableList<Contacts> getAllContacts() {
         return allContacts;
+    }
+    
+    public static ObservableList<String> getAllContactNames() {
+        for(Contacts contact : Manager.getAllContacts()) {
+            allContactNames.add(contact.getName());
+        }
+        return allContactNames;
+    }
+    
+     public static void deleteAllContactNames() {
+        ObservableList<String>holdContactName = FXCollections.observableArrayList();
+        for (String contact : allContactNames) {
+            holdContactName.add(contact);
+        }
+        allContactNames.removeAll(holdContactName);
     }
     
     
