@@ -16,6 +16,8 @@ import Utilities.DBQuery;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -36,6 +38,8 @@ public class Manager {
     private static ObservableList<Users>allUsers = FXCollections.observableArrayList();
     private static ObservableList<Contacts>allContacts = FXCollections.observableArrayList();
     private static ObservableList<String>allContactNames = FXCollections.observableArrayList();
+    private static ObservableList<Integer>allCustomerIDs = FXCollections.observableArrayList();
+    private static ObservableList<Integer> allUserIDs = FXCollections.observableArrayList();
     
     
     //Load all Data
@@ -85,6 +89,9 @@ public class Manager {
         allAppointments.remove(apt);
         DBAppointments.deleteAppointment(apt);
     }
+    public static void updateAppointment (Integer id, String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createBy, Timestamp lastUpdate, String updatedBy, Integer customerID, Integer userID, Integer contactID) throws SQLException {
+        DBAppointments.updateAppointment(id, title, desc, location, type, start, end, createDate, createBy, lastUpdate, updatedBy, customerID, userID, contactID);
+    }
     
     
     
@@ -108,6 +115,18 @@ public class Manager {
             holdCust.add(cust);
         }
         allCustomers.removeAll(holdCust);
+    }
+    public static ObservableList<Integer> getAllCustomerIDs() {
+        ObservableList<Integer>holdCustID = FXCollections.observableArrayList();
+        for (Customers cust : allCustomers) {
+            holdCustID.add(cust.getId());
+        }
+        allCustomerIDs.removeAll(holdCustID);
+        
+        for (Customers cust : allCustomers) {
+            allCustomerIDs.add(cust.getId());
+        }
+        return allCustomerIDs;
     }
     
     
@@ -210,6 +229,19 @@ public class Manager {
     
     public static ObservableList<Users> getAllUsers() {
         return allUsers;
+    }
+    
+    public static ObservableList<Integer> getAllUserIDs() {
+        ObservableList<Integer>holdUserIDs = FXCollections.observableArrayList();
+        for (Users user : allUsers) {
+            holdUserIDs.add(user.getId());
+        }
+        allUserIDs.removeAll(holdUserIDs);
+        
+        for (Users user : allUsers) {
+            allUserIDs.add(user.getId());
+        }
+        return allUserIDs;
     }
     
     

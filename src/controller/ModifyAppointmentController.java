@@ -58,8 +58,6 @@ public class ModifyAppointmentController implements Initializable {
     @FXML
     private TextField titleTextField;
     @FXML
-    private TextField customerIDTextField;
-    @FXML
     private ComboBox<String> startHourCombo;
     @FXML
     private ComboBox<String> endHourCombo;
@@ -69,6 +67,10 @@ public class ModifyAppointmentController implements Initializable {
     private ComboBox<String> endMinuteCombo;
     @FXML
     private ComboBox<String> contactCombo;
+    @FXML
+    private ComboBox<Integer> custIDCombo;
+    @FXML
+    private ComboBox<Integer> userIDCombo;
 
     /**
      * Initializes the controller class.
@@ -82,6 +84,9 @@ public class ModifyAppointmentController implements Initializable {
         startMinuteCombo.setItems(minutesOL);
         endMinuteCombo.setItems(minutesOL);
         contactCombo.setItems(Manager.getAllContactNames());
+        custIDCombo.setItems(Manager.getAllCustomerIDs());
+        userIDCombo.setItems(Manager.getAllUserIDs());
+        
         // TODO
     }    
 
@@ -90,7 +95,6 @@ public class ModifyAppointmentController implements Initializable {
     
     public void sendAppointment(Appointment appt) {
         apptTextField.setText(String.valueOf(appt.getId()));
-        customerIDTextField.setText(String.valueOf(appt.getCustomerID()));
         titleTextField.setText(String.valueOf(appt.getTitle()));
         descTextField.setText(String.valueOf(appt.getDesc()));
         locationTextField.setText(String.valueOf(appt.getLocation()));
@@ -102,6 +106,8 @@ public class ModifyAppointmentController implements Initializable {
         endHourCombo.setValue(String.valueOf(appt.getEndDateTime().getHour()));
         endMinuteCombo.setValue(String.valueOf(appt.getEndDateTime().getMinute()));
         contactCombo.setValue(appt.getContactName());
+        custIDCombo.setValue(appt.getCustomerID());
+        userIDCombo.setValue(appt.getUserID());
         
         
         
@@ -134,8 +140,8 @@ public class ModifyAppointmentController implements Initializable {
         gatherStart();
         gatherEnd();
         
+        //Manager.updateAppointment();
         
-        DBAppointments.updateAppointment(Integer.valueOf(apptTextField.getText()), titleTextField.getText(), descTextField.getText(), locationTextField.getText(), typeTextField.getText(), gatherStart(), gatherEnd(), getContactID(contactCombo.getValue()));
         SchedulingHomeController.reloadData = true;
         
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();

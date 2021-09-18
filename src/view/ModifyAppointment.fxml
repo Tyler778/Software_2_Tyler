@@ -54,17 +54,11 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label layoutX="46.0" layoutY="421.0" text="Customer ID">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </Label>
             <TextField fx:id="apptTextField" layoutX="221.0" layoutY="26.0" />
             <TextField fx:id="descTextField" layoutX="221.0" layoutY="128.0" />
             <TextField fx:id="locationTextField" layoutX="221.0" layoutY="171.0" />
             <TextField fx:id="typeTextField" layoutX="221.0" layoutY="264.0" />
             <TextField fx:id="titleTextField" layoutX="221.0" layoutY="77.0" />
-            <TextField fx:id="customerIDTextField" layoutX="221.0" layoutY="419.0" />
             <Button layoutX="694.0" layoutY="608.0" mnemonicParsing="false" onAction="#onActionCancelModifyAppointment" text="Cancel" />
             <Button layoutX="244.0" layoutY="608.0" mnemonicParsing="false" onAction="#onActionSaveAppointment" text="Save" />
             <ComboBox fx:id="startHourCombo" layoutX="441.0" layoutY="317.0" prefHeight="25.0" prefWidth="59.0" />
@@ -82,6 +76,18 @@
                </font>
             </Label>
             <ComboBox fx:id="contactCombo" layoutX="221.0" layoutY="220.0" prefWidth="150.0" />
+            <ComboBox fx:id="custIDCombo" layoutX="221.0" layoutY="413.0" prefWidth="150.0" />
+            <ComboBox fx:id="userIDCombo" layoutX="221.0" layoutY="461.0" prefWidth="150.0" />
+            <Label layoutX="46.0" layoutY="415.0" text="Customer ID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="47.0" layoutY="464.0" text="User ID">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
