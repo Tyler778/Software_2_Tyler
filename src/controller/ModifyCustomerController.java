@@ -132,7 +132,6 @@ public class ModifyCustomerController implements Initializable {
                 + "', Last_Updated_By = 'test"
                 + "', Division_ID = '" + divID
                 + "' WHERE Customer_ID = '" + customerTextField.getText() + "'";
-            System.out.println(updateStatement);
             statement.execute(updateStatement);
         } catch(SQLException e) {
             System.out.println(e);

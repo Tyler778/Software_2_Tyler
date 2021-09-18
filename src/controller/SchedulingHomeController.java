@@ -195,7 +195,7 @@ public class SchedulingHomeController implements Initializable {
 
     
     private void reloadData() throws SQLException {
-        System.out.println("Reload Data has attempted to run");
+        System.out.println("Data Reloaded");
         Manager.deleteData();
         Manager.loadData();
     }

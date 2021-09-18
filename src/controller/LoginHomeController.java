@@ -8,6 +8,7 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +39,7 @@ public class LoginHomeController implements Initializable {
     @FXML
     private Label invalidLabel;
     @FXML
-    private AnchorPane timeZoneLabel;
+    private Label timeZoneLabel;
 
     /**
      * Initializes the controller class.
@@ -47,6 +48,8 @@ public class LoginHomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         invalidLabel.setVisible(false);
+        
+        timeZoneLabel.setText("Timezone : " + String.valueOf(TimeZone.getDefault().getDisplayName()));
     }    
     
     
