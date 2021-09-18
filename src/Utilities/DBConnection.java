@@ -22,7 +22,7 @@ public class DBConnection {
     //JDBC URL parts
     private static final String protocol = "jdbc";
     private static final String venderName = ":mysql:";
-    private static final String serverName = "//3.227.166.251:3306/";
+    private static final String serverName = "//137.184.136.251/";
     private static final String dbName = "WJ07nX6";
     
     // JDBC URL
@@ -32,10 +32,10 @@ public class DBConnection {
     private static final String MYSQLJDBCDriver = "com.mysql.cj.jdbc.Driver";
     private static Connection conn = null;
     //Username
-    private static final String username = "U07nX6";
+    private static final String username = "tyler";
     
     //Password
-    private static final String password = "53689081350";
+    private static final String password = "49814981";
     
     //ONLY CALL START CONNECTION ONCE
     public static Connection startConnection() {
