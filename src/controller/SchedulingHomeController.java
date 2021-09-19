@@ -182,7 +182,7 @@ public class SchedulingHomeController implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             if(result.isPresent() && result.get() == ButtonType.OK) {
                 Manager.removeCustomer(tableCustomers.getSelectionModel().getSelectedItem());
-                remainingAppointmentLabel.setVisible(false);
+                remainingAppointmentLabel.setVisible(false); 
             }
             
             

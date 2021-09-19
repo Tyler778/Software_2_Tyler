@@ -84,6 +84,10 @@ public class AddAppointmentController implements Initializable {
         contactCombo.setItems(Manager.getAllContactNames());
         custIDCombo.setItems(Manager.getAllCustomerIDs());
         userIDCombo.setItems(Manager.getAllUserIDs());
+        startHourCombo.setValue("0");
+        endHourCombo.setValue("0");
+        startMinuteCombo.setValue("0");
+        endMinuteCombo.setValue("0");
 
         
         
