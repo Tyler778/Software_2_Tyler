@@ -190,7 +190,7 @@ public class ModifyAppointmentController implements Initializable {
         System.out.println(endDateTime);
         return endDateTime;
     }
-    private Integer getContactID(String name) {
+    public static Integer getContactID(String name) {
         int cID = 0;
         for(Contacts contact : Manager.getAllContacts()) {
             if(name.equals(contact.getName())) {

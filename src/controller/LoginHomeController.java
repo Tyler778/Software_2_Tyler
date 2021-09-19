@@ -7,6 +7,8 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 import javafx.event.ActionEvent;
@@ -32,6 +34,7 @@ public class LoginHomeController implements Initializable {
     Stage stage;
     Parent scene;
     public static String userLoggedIn = null;
+    public static LocalDateTime loginDateTime = null;
 
     @FXML
     private TextField usernameTextField;
@@ -47,6 +50,9 @@ public class LoginHomeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //French?
+        //Locale.setDefault(new Locale("fr"));
+        
         // TODO
         invalidLabel.setVisible(false);
         
@@ -60,6 +66,7 @@ public class LoginHomeController implements Initializable {
             if(usernameTextField.getText().equals(user.getName()) && passwordTextField.getText().equals(user.getPassword())) {
                 validCredentials = true;
                 userLoggedIn = user.getName();
+                loginDateTime.now();
             }
         }
         return validCredentials;

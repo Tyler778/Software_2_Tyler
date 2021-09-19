@@ -35,10 +35,7 @@ public class Software_2_Tyler extends Application{
      * @param args the command line arguments
      * @throws java.sql.SQLException
      */
-    public static void main(String[] args) throws SQLException {
-        //French?
-        //Locale.setDefault(new Locale("fr"));
-        
+    public static void main(String[] args) throws SQLException {        
         //Initialize connection with Database
         DBConnection.startConnection();
         

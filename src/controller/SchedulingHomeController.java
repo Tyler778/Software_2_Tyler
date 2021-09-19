@@ -119,6 +119,8 @@ public class SchedulingHomeController implements Initializable {
         
         
         dataIntoTable();
+        
+        System.out.println(Manager.checkAppointmentProximity());
 
     }    
 

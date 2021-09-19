@@ -13,11 +13,14 @@ import DBAccess.DBCustomers;
 import DBAccess.DBDivisions;
 import Utilities.DBConnection;
 import Utilities.DBQuery;
+import controller.LoginHomeController;
+import controller.ModifyAppointmentController;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -97,6 +100,17 @@ public class Manager {
         DBAppointments.updateAppointment(id, title, desc, location, type, start, end, createDate, createBy, lastUpdate, updatedBy, customerID, userID, contactID);
     }
     
+    public static boolean checkAppointmentProximity() {
+        boolean nearAppointment = false;
+        LocalTime currentTime = LocalTime.now();
+        for(Appointment appt : allAppointments) {
+            if(appt.getUserID() == ModifyAppointmentController.getContactID(LoginHomeController.userLoggedIn) && LoginHomeController.loginDateTime.plusMinutes(15).isBefore(appt.getStartDateTime())) {
+                nearAppointment = true;
+            }
+        }
+        return nearAppointment;
+        
+    }
     
     
     
@@ -259,6 +273,9 @@ public class Manager {
         }
         return allUserIDs;
     }
+    
+    
+    
     
     
     
