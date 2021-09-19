@@ -33,6 +33,9 @@ import model.Appointment;
 import model.Customers;
 import model.Manager;
 import java.sql.Statement;
+import java.util.Optional;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 
 /**
@@ -91,6 +94,8 @@ public class SchedulingHomeController implements Initializable {
     private Label custDeleteMsg;
     @FXML
     private TableColumn<?, ?> userCol;
+    @FXML
+    private Label remainingAppointmentLabel;
     
 
     /**
@@ -98,6 +103,7 @@ public class SchedulingHomeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        remainingAppointmentLabel.setVisible(false);
         aptDeleteMsg.setVisible(false);
         aptModifyMsg.setVisible(false);
         custModifyMsg.setVisible(false);
@@ -146,7 +152,17 @@ public class SchedulingHomeController implements Initializable {
     private void onActionDeleteAppointment(ActionEvent event) throws SQLException {
         
         try {
-            Manager.removeAppointment(tableAppointments.getSelectionModel().getSelectedItem());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete Appointment ID " + tableAppointments.getSelectionModel().getSelectedItem().getId() + ", '" + tableAppointments.getSelectionModel().getSelectedItem().getType() + "',"
+                    + " are you sure?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.isPresent() && result.get() == ButtonType.OK) {
+                Manager.removeAppointment(tableAppointments.getSelectionModel().getSelectedItem());
+            }
+            
+            
+            
+            
+            
         } catch (Exception e) {
             aptModifyMsg.setVisible(false);
             aptDeleteMsg.setVisible(true);
@@ -158,11 +174,35 @@ public class SchedulingHomeController implements Initializable {
     @FXML
     private void onActionDeleteCustomer(ActionEvent event) throws SQLException {
         try {
-            Manager.removeCustomer(tableCustomers.getSelectionModel().getSelectedItem());
+          if(Manager.checkAppointments(tableCustomers.getSelectionModel().getSelectedItem().getId())) {
+            remainingAppointmentLabel.setVisible(true);
+        } else {
+           try {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete Customer?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.isPresent() && result.get() == ButtonType.OK) {
+                Manager.removeCustomer(tableCustomers.getSelectionModel().getSelectedItem());
+                remainingAppointmentLabel.setVisible(false);
+            }
+            
+            
+            
+            
+            
+            
         } catch (Exception e) {
+            
+            } 
+        }  
+        } catch(Exception e) {
             custModifyMsg.setVisible(false);
             custDeleteMsg.setVisible(true);
         }
+        
+        
+        
+        
+        
         
         
     }

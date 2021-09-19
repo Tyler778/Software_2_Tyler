@@ -134,6 +134,16 @@ public class Manager {
         }
         return allCustomerIDs;
     }
+    public static boolean checkAppointments(int id) {
+        boolean remainingApts = false;
+        for(Appointment appt : allAppointments) {
+            if(appt.getCustomerID() == id) {
+                remainingApts = true;
+                return remainingApts;
+            }
+        }
+        return remainingApts;
+    }
     
     
     //Divisions

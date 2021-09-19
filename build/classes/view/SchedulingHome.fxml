@@ -66,6 +66,11 @@
             <Button layoutX="271.0" layoutY="290.0" mnemonicParsing="false" onAction="#onActionAddCustomer" prefHeight="25.0" prefWidth="70.0" text="Add" />
             <Label fx:id="custModifyMsg" layoutX="26.0" layoutY="294.0" text="You must select a customer to modify!" />
             <Label fx:id="custDeleteMsg" layoutX="28.0" layoutY="294.0" text="You must select a customer to delete!" />
+            <Label fx:id="remainingAppointmentLabel" layoutX="296.0" layoutY="320.0" text="You cannot delete a customer with scheduled appointments">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="1049.0" layoutY="429.0" prefHeight="141.0" prefWidth="591.0" style="-fx-background-color: #6C96C1; -fx-background-radius: 10 10 10 10;">
