@@ -93,7 +93,7 @@ public class SchedulingHomeController implements Initializable {
     @FXML
     private Label custDeleteMsg;
     @FXML
-    private TableColumn<?, ?> userCol;
+    private TableColumn<Appointment, Integer> userCol;
     @FXML
     private Label remainingAppointmentLabel;
     
@@ -115,12 +115,13 @@ public class SchedulingHomeController implements Initializable {
                 Logger.getLogger(SchedulingHomeController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+
         
         
         
         dataIntoTable();
         
-        System.out.println(Manager.checkAppointmentProximity());
+      
 
     }    
 
@@ -268,6 +269,21 @@ public class SchedulingHomeController implements Initializable {
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+    }
+    
+    
+    
+    
+    public static void alertCheck() {
+        if(Manager.checkAppointmentProximity()) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("You have an appointment in less than 15 minutes!");
+            Optional<ButtonType> result = alert.showAndWait();
+        } else {
+            Alert a = new Alert(Alert.AlertType.INFORMATION);
+            a.setContentText("You have no appointments within 15 minutes");
+            Optional<ButtonType> result = a.showAndWait();
+        }
     }
     
 }

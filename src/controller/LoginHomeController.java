@@ -35,6 +35,7 @@ public class LoginHomeController implements Initializable {
     Parent scene;
     public static String userLoggedIn = null;
     public static LocalDateTime loginDateTime = null;
+    public static Integer userLoggedInID = 0;
 
     @FXML
     private TextField usernameTextField;
@@ -66,7 +67,9 @@ public class LoginHomeController implements Initializable {
             if(usernameTextField.getText().equals(user.getName()) && passwordTextField.getText().equals(user.getPassword())) {
                 validCredentials = true;
                 userLoggedIn = user.getName();
-                loginDateTime.now();
+                userLoggedInID = user.getId();
+                loginDateTime = LocalDateTime.now();
+                SchedulingHomeController.alertCheck();
             }
         }
         return validCredentials;
