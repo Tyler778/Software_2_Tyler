@@ -5,17 +5,11 @@
  */
 package controller;
 
-import DBAccess.DBAppointments;
-import DBAccess.DBCustomers;
-import Utilities.DBConnection;
-import Utilities.DBQuery;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;

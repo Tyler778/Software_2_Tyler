@@ -102,16 +102,14 @@ public class Manager {
     
     public static boolean checkAppointmentProximity() {
         boolean nearAppointment = false;
-        LocalTime currentTime = LocalTime.now();
-        
         
         for(Appointment appt : allAppointments) {
-            System.out.println(appt.getStartDateTime().toLocalTime() + "start time ");
-            System.out.println(LoginHomeController.loginDateTime.plusMinutes(15).toLocalTime() + "login + 15minutes");
-            if(appt.getUserID() == LoginHomeController.userLoggedInID && LoginHomeController.loginDateTime.plusMinutes(15).toLocalTime().isBefore(appt.getStartDateTime().toLocalTime())) {
+            System.out.println(appt.getStartDateTime() + "start time ");
+            System.out.println(LoginHomeController.loginDateTime.plusMinutes(15) + "login + 15minutes");
+            if(appt.getUserID() == LoginHomeController.userLoggedInID && LoginHomeController.loginDateTime.plusMinutes(15).isAfter(appt.getStartDateTime()) && LoginHomeController.loginDateTime.isBefore(appt.getStartDateTime())) {
                 
                 nearAppointment = true;
-                
+                return nearAppointment;
             }
         }
         System.out.println(nearAppointment);
