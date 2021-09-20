@@ -30,6 +30,8 @@ import java.sql.Statement;
 import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 
 /**
@@ -90,6 +92,12 @@ public class SchedulingHomeController implements Initializable {
     private TableColumn<Appointment, Integer> userCol;
     @FXML
     private Label remainingAppointmentLabel;
+    @FXML
+    private ComboBox<?> monthCombo;
+    @FXML
+    private ComboBox<?> weekCombo;
+    @FXML
+    private DatePicker sortPicker;
     
 
     /**
@@ -278,6 +286,18 @@ public class SchedulingHomeController implements Initializable {
             a.setContentText("You have no appointments within 15 minutes");
             Optional<ButtonType> result = a.showAndWait();
         }
+    }
+
+    @FXML
+    private void onActionModificationReport(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionScheduleReport(ActionEvent event) {
+    }
+
+    @FXML
+    private void onActionAppointmentReport(ActionEvent event) {
     }
     
 }

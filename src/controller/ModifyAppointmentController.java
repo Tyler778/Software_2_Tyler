@@ -121,6 +121,8 @@ public class ModifyAppointmentController implements Initializable {
         
     }
     public void fillObservableLists() {
+        hoursOL.clear();
+        minutesOL.clear();
         int hours = 0;
         int minutes = 0;
         while (hours < 24) {
