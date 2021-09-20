@@ -31,6 +31,8 @@ import model.Users;
  * @author tyler
  */
 public class LoginHomeController implements Initializable {
+    
+    
     Stage stage;
     Parent scene;
     public static String userLoggedIn = null;
@@ -45,19 +47,45 @@ public class LoginHomeController implements Initializable {
     private Label invalidLabel;
     @FXML
     private Label timeZoneLabel;
+    @FXML
+    private Label loginLabel;
+    @FXML
+    private Label usernameLabel;
+    @FXML
+    private Label passwordLabel;
+    @FXML
+    private Button loginButton;
+    @FXML
+    private Button exitLabel;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        if(Locale.getDefault().getLanguage().equals("fr")) {
+           loginLabel.setText("Veuillez vous connecter");
+           invalidLabel.setText("Identifiant invalide");
+           usernameLabel.setText("Nom d'utilisateur");
+           passwordLabel.setText("Le mot de passe");
+           loginButton.setText("Connexion");
+           exitLabel.setText("Sortir");
+           
+            
+        } else {
+            System.out.println("Else ran");
+        }
+        
+        
+        
         //French?
         //Locale.setDefault(new Locale("fr"));
         
         // TODO
         invalidLabel.setVisible(false);
         
-        timeZoneLabel.setText("Timezone : " + String.valueOf(TimeZone.getDefault().getDisplayName()));
+        timeZoneLabel.setText(String.valueOf(TimeZone.getDefault().getDisplayName()));
     }    
     
     
@@ -93,6 +121,11 @@ public class LoginHomeController implements Initializable {
             invalidLabel.setVisible(true);
         }
         
+    }
+    
+    
+    private String translate(String eng) {
+        return eng;
     }
     
 }

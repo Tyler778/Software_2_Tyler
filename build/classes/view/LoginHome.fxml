@@ -11,33 +11,33 @@
    <children>
       <AnchorPane layoutX="770.0" layoutY="300.0" prefHeight="240.0" prefWidth="381.0" style="-fx-background-color: white; -fx-border-radius: 10 10 10 10; -fx-background-radius: 10 10 10 10;">
          <children>
-            <AnchorPane layoutX="122.0" layoutY="26.0" prefHeight="58.0" prefWidth="137.0">
+            <AnchorPane layoutX="70.0" layoutY="26.0" prefHeight="58.0" prefWidth="266.0">
                <children>
-                  <Label layoutX="13.0" layoutY="8.0" text="Please Log In">
+                  <Label fx:id="loginLabel" alignment="CENTER" layoutX="4.0" layoutY="7.0" prefHeight="27.0" prefWidth="235.0" text="Please Log In" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="invalidLabel" layoutX="33.0" layoutY="35.0" text="Invalid Login!" textFill="RED" />
+                  <Label fx:id="invalidLabel" alignment="CENTER" layoutX="33.0" layoutY="35.0" prefHeight="18.0" prefWidth="177.0" text="Invalid Login!" textFill="RED" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="73.0" layoutY="89.0" prefHeight="94.0" prefWidth="235.0">
                <children>
                   <TextField fx:id="usernameTextField" layoutX="77.0" layoutY="17.0" />
                   <TextField fx:id="passwordTextField" layoutX="77.0" layoutY="53.0" />
-                  <Label layoutX="11.0" layoutY="21.0" text="Username:">
+                  <Label fx:id="usernameLabel" alignment="CENTER_RIGHT" layoutX="-59.0" layoutY="21.0" prefHeight="18.0" prefWidth="130.0" text="Username:">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Label layoutX="15.0" layoutY="57.0" text="Password:">
+                  <Label fx:id="passwordLabel" alignment="CENTER_RIGHT" layoutX="-58.0" layoutY="57.0" prefHeight="18.0" prefWidth="130.0" text="Password:">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <Button layoutX="207.0" layoutY="183.0" mnemonicParsing="false" onAction="#onActionLogin" style="-fx-background-color: #D3D3D3; -fx-text-fill: black;" text="Log In">
+            <Button fx:id="loginButton" layoutX="207.0" layoutY="183.0" mnemonicParsing="false" onAction="#onActionLogin" style="-fx-background-color: #D3D3D3; -fx-text-fill: black;" text="Log In">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
@@ -45,7 +45,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutX="122.0" layoutY="183.0" mnemonicParsing="false" onAction="#onActionExit" style="-fx-background-color: #D3D3D3; -fx-text-fill: black;" text="Exit">
+            <Button fx:id="exitLabel" layoutX="122.0" layoutY="183.0" mnemonicParsing="false" onAction="#onActionExit" style="-fx-background-color: #D3D3D3; -fx-text-fill: black;" text="Exit">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
