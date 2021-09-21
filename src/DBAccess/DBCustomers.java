@@ -45,9 +45,7 @@ public class DBCustomers {
             String postal = cSet.getString("Postal_Code");
             String phone = cSet.getString("Phone");
             
-            LocalDate createDate = cSet.getDate("Create_Date").toLocalDate();
-            LocalTime createTime = cSet.getTime("Create_Date").toLocalTime();
-            LocalDateTime createDateTime = LocalDateTime.of(createDate, createTime);
+            LocalDateTime createDateTime = cSet.getTimestamp("Create_Date").toLocalDateTime();
             
             String createdBy = cSet.getString("Created_By");
             LocalDateTime lastUpdate = cSet.getTimestamp("Last_Update").toLocalDateTime();

@@ -12,6 +12,7 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -76,6 +77,7 @@ public class AddAppointmentController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        apptTextField.setDisable(true);
         fillObservableLists();
         startHourCombo.setItems(hoursOL);
         endHourCombo.setItems(hoursOL);
@@ -175,6 +177,11 @@ public class AddAppointmentController implements Initializable {
             }
         }
         return cID;
+    }
+    
+    private Boolean checkValidTime(LocalDateTime time) {
+        
+        return true;
     }
     
 }

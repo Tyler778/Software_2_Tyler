@@ -46,17 +46,19 @@ public class DBAppointments {
             String location = apptSet.getString("Location");
             String type = apptSet.getString("Type");
             
-            LocalDate startDate = apptSet.getDate("Start").toLocalDate();
-            LocalTime startTime = apptSet.getTime("Start").toLocalTime();
-            LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
+            //LocalDate startDate = apptSet.getDate("Start").toLocalDate();
+            //LocalTime startTime = apptSet.getTime("Start").toLocalTime();
+            LocalDateTime startDateTime = apptSet.getTimestamp("Start").toLocalDateTime();
             
-            LocalDate endDate = apptSet.getDate("End").toLocalDate();
-            LocalTime endTime = apptSet.getTime("End").toLocalTime();
-            LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
+            //LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
             
-            LocalDate createDate = apptSet.getDate("Create_Date").toLocalDate();
-            LocalTime createTime = apptSet.getTime("Create_Date").toLocalTime();
-            LocalDateTime createDateTime = LocalDateTime.of(createDate, createTime);
+            //LocalDate endDate = apptSet.getDate("End").toLocalDate();
+            //LocalTime endTime = apptSet.getTime("End").toLocalTime();
+            LocalDateTime endDateTime = apptSet.getTimestamp("End").toLocalDateTime();
+            
+            //LocalDate createDate = apptSet.getDate("Create_Date").toLocalDate();
+            //LocalTime createTime = apptSet.getTime("Create_Date").toLocalTime();
+            LocalDateTime createDateTime = apptSet.getTimestamp("Create_Date").toLocalDateTime();
             
             
             String createdBy = apptSet.getString("Created_By");
@@ -105,6 +107,7 @@ public class DBAppointments {
         updateStatementPS.setInt(12, userID);
         updateStatementPS.setInt(13, contactID);
         updateStatementPS.setInt(14, id);
+        
         
         updateStatementPS.executeUpdate();
        

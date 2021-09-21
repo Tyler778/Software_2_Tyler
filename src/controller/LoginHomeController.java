@@ -24,6 +24,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Manager;
 import model.Users;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 /**
  * FXML Controller class
@@ -40,7 +42,11 @@ public class LoginHomeController implements Initializable {
     public static Integer userLoggedInID = 0;
     public static Integer apptMatchID = 0;
     public static LocalDateTime apptMatchStart;
-    public static String defaultTimezone = TimeZone.getDefault().getDisplayName();
+    public static String defaultTimezone = TimeZone.getDefault().getDisplayName(false, TimeZone.SHORT);
+            
+            
+            
+            //TimeZone.getDefault().getDisplayName();
 
     @FXML
     private TextField usernameTextField;
