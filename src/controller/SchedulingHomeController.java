@@ -101,6 +101,10 @@ public class SchedulingHomeController implements Initializable {
     private ComboBox<String> weekCombo;
     @FXML
     private DatePicker sortPicker;
+    @FXML
+    private TableColumn<Customers, String> countryCol;
+    @FXML
+    private TableColumn<Customers, String> firstLevelCol;
     
 
     /**
@@ -274,6 +278,8 @@ public class SchedulingHomeController implements Initializable {
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        countryCol.setCellValueFactory(new PropertyValueFactory<>("country"));
+        firstLevelCol.setCellValueFactory(new PropertyValueFactory<>("divName"));
         monthCombo.setItems(months);
     }
     

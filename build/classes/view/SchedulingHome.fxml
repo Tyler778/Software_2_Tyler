@@ -52,43 +52,45 @@
             <DatePicker fx:id="sortPicker" layoutX="329.0" layoutY="30.0" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="1049.0" layoutY="54.0" prefHeight="349.0" prefWidth="591.0" style="-fx-background-color: #6C96C1; -fx-background-radius: 10 10 10 10;">
+      <AnchorPane layoutX="1049.0" layoutY="54.0" prefHeight="349.0" prefWidth="780.0" style="-fx-background-color: #6C96C1; -fx-background-radius: 10 10 10 10;">
          <children>
             <Label layoutX="14.0" layoutY="24.0" prefHeight="37.0" prefWidth="305.0" text="Customers" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <TableView fx:id="tableCustomers" layoutX="14.0" layoutY="76.0" prefHeight="200.0" prefWidth="540.0">
+            <TableView fx:id="tableCustomers" layoutX="14.0" layoutY="76.0" prefHeight="200.0" prefWidth="728.0">
               <columns>
                 <TableColumn fx:id="customerIDCol" prefWidth="77.0" text="Customer ID" />
                 <TableColumn fx:id="nameCol" prefWidth="109.0" text="Name" />
                   <TableColumn fx:id="addressCol" prefWidth="168.0" text="Address" />
                   <TableColumn fx:id="postalCol" prefWidth="74.0" text="Postal Code" />
-                  <TableColumn fx:id="phoneCol" prefWidth="111.0" text="Phone Number" />
+                  <TableColumn fx:id="phoneCol" prefWidth="99.0" text="Phone Number" />
+                  <TableColumn fx:id="countryCol" prefWidth="66.0" text="Country" />
+                  <TableColumn fx:id="firstLevelCol" prefWidth="134.0" text="First-Level Division" />
               </columns>
             </TableView>
-            <Button layoutX="484.0" layoutY="290.0" mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="25.0" prefWidth="70.0" text="Delete" />
-            <Button layoutX="377.0" layoutY="290.0" mnemonicParsing="false" onAction="#onActionModifyCustomer" prefHeight="25.0" prefWidth="70.0" text="Modify" />
-            <Button layoutX="271.0" layoutY="290.0" mnemonicParsing="false" onAction="#onActionAddCustomer" prefHeight="25.0" prefWidth="70.0" text="Add" />
+            <Button layoutX="662.0" layoutY="290.0" mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="25.0" prefWidth="70.0" text="Delete" />
+            <Button layoutX="552.0" layoutY="290.0" mnemonicParsing="false" onAction="#onActionModifyCustomer" prefHeight="25.0" prefWidth="70.0" text="Modify" />
+            <Button layoutX="429.0" layoutY="290.0" mnemonicParsing="false" onAction="#onActionAddCustomer" prefHeight="25.0" prefWidth="70.0" text="Add" />
             <Label fx:id="custModifyMsg" layoutX="26.0" layoutY="294.0" text="You must select a customer to modify!" />
             <Label fx:id="custDeleteMsg" layoutX="28.0" layoutY="294.0" text="You must select a customer to delete!" />
-            <Label fx:id="remainingAppointmentLabel" layoutX="296.0" layoutY="320.0" text="You cannot delete a customer with scheduled appointments">
+            <Label fx:id="remainingAppointmentLabel" layoutX="455.0" layoutY="320.0" text="You cannot delete a customer with scheduled appointments">
                <font>
                   <Font size="10.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="1049.0" layoutY="429.0" prefHeight="141.0" prefWidth="591.0" style="-fx-background-color: #6C96C1; -fx-background-radius: 10 10 10 10;">
+      <AnchorPane layoutX="1049.0" layoutY="429.0" prefHeight="141.0" prefWidth="780.0" style="-fx-background-color: #6C96C1; -fx-background-radius: 10 10 10 10;">
          <children>
             <Label layoutX="14.0" layoutY="24.0" prefHeight="37.0" prefWidth="305.0" text="Reports" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button layoutX="405.0" layoutY="75.0" mnemonicParsing="false" onAction="#onActionModificationReport" prefHeight="25.0" prefWidth="158.0" text="Modification Report" />
-            <Button layoutX="228.0" layoutY="75.0" mnemonicParsing="false" onAction="#onActionScheduleReport" prefHeight="25.0" prefWidth="109.0" text="Schedule Report" />
+            <Button layoutX="582.0" layoutY="75.0" mnemonicParsing="false" onAction="#onActionModificationReport" prefHeight="25.0" prefWidth="158.0" text="Modification Report" />
+            <Button layoutX="336.0" layoutY="75.0" mnemonicParsing="false" onAction="#onActionScheduleReport" prefHeight="25.0" prefWidth="109.0" text="Schedule Report" />
             <Button layoutX="40.0" layoutY="75.0" mnemonicParsing="false" onAction="#onActionAppointmentReport" prefHeight="25.0" prefWidth="127.0" text="Appointment Report" />
          </children>
       </AnchorPane>
