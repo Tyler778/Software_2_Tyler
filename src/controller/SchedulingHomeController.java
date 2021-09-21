@@ -26,8 +26,9 @@ import javafx.stage.Stage;
 import model.Appointment;
 import model.Customers;
 import model.Manager;
-import java.sql.Statement;
 import java.util.Optional;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
@@ -40,6 +41,8 @@ import javafx.scene.control.Label;
  * @author tyler
  */
 public class SchedulingHomeController implements Initializable {
+    private static ObservableList<String>months = FXCollections.observableArrayList();
+    private static ObservableList<String>allWeeks = FXCollections.observableArrayList();
     Stage stage;
     Parent scene;
     
@@ -93,9 +96,9 @@ public class SchedulingHomeController implements Initializable {
     @FXML
     private Label remainingAppointmentLabel;
     @FXML
-    private ComboBox<?> monthCombo;
+    private ComboBox<String> monthCombo;
     @FXML
-    private ComboBox<?> weekCombo;
+    private ComboBox<String> weekCombo;
     @FXML
     private DatePicker sortPicker;
     
@@ -120,7 +123,7 @@ public class SchedulingHomeController implements Initializable {
 
         
         
-        
+        fillOL();
         dataIntoTable();
         
       
@@ -271,6 +274,7 @@ public class SchedulingHomeController implements Initializable {
         addressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
         postalCol.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        monthCombo.setItems(months);
     }
     
     
@@ -279,7 +283,7 @@ public class SchedulingHomeController implements Initializable {
     public static void alertCheck() {
         if(Manager.checkAppointmentProximity()) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("You have an appointment in less than 15 minutes!");
+            alert.setContentText("Appointment ID " + LoginHomeController.apptMatchID + " Starts at " + LoginHomeController.apptMatchStart);
             Optional<ButtonType> result = alert.showAndWait();
         } else {
             Alert a = new Alert(Alert.AlertType.INFORMATION);
@@ -298,6 +302,35 @@ public class SchedulingHomeController implements Initializable {
 
     @FXML
     private void onActionAppointmentReport(ActionEvent event) {
+    }
+    
+    
+    public static void fillOL() {
+        months.clear();
+        
+        months.add("January");
+        months.add("February");
+        months.add("March");
+        months.add("April");
+        months.add("May");
+        months.add("June");
+        months.add("July");
+        months.add("August");
+        months.add("September");
+        months.add("October");
+        months.add("November");
+        months.add("December");
+        
+        
+        
+    }
+    private void comboActionMonth(ActionEvent event) throws SQLException {
+        
+        
+    }
+    private void comboActionWeek(ActionEvent event) throws SQLException {
+        
+        
     }
     
 }

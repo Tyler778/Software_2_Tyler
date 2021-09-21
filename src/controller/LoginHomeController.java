@@ -38,6 +38,9 @@ public class LoginHomeController implements Initializable {
     public static String userLoggedIn = null;
     public static LocalDateTime loginDateTime = null;
     public static Integer userLoggedInID = 0;
+    public static Integer apptMatchID = 0;
+    public static LocalDateTime apptMatchStart;
+    public static String defaultTimezone = TimeZone.getDefault().getDisplayName();
 
     @FXML
     private TextField usernameTextField;
@@ -85,7 +88,7 @@ public class LoginHomeController implements Initializable {
         // TODO
         invalidLabel.setVisible(false);
         
-        timeZoneLabel.setText(String.valueOf(TimeZone.getDefault().getDisplayName()));
+        timeZoneLabel.setText(defaultTimezone);
     }    
     
     
@@ -124,8 +127,6 @@ public class LoginHomeController implements Initializable {
     }
     
     
-    private String translate(String eng) {
-        return eng;
-    }
+    
     
 }

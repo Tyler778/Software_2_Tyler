@@ -107,7 +107,8 @@ public class Manager {
             System.out.println(appt.getStartDateTime() + "start time ");
             System.out.println(LoginHomeController.loginDateTime.plusMinutes(15) + "login + 15minutes");
             if(appt.getUserID() == LoginHomeController.userLoggedInID && LoginHomeController.loginDateTime.plusMinutes(15).isAfter(appt.getStartDateTime()) && LoginHomeController.loginDateTime.isBefore(appt.getStartDateTime())) {
-                
+                LoginHomeController.apptMatchID = appt.getId();
+                LoginHomeController.apptMatchStart = appt.getStartDateTime();
                 nearAppointment = true;
                 return nearAppointment;
             }
