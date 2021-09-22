@@ -12,7 +12,9 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.chrono.ChronoZonedDateTime;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,8 +27,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.Appointment;
 import model.Contacts;
 import model.Manager;
 
@@ -71,12 +75,15 @@ public class AddAppointmentController implements Initializable {
     private ComboBox<Integer> custIDCombo;
     @FXML
     private ComboBox<Integer> userIDCombo;
+    @FXML
+    private Label businessHourError;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        businessHourError.setVisible(false);
         apptTextField.setDisable(true);
         fillObservableLists();
         startHourCombo.setItems(hoursOL);
@@ -105,30 +112,37 @@ public class AddAppointmentController implements Initializable {
     }
 
     @FXML
-    private void onActionAddAppointment(ActionEvent event) throws SQLException, IOException {
-        gatherStart();
-        gatherEnd();
-        Manager.addAppointment(
-        titleTextField.getText(),
-        descTextField.getText(),
-        locationTextField.getText(),
-        typeTextField.getText(),
-        gatherStart(),
-        gatherEnd(),
-        createDate(),
-        LoginHomeController.userLoggedIn,
-        gatherTimestamp(),
-        LoginHomeController.userLoggedIn,
-        custIDCombo.getValue(),
-        userIDCombo.getValue(),
-        getContactID(contactCombo.getValue())
-        );
-        SchedulingHomeController.reloadData = true;
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/view/SchedulingHome.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
-        
+    private void onActionAddAppointment(ActionEvent event) throws SQLException, IOException {        
+        System.out.println("Add Appointment clicked");
+        try {
+           if(checkValidTime(gatherStart(), gatherEnd())) {
+                Manager.addAppointment(
+                titleTextField.getText(),
+                descTextField.getText(),
+                locationTextField.getText(),
+                typeTextField.getText(),
+                gatherStart(),
+                gatherEnd(),
+                createDate(),
+                LoginHomeController.userLoggedIn,
+                gatherTimestamp(),
+                LoginHomeController.userLoggedIn,
+                custIDCombo.getValue(),
+                userIDCombo.getValue(),
+                getContactID(contactCombo.getValue())
+                );
+                SchedulingHomeController.reloadData = true;
+                stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+                scene = FXMLLoader.load(getClass().getResource("/view/SchedulingHome.fxml"));
+                stage.setScene(new Scene(scene));
+                stage.show(); 
+            } else {
+               businessHourError.setVisible(true);
+           }
+        } catch(Exception e) {
+            System.out.println("Exception ran");
+            businessHourError.setVisible(true);
+        }      
     }
     
     
@@ -147,17 +161,13 @@ public class AddAppointmentController implements Initializable {
     
     private LocalDateTime gatherStart() {
         LocalDateTime startDateTime = null;
-        
         startDateTime = LocalDateTime.of(startDatePicker.getValue(),LocalTime.of(Integer.valueOf(startHourCombo.getValue()), Integer.valueOf(startMinuteCombo.getValue())));
-        System.out.println(startDateTime);
         return startDateTime;
     }
     
     private LocalDateTime gatherEnd() {
         LocalDateTime endDateTime = null;
-        
         endDateTime = LocalDateTime.of(endDatePicker.getValue(),LocalTime.of(Integer.valueOf(endHourCombo.getValue()), Integer.valueOf(endMinuteCombo.getValue())));
-        System.out.println(endDateTime);
         return endDateTime;
     }
     private static LocalDateTime createDate() {
@@ -179,9 +189,23 @@ public class AddAppointmentController implements Initializable {
         return cID;
     }
     
-    private Boolean checkValidTime(LocalDateTime time) {
+    private Boolean checkValidTime(LocalDateTime start, LocalDateTime end) {
         
-        return true;
+        ZonedDateTime startBusinessHours = ZonedDateTime.of(LocalDateTime.of(3, 3, 3, 8, 0, 0, 0), ZoneId.of("America/New_York"));
+        
+        ZonedDateTime endBusinessHours = ZonedDateTime.of(LocalDateTime.of(3, 3, 3, 22, 0, 0, 0), ZoneId.of("America/New_York"));
+        //System.out.println(startBusinessHours.toLocalTime());
+        //System.out.println(endBusinessHours.toLocalTime());
+        //System.out.println(start.atZone(ZoneId.of("America/New_York")));
+        //System.out.println(end.atZone(ZoneId.of("America/New_York")));
+        
+        if(start.atZone(ZoneId.of("America/New_York")).toLocalTime().isAfter(startBusinessHours.toLocalTime()) && end.atZone(ZoneId.of("America/New_York")).toLocalTime().isBefore(endBusinessHours.toLocalTime())) {
+            System.out.println("Yes");
+            return true;
+        }
+        
+        return false;
+        
     }
     
 }
