@@ -31,6 +31,9 @@ import model.Contacts;
 import model.Manager;
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import javafx.scene.control.Label;
 
 /**
  * FXML Controller class
@@ -76,12 +79,15 @@ public class ModifyAppointmentController implements Initializable {
     private ComboBox<Integer> custIDCombo;
     @FXML
     private ComboBox<Integer> userIDCombo;
+    @FXML
+    private Label businessHourError;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        businessHourError.setVisible(false);
         Manager.deleteAllContactNames();
         fillObservableLists();
         startHourCombo.setItems(hoursOL);
@@ -146,32 +152,35 @@ public class ModifyAppointmentController implements Initializable {
 
     @FXML
     private void onActionSaveAppointment(ActionEvent event) throws SQLException, IOException {
-        gatherStart();
-        gatherEnd();
-        
-        Manager.updateAppointment(
-        Integer.valueOf(apptTextField.getText()),
-        titleTextField.getText(),
-        descTextField.getText(),
-        locationTextField.getText(),
-        typeTextField.getText(),
-        gatherStart(),
-        gatherEnd(),
-        createDate,
-        createdBy,
-        gatherTimestamp(),
-        LoginHomeController.userLoggedIn,
-        custIDCombo.getValue(),
-        userIDCombo.getValue(),
-        getContactID(contactCombo.getValue())
-        );
-        
-        SchedulingHomeController.reloadData = true;
-        
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/view/SchedulingHome.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+        try {
+            if(checkValidTime(gatherStart(), gatherEnd())) {
+                Manager.updateAppointment(
+                    Integer.valueOf(apptTextField.getText()),
+                    titleTextField.getText(),
+                    descTextField.getText(),
+                    locationTextField.getText(),
+                    typeTextField.getText(),
+                    gatherStart(),
+                    gatherEnd(),
+                    createDate,
+                    createdBy,
+                    gatherTimestamp(),
+                    LoginHomeController.userLoggedIn,
+                    custIDCombo.getValue(),
+                    userIDCombo.getValue(),
+                    getContactID(contactCombo.getValue())
+                );
+                SchedulingHomeController.reloadData = true;
+                stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+                scene = FXMLLoader.load(getClass().getResource("/view/SchedulingHome.fxml"));
+                stage.setScene(new Scene(scene));
+                stage.show();
+            } else {
+                businessHourError.setVisible(true);
+            }
+        } catch(Exception e) {
+            businessHourError.setVisible(true);
+        }
         
     }
     
@@ -204,6 +213,25 @@ public class ModifyAppointmentController implements Initializable {
     
     private Timestamp gatherTimestamp() {
         return Timestamp.from(Instant.now());
+    }
+    
+    private Boolean checkValidTime(LocalDateTime start, LocalDateTime end) {
+        
+        ZonedDateTime startBusinessHours = ZonedDateTime.of(LocalDateTime.of(3, 3, 3, 8, 0, 0, 0), ZoneId.of("America/New_York"));
+        
+        ZonedDateTime endBusinessHours = ZonedDateTime.of(LocalDateTime.of(3, 3, 3, 22, 0, 0, 0), ZoneId.of("America/New_York"));
+        //System.out.println(startBusinessHours.toLocalTime());
+        //System.out.println(endBusinessHours.toLocalTime());
+        //System.out.println(start.atZone(ZoneId.of("America/New_York")));
+        //System.out.println(end.atZone(ZoneId.of("America/New_York")));
+        
+        if(start.atZone(ZoneId.of("America/New_York")).toLocalTime().isAfter(startBusinessHours.toLocalTime()) && end.atZone(ZoneId.of("America/New_York")).toLocalTime().isBefore(endBusinessHours.toLocalTime())) {
+            System.out.println("Yes");
+            return true;
+        }
+        
+        return false;
+        
     }
     
 }

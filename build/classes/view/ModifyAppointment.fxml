@@ -88,6 +88,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
+            <Label fx:id="businessHourError" layoutX="615.0" layoutY="312.0" prefHeight="78.0" prefWidth="158.0" text="Your time must be between business hours of 8AM - 10PM New York/EST" textAlignment="CENTER" wrapText="true" />
          </children>
       </AnchorPane>
    </children>

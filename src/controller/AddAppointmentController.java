@@ -113,7 +113,6 @@ public class AddAppointmentController implements Initializable {
 
     @FXML
     private void onActionAddAppointment(ActionEvent event) throws SQLException, IOException {        
-        System.out.println("Add Appointment clicked");
         try {
            if(checkValidTime(gatherStart(), gatherEnd())) {
                 Manager.addAppointment(
@@ -140,7 +139,6 @@ public class AddAppointmentController implements Initializable {
                businessHourError.setVisible(true);
            }
         } catch(Exception e) {
-            System.out.println("Exception ran");
             businessHourError.setVisible(true);
         }      
     }
