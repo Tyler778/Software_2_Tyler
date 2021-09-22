@@ -112,7 +112,13 @@ public class AddAppointmentController implements Initializable {
     }
 
     @FXML
-    private void onActionAddAppointment(ActionEvent event) throws SQLException, IOException {        
+    private void onActionAddAppointment(ActionEvent event) throws SQLException, IOException {  
+        System.out.println(checkOtherTimeConflicts(gatherStart(), gatherEnd()));
+        //ADD IN CHECK OTHER TIME CONFLICTS!!!!
+        //
+        //
+        //
+        // DO IT
         try {
            if(checkValidTime(gatherStart(), gatherEnd())) {
                 Manager.addAppointment(
@@ -140,7 +146,8 @@ public class AddAppointmentController implements Initializable {
            }
         } catch(Exception e) {
             businessHourError.setVisible(true);
-        }      
+        }   
+        
     }
     
     
@@ -204,6 +211,19 @@ public class AddAppointmentController implements Initializable {
         
         return false;
         
+    }
+    private Boolean checkOtherTimeConflicts(LocalDateTime start, LocalDateTime end) {
+        Boolean returnValue = false;
+        for (Appointment appt : Manager.getAllAppointments()) {
+            LocalDateTime apptStart = appt.getStartDateTime();
+            LocalDateTime apptEnd = appt.getEndDateTime();
+            if((start.isBefore(apptEnd) && start.isAfter(apptStart)) || (end.isBefore(apptEnd) && end.isAfter(apptStart)))  {
+                returnValue = true;
+            } else {
+                //
+            }
+        }
+        return returnValue;
     }
     
 }

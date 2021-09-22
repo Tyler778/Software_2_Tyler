@@ -299,15 +299,27 @@ public class SchedulingHomeController implements Initializable {
     }
 
     @FXML
-    private void onActionModificationReport(ActionEvent event) {
+    private void onActionModificationReport(ActionEvent event) throws IOException {
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/view/ModificationReport.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     @FXML
-    private void onActionScheduleReport(ActionEvent event) {
+    private void onActionScheduleReport(ActionEvent event) throws IOException {
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/view/ScheduleReport.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
 
     @FXML
-    private void onActionAppointmentReport(ActionEvent event) {
+    private void onActionAppointmentReport(ActionEvent event) throws IOException {
+        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/view/AppointmentReport.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
     }
     
     
