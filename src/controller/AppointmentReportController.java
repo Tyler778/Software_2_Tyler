@@ -7,7 +7,12 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import model.Appointment;
 
 /**
  * FXML Controller class
@@ -16,6 +21,23 @@ import javafx.fxml.Initializable;
  */
 public class AppointmentReportController implements Initializable {
 
+    @FXML
+    private TableView<Appointment> appointmentsTable;
+    @FXML
+    private TableColumn<Appointment, ?> apptIDCol;
+    @FXML
+    private TableColumn<Appointment, ?> titleCol;
+    @FXML
+    private TableColumn<Appointment, ?> descCol;
+    @FXML
+    private TableColumn<Appointment, ?> locationCol;
+    @FXML
+    private TableColumn<Appointment, ?> typeCol;
+    @FXML
+    private TableColumn<Appointment, ?> startCol;
+    @FXML
+    private TableColumn<Appointment, ?> endCol;
+
     /**
      * Initializes the controller class.
      */
@@ -23,5 +45,9 @@ public class AppointmentReportController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void onActionMainMenu(ActionEvent event) {
+    }
     
 }
