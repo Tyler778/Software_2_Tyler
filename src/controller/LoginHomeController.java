@@ -5,7 +5,11 @@
  */
 package controller;
 
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Locale;
@@ -98,7 +102,7 @@ public class LoginHomeController implements Initializable {
     }    
     
     
-    public boolean validateUser() {
+    public boolean validateUser() throws FileNotFoundException, UnsupportedEncodingException {
         boolean validCredentials = false;
         for(Users user : Manager.getAllUsers()) {
             if(usernameTextField.getText().equals(user.getName()) && passwordTextField.getText().equals(user.getPassword())) {
@@ -109,6 +113,7 @@ public class LoginHomeController implements Initializable {
                 SchedulingHomeController.alertCheck();
             }
         }
+        logActivity(usernameTextField.getText(), validCredentials);
         return validCredentials;
     }
 
@@ -130,6 +135,14 @@ public class LoginHomeController implements Initializable {
             invalidLabel.setVisible(true);
         }
         
+    }
+    
+    public void logActivity(String username, Boolean valid) throws FileNotFoundException, UnsupportedEncodingException {
+        try (FileWriter writer = new FileWriter("login_activity.txt", true)) {
+            writer.write(username + "attempted login at " + String.valueOf(LocalDateTime.now()) + ". Validated: " + String.valueOf(valid) + "\n");
+        } catch(Exception e) {
+            
+        }
     }
     
     

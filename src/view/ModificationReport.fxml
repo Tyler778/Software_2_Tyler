@@ -17,8 +17,8 @@
                 <TableColumn fx:id="apptIDCol" prefWidth="114.0" text="Appointment ID" />
                 <TableColumn fx:id="titleCol" prefWidth="95.0" text="Title" />
                   <TableColumn fx:id="descCol" prefWidth="132.0" text="Description" />
-                  <TableColumn fx:id="locationCol" prefWidth="123.0" text="Location" />
-                  <TableColumn fx:id="typeCol" prefWidth="85.0" text="Type" />
+                  <TableColumn fx:id="locationCol" prefWidth="87.19998168945312" text="Location" />
+                  <TableColumn fx:id="typeCol" prefWidth="121.5999755859375" text="Type" />
                   <TableColumn fx:id="startCol" minWidth="6.0" prefWidth="126.0" text="Start" />
                   <TableColumn fx:id="endCol" prefWidth="126.0" text="End" />
                   <TableColumn fx:id="updateCol" prefWidth="128.0" text="Last Updated" />
