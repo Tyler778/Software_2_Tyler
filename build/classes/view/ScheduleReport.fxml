@@ -23,7 +23,7 @@
                   <TableColumn fx:id="customerCol" minWidth="7.0" prefWidth="102.0" text="Customer ID" />
               </columns>
             </TableView>
-            <ComboBox fx:id="contactCombo" layoutX="1051.0" layoutY="144.0" prefWidth="150.0" />
+            <ComboBox fx:id="contactCombo" layoutX="1051.0" layoutY="144.0" onAction="#comboAction" prefWidth="150.0" />
             <Label layoutX="14.0" layoutY="80.0" text="Appointments by Customer Report">
                <font>
                   <Font name="System Bold" size="24.0" />
@@ -35,6 +35,8 @@
                </font>
             </Label>
             <Button layoutX="1126.0" layoutY="748.0" mnemonicParsing="false" onAction="#onActionMainMenu" text="Main Menu" />
+            <Label layoutX="557.0" layoutY="719.0" text="Count of Appointments:" />
+            <Label fx:id="apptCount" layoutX="688.0" layoutY="719.0" underline="true" />
          </children>
       </AnchorPane>
    </children>

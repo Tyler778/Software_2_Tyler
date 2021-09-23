@@ -115,7 +115,9 @@ public class Manager {
         
     }
     public static ObservableList<Appointment> getFilteredAppointments(String contactName) {
+        
         ObservableList<Appointment>holdAppt = FXCollections.observableArrayList();
+        holdAppt.clear();
         for(Appointment appt : Manager.getAllAppointments()) {
             if(appt.getContactName().equals(contactName)) {
                 holdAppt.add(appt);

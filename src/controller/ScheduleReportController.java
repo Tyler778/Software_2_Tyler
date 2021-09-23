@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -53,6 +54,8 @@ public class ScheduleReportController implements Initializable {
     private ComboBox<String> contactCombo;
     @FXML
     private TableColumn<Appointment, Integer> customerCol;
+    @FXML
+    private Label apptCount;
 
     /**
      * Initializes the controller class.
@@ -75,10 +78,14 @@ public class ScheduleReportController implements Initializable {
     }
     private void fillTable(String contact) {
         appointmentsTable.setItems(Manager.getFilteredAppointments(contact));
+        apptCount.setText(String.valueOf(Manager.getFilteredAppointments(contact).size()));
         
     }
     
+    @FXML
     private void comboAction(ActionEvent event) throws SQLException {
+        System.out.println("comboAction ran");
+        
         fillTable(contactCombo.getValue());
         apptIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
