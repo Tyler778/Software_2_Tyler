@@ -64,6 +64,9 @@ public class ModificationReportController implements Initializable {
         scene = FXMLLoader.load(getClass().getResource("/view/SchedulingHome.fxml"));
         stage.setScene(new Scene(scene));
         stage.show();
+        
+        
+        
     }
     
 }
