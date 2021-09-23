@@ -89,6 +89,7 @@
             </Label>
             <ComboBox fx:id="userIDCombo" layoutX="221.0" layoutY="474.0" prefWidth="150.0" />
             <Label fx:id="businessHourError" alignment="CENTER" contentDisplay="CENTER" layoutX="613.0" layoutY="315.0" prefHeight="74.0" prefWidth="162.0" text="Your time must be between business hours of 8AM - 10PM New York/EST" textAlignment="CENTER" wrapText="true" />
+            <Label fx:id="conflictError" layoutX="430.0" layoutY="395.0" prefHeight="52.0" prefWidth="176.0" text="Your appointment must not conflict with other appointments!" textAlignment="CENTER" wrapText="true" />
          </children>
       </AnchorPane>
    </children>

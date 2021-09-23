@@ -84,7 +84,6 @@ public class ScheduleReportController implements Initializable {
     
     @FXML
     private void comboAction(ActionEvent event) throws SQLException {
-        System.out.println("comboAction ran");
         
         fillTable(contactCombo.getValue());
         apptIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));

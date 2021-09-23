@@ -81,12 +81,15 @@ public class ModifyAppointmentController implements Initializable {
     private ComboBox<Integer> userIDCombo;
     @FXML
     private Label businessHourError;
+    @FXML
+    private Label conflictError;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        conflictError.setVisible(false);
         businessHourError.setVisible(false);
         Manager.deleteAllContactNames();
         fillObservableLists();
@@ -152,8 +155,12 @@ public class ModifyAppointmentController implements Initializable {
 
     @FXML
     private void onActionSaveAppointment(ActionEvent event) throws SQLException, IOException {
+        conflictError.setVisible(false);
+        businessHourError.setVisible(false);
+        
+        
         try {
-            if(checkValidTime(gatherStart(), gatherEnd())) {
+            if(checkValidTime(gatherStart(), gatherEnd()) && checkOtherTimeConflicts(gatherStart(), gatherEnd(), Integer.valueOf(apptTextField.getText()))) {
                 Manager.updateAppointment(
                     Integer.valueOf(apptTextField.getText()),
                     titleTextField.getText(),
@@ -176,10 +183,8 @@ public class ModifyAppointmentController implements Initializable {
                 stage.setScene(new Scene(scene));
                 stage.show();
             } else {
-                businessHourError.setVisible(true);
             }
         } catch(Exception e) {
-            businessHourError.setVisible(true);
         }
         
     }
@@ -190,7 +195,6 @@ public class ModifyAppointmentController implements Initializable {
         LocalDateTime startDateTime = null;
         
         startDateTime = LocalDateTime.of(startDatePicker.getValue(),LocalTime.of(Integer.valueOf(startHourCombo.getValue()), Integer.valueOf(startMinuteCombo.getValue())));
-        System.out.println(startDateTime);
         return startDateTime;
     }
     
@@ -198,7 +202,6 @@ public class ModifyAppointmentController implements Initializable {
         LocalDateTime endDateTime = null;
         
         endDateTime = LocalDateTime.of(endDatePicker.getValue(),LocalTime.of(Integer.valueOf(endHourCombo.getValue()), Integer.valueOf(endMinuteCombo.getValue())));
-        System.out.println(endDateTime);
         return endDateTime;
     }
     public static Integer getContactID(String name) {
@@ -220,18 +223,40 @@ public class ModifyAppointmentController implements Initializable {
         ZonedDateTime startBusinessHours = ZonedDateTime.of(LocalDateTime.of(3, 3, 3, 8, 0, 0, 0), ZoneId.of("America/New_York"));
         
         ZonedDateTime endBusinessHours = ZonedDateTime.of(LocalDateTime.of(3, 3, 3, 22, 0, 0, 0), ZoneId.of("America/New_York"));
-        //System.out.println(startBusinessHours.toLocalTime());
-        //System.out.println(endBusinessHours.toLocalTime());
-        //System.out.println(start.atZone(ZoneId.of("America/New_York")));
-        //System.out.println(end.atZone(ZoneId.of("America/New_York")));
-        
         if(start.atZone(ZoneId.of("America/New_York")).toLocalTime().isAfter(startBusinessHours.toLocalTime()) && end.atZone(ZoneId.of("America/New_York")).toLocalTime().isBefore(endBusinessHours.toLocalTime())) {
-            System.out.println("Yes");
             return true;
+        } else {
+            businessHourError.setVisible(true);
         }
         
         return false;
         
     }
+     private Boolean checkOtherTimeConflicts(LocalDateTime start, LocalDateTime end, Integer id) {
+        ObservableList<Appointment>holdAppt = FXCollections.observableArrayList();
+        holdAppt.addAll(Manager.getAllAppointments());
+        for(Appointment appt : Manager.getAllAppointments()) {
+            if(appt.getId() == id) {
+                holdAppt.remove(appt);
+            }
+        }
+        
+         
+        Boolean returnValue = true;
+        for (Appointment appt : holdAppt) {
+            LocalDateTime apptStart = appt.getStartDateTime();
+            LocalDateTime apptEnd = appt.getEndDateTime();
+            System.out.println(apptStart);
+            System.out.println(apptEnd);
+            if((start.isBefore(apptEnd) && start.isAfter(apptStart)) || (end.isBefore(apptEnd) && end.isAfter(apptStart)))  {
+                System.out.println("Inside IF Statement RAN");
+                returnValue = false;
+                conflictError.setVisible(true);
+            } else {
+            }
+        }
+        return returnValue;
+    }
+    
     
 }
