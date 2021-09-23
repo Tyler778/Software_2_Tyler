@@ -15,17 +15,17 @@
             <TableView fx:id="appointmentTable" layoutX="79.0" layoutY="54.0" prefHeight="526.0" prefWidth="930.0">
               <columns>
                 <TableColumn fx:id="apptIDCol" prefWidth="114.0" text="Appointment ID" />
-                <TableColumn fx:id="titleCol" prefWidth="85.0" text="Title" />
-                  <TableColumn fx:id="descCol" prefWidth="113.0" text="Description" />
-                  <TableColumn fx:id="locationCol" prefWidth="96.0" text="Location" />
-                  <TableColumn fx:id="typeCol" prefWidth="107.0" text="Type" />
-                  <TableColumn fx:id="startCol" minWidth="6.0" prefWidth="120.0" text="Start" />
-                  <TableColumn fx:id="endCol" prefWidth="112.0" text="End" />
-                  <TableColumn fx:id="countryCol" prefWidth="110.0" text="Country" />
+                <TableColumn fx:id="titleCol" prefWidth="95.0" text="Title" />
+                  <TableColumn fx:id="descCol" prefWidth="132.0" text="Description" />
+                  <TableColumn fx:id="locationCol" prefWidth="123.0" text="Location" />
+                  <TableColumn fx:id="typeCol" prefWidth="85.0" text="Type" />
+                  <TableColumn fx:id="startCol" minWidth="6.0" prefWidth="126.0" text="Start" />
+                  <TableColumn fx:id="endCol" prefWidth="126.0" text="End" />
+                  <TableColumn fx:id="updateCol" prefWidth="128.0" text="Last Updated" />
               </columns>
             </TableView>
             <Button layoutX="1099.0" layoutY="728.0" mnemonicParsing="false" onAction="#onActionMainMenu" text="Main Menu" />
-            <ComboBox fx:id="userCombo" layoutX="1176.0" layoutY="111.0" prefWidth="150.0" />
+            <ComboBox fx:id="userCombo" layoutX="1176.0" layoutY="111.0" onAction="#comboAction" prefWidth="150.0" />
             <Label layoutX="1204.0" layoutY="84.0" text="User to Filter By:">
                <font>
                   <Font name="System Bold" size="12.0" />

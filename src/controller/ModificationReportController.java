@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,10 +17,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Appointment;
+import model.Manager;
 
 /**
  * FXML Controller class
@@ -47,13 +51,16 @@ public class ModificationReportController implements Initializable {
     @FXML
     private TableColumn<Appointment, LocalDateTime> endCol;
     @FXML
-    private TableColumn<Appointment, String> countryCol;
+    private ComboBox<String> userCombo;
+    @FXML
+    private TableColumn<Appointment, LocalDateTime> updateCol;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        userCombo.setItems(Manager.getAllUserNames());
         
         // TODO
     }    
@@ -67,6 +74,31 @@ public class ModificationReportController implements Initializable {
         
         
         
+    }
+    
+    private void fillTable(String user) {
+        appointmentTable.setItems(Manager.filterAppointmentsByUser(user));
+        //apptCount.setText(String.valueOf(Manager.getFilteredAppointments(contact).size()));
+        
+    }
+
+    
+    
+    @FXML
+    private void comboAction(ActionEvent event) throws SQLException {
+        
+        fillTable(userCombo.getValue());
+        apptIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        descCol.setCellValueFactory(new PropertyValueFactory<>("desc"));
+        typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        startCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
+        endCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
+        locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        updateCol.setCellValueFactory(new PropertyValueFactory<>("updateDateTime"));
+        //customerCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        
+                
     }
     
 }

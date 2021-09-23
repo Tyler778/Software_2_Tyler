@@ -127,6 +127,20 @@ public class Manager {
         
     }
     
+    public static ObservableList<Appointment> filterAppointmentsByUser(String user) {
+        ObservableList<Appointment>holdAppt = FXCollections.observableArrayList();
+        holdAppt.clear();
+        for(Appointment appt : Manager.getAllAppointments()) {
+            if(appt.getUserID() == getIDFromUserName(user)) {
+                holdAppt.add(appt);
+            }
+        }
+        return holdAppt;
+        
+        
+        
+    }
+    
     
     
     
@@ -287,6 +301,23 @@ public class Manager {
             allUserIDs.add(user.getId());
         }
         return allUserIDs;
+    }
+    
+    public static ObservableList<String> getAllUserNames() {
+        ObservableList<String>holdUsers = FXCollections.observableArrayList();
+        for(Users user : getAllUsers()) {
+            holdUsers.add(user.getName());
+        }
+        return holdUsers;
+    }
+    
+    public static Integer getIDFromUserName(String username) {
+        for(Users user : getAllUsers()) {
+            if(user.getName().equals(username)) {
+                return user.getId();
+            }
+        }
+        return null;
     }
     
     
