@@ -139,7 +139,7 @@ public class LoginHomeController implements Initializable {
     
     public void logActivity(String username, Boolean valid) throws FileNotFoundException, UnsupportedEncodingException {
         try (FileWriter writer = new FileWriter("login_activity.txt", true)) {
-            writer.write(username + "attempted login at " + String.valueOf(LocalDateTime.now()) + ". Validated: " + String.valueOf(valid) + "\n");
+            writer.write(username + " attempted login at " + String.valueOf(LocalDateTime.now()) + ". Validated: " + String.valueOf(valid) + "\n");
         } catch(Exception e) {
             
         }

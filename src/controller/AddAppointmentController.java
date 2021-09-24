@@ -122,7 +122,7 @@ public class AddAppointmentController implements Initializable {
         
         
         try {
-           if(checkValidTime(gatherStart(), gatherEnd()) && checkOtherTimeConflicts(gatherStart(), gatherEnd())) {
+           if(checkValidTime(gatherStart(), gatherEnd()) && checkOtherTimeConflicts(gatherStart(), gatherEnd(), custIDCombo.getValue())) {
                 Manager.addAppointment(
                 titleTextField.getText(),
                 descTextField.getText(),
@@ -211,7 +211,13 @@ public class AddAppointmentController implements Initializable {
         return false;
         
     }
-    private Boolean checkOtherTimeConflicts(LocalDateTime start, LocalDateTime end) {
+    private Boolean checkOtherTimeConflicts(LocalDateTime start, LocalDateTime end, Integer custID) {
+        ObservableList<Appointment>holdAppt = FXCollections.observableArrayList();
+        for(Appointment appt : Manager.getAllAppointments()) {
+            if(custID == appt.getCustomerID()) {
+                holdAppt.add(appt);
+            }
+        }      
         Boolean returnValue = true;
         for (Appointment appt : Manager.getAllAppointments()) {
             LocalDateTime apptStart = appt.getStartDateTime();

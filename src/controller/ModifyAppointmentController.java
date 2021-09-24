@@ -160,7 +160,7 @@ public class ModifyAppointmentController implements Initializable {
         
         
         try {
-            if(checkValidTime(gatherStart(), gatherEnd()) && checkOtherTimeConflicts(gatherStart(), gatherEnd(), Integer.valueOf(apptTextField.getText()))) {
+            if(checkValidTime(gatherStart(), gatherEnd()) && checkOtherTimeConflicts(gatherStart(), gatherEnd(), Integer.valueOf(apptTextField.getText()), custIDCombo.getValue())) {
                 Manager.updateAppointment(
                     Integer.valueOf(apptTextField.getText()),
                     titleTextField.getText(),
@@ -232,9 +232,14 @@ public class ModifyAppointmentController implements Initializable {
         return false;
         
     }
-     private Boolean checkOtherTimeConflicts(LocalDateTime start, LocalDateTime end, Integer id) {
+     private Boolean checkOtherTimeConflicts(LocalDateTime start, LocalDateTime end, Integer id, Integer custID) {
         ObservableList<Appointment>holdAppt = FXCollections.observableArrayList();
-        holdAppt.addAll(Manager.getAllAppointments());
+        for(Appointment appt : Manager.getAllAppointments()) {
+            if(custID == appt.getCustomerID()) {
+                holdAppt.add(appt);
+            }
+        }
+        
         for(Appointment appt : Manager.getAllAppointments()) {
             if(appt.getId() == id) {
                 holdAppt.remove(appt);
@@ -246,8 +251,6 @@ public class ModifyAppointmentController implements Initializable {
         for (Appointment appt : holdAppt) {
             LocalDateTime apptStart = appt.getStartDateTime();
             LocalDateTime apptEnd = appt.getEndDateTime();
-            System.out.println(apptStart);
-            System.out.println(apptEnd);
             if((start.isBefore(apptEnd) && start.isAfter(apptStart)) || (end.isBefore(apptEnd) && end.isAfter(apptStart)))  {
                 System.out.println("Inside IF Statement RAN");
                 returnValue = false;
