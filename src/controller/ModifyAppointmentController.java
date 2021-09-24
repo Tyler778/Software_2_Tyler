@@ -248,11 +248,10 @@ public class ModifyAppointmentController implements Initializable {
         
          
         Boolean returnValue = true;
-        for (Appointment appt : holdAppt) {
+        for (Appointment appt : holdAppt) {     
             LocalDateTime apptStart = appt.getStartDateTime();
             LocalDateTime apptEnd = appt.getEndDateTime();
             if((start.isBefore(apptEnd) && start.isAfter(apptStart)) || (end.isBefore(apptEnd) && end.isAfter(apptStart)))  {
-                System.out.println("Inside IF Statement RAN");
                 returnValue = false;
                 conflictError.setVisible(true);
             } else {
