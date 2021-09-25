@@ -8,7 +8,9 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -99,8 +101,6 @@ public class SchedulingHomeController implements Initializable {
     private ComboBox<String> monthCombo;
     @FXML
     private ComboBox<String> weekCombo;
-    @FXML
-    private DatePicker sortPicker;
     @FXML
     private TableColumn<Customers, String> countryCol;
     @FXML
@@ -281,6 +281,7 @@ public class SchedulingHomeController implements Initializable {
         countryCol.setCellValueFactory(new PropertyValueFactory<>("country"));
         firstLevelCol.setCellValueFactory(new PropertyValueFactory<>("divName"));
         monthCombo.setItems(months);
+        weekCombo.setItems(allWeeks);
     }
     
     
@@ -325,7 +326,7 @@ public class SchedulingHomeController implements Initializable {
     
     public static void fillOL() {
         months.clear();
-        
+        allWeeks.clear();
         months.add("January");
         months.add("February");
         months.add("March");
@@ -338,17 +339,52 @@ public class SchedulingHomeController implements Initializable {
         months.add("October");
         months.add("November");
         months.add("December");
+        int i = 0;
+        int x = 7;
+        while(i < 104) {
+            allWeeks.add(String.valueOf(LocalDate.now().plusDays(x)) + " - " + String.valueOf(LocalDate.now().plusDays(x + 6)));
+            x += 7;
+            i++;
+        }
         
         
         
     }
-    private void comboActionMonth(ActionEvent event) throws SQLException {
+
+    @FXML
+    private void comboMonthAction(ActionEvent event) {
+        ObservableList<Appointment>monthsSort = FXCollections.observableArrayList();
+        for(Appointment appt : Manager.getAllAppointments()) {
+            if(Month.from(Month.valueOf(monthCombo.getValue().toUpperCase())) == Month.from(appt.getStartDateTime())) {
+                monthsSort.add(appt);
+            }
+        }
+        tableAppointments.setItems(monthsSort);
+    }
+
+    @FXML
+    private void comboWeekAction(ActionEvent event) {
+        String[] arrStr = weekCombo.getValue().split(" - ");
+        LocalDate begDate = LocalDate.parse(arrStr[0]);
+        LocalDate endDate = LocalDate.parse(arrStr[1]);
+        System.out.println(begDate);
+        System.out.println(endDate);
         
+        ObservableList<Appointment>weekSort = FXCollections.observableArrayList();
+        for(Appointment appt : Manager.getAllAppointments()) {
+            if(appt.getStartDateTime().toLocalDate().isBefore(endDate) && appt.getStartDateTime().toLocalDate().isAfter(begDate)) {
+                weekSort.add(appt);
+            }
+        }
+        tableAppointments.setItems(weekSort);
         
     }
-    private void comboActionWeek(ActionEvent event) throws SQLException {
-        
-        
+
+    @FXML
+    private void onActionResetSortMonth(ActionEvent event) {
+        monthCombo.setValue(null);
+        weekCombo.setValue(null);
+        tableAppointments.setItems(Manager.getAllAppointments());
     }
     
 }
