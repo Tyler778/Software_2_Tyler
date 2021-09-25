@@ -76,6 +76,7 @@ public class AppointmentReportController implements Initializable {
         appointmentsTable.setItems(generateAppointmentsOL());
         monthCombo.setItems(SchedulingHomeController.months);
         custCombo.setItems(Manager.getAllCustomerNames());
+        listTypes.setItems(sort());
         
         apptIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -84,6 +85,7 @@ public class AppointmentReportController implements Initializable {
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         startCol.setCellValueFactory(new PropertyValueFactory<>("startDateTime"));
         endCol.setCellValueFactory(new PropertyValueFactory<>("endDateTime"));
+        totalLabel.setText(String.valueOf(generateAppointmentsOL().size()));
         
     }    
 
@@ -101,11 +103,19 @@ public class AppointmentReportController implements Initializable {
         //appointmentsTable.setItems(generateAppointmentsOL();
         appointmentsTable.setItems(generateAppointmentsOL());
         listTypes.setItems(sort());
+        totalLabel.setText(String.valueOf(generateAppointmentsOL().size()));
         
         //generateTypeOL
         
         
     }
+    
+    
+    //PROBLEM IN HERE!!!
+    //
+    //
+    //!!!!!!!!!!!!!!
+    //!!!!!!!!!!!!!!
     private ObservableList<Appointment> generateAppointmentsOL() {
         ObservableList<Appointment>holdAppt = FXCollections.observableArrayList();
         if(monthCombo.getValue() == null && custCombo.getValue() != null) {
@@ -131,7 +141,7 @@ public class AppointmentReportController implements Initializable {
             return holdAppt;
         } else if(monthCombo.getValue() == null && custCombo.getValue() == null) {
             holdAppt.addAll(Manager.getAllAppointments());
-        }
+        } 
         return holdAppt;
     }
     ////
@@ -148,8 +158,9 @@ public class AppointmentReportController implements Initializable {
         mapper.clear();
         displayAppointments.clear();
         ObservableList<String>holdTypes = FXCollections.observableArrayList();
-        
+        System.out.println("Sort Ran");
         if(monthCombo.getValue() == null && custCombo.getValue() != null) {
+            System.out.println("Month null and Customer not null");
             int count = 1;
             for(Appointment appt : generateAppointmentsOL()) {
                 if(mapper.containsKey(appt.getType())) {
@@ -197,6 +208,19 @@ public class AppointmentReportController implements Initializable {
           mapper.forEach((k, v) -> {
             holdTypes.add(k + " : " + v);
         });         
+        } else {
+            int count = 1;
+            for(Appointment appt: generateAppointmentsOL()) {
+                if(mapper.containsKey(appt.getType())) {
+                    int save = mapper.get(appt.getType());
+                    mapper.put(appt.getType(), save + 1);
+                } else {
+                    mapper.put(appt.getType(), count);
+                }
+            }
+            mapper.forEach((k, v) -> {
+            holdTypes.add(k + " : " + v);
+        });
         }
         return holdTypes;
     }
@@ -205,6 +229,7 @@ public class AppointmentReportController implements Initializable {
     private void comboMonthAction(ActionEvent event) {
         appointmentsTable.setItems(generateAppointmentsOL());
         listTypes.setItems(sort());
+        totalLabel.setText(String.valueOf(generateAppointmentsOL().size()));
     }
     
 }

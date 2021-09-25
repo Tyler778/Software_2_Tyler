@@ -24,31 +24,36 @@
                   <TableColumn fx:id="endCol" minWidth="7.0" prefWidth="194.39996337890625" text="End" />
               </columns>
             </TableView>
-            <ComboBox fx:id="custCombo" layoutX="1051.0" layoutY="144.0" onAction="#comboAction" prefWidth="150.0" />
+            <ComboBox fx:id="custCombo" layoutX="1002.0" layoutY="159.0" onAction="#comboAction" prefWidth="150.0" />
             <Label layoutX="41.0" layoutY="29.0" text="Appointments by Customer Report">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label layoutX="1051.0" layoutY="120.0" text="Sort By Customer:">
+            <Label layoutX="1002.0" layoutY="135.0" text="Sort By Customer:">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
             <Button layoutX="1117.0" layoutY="597.0" mnemonicParsing="false" onAction="#onActionMainMenu" text="Main Menu" />
-            <ListView fx:id="listTypes" layoutX="1002.0" layoutY="240.0" prefHeight="200.0" prefWidth="200.0" />
-            <ComboBox fx:id="monthCombo" layoutX="1051.0" layoutY="200.0" onAction="#comboMonthAction" prefWidth="150.0" />
-            <Label layoutX="1051.0" layoutY="176.0" text="Sort By Month">
+            <ListView fx:id="listTypes" layoutX="1002.0" layoutY="277.0" prefHeight="200.0" prefWidth="200.0" />
+            <ComboBox fx:id="monthCombo" layoutX="1002.0" layoutY="215.0" onAction="#comboMonthAction" prefWidth="150.0" />
+            <Label layoutX="1002.0" layoutY="191.0" text="Sort By Month">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="1126.0" layoutY="449.0" text="Total:">
+            <Label layoutX="1126.0" layoutY="486.0" text="Total:">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="totalLabel" layoutX="1166.0" layoutY="449.0" text="0" underline="true" />
+            <Label fx:id="totalLabel" layoutX="1166.0" layoutY="486.0" text="0" underline="true" />
+            <Label layoutX="1002.0" layoutY="248.0" text="Type Count">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
