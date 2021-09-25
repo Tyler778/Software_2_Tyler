@@ -340,7 +340,7 @@ public class SchedulingHomeController implements Initializable {
         months.add("November");
         months.add("December");
         int i = 0;
-        int x = 7;
+        int x = -6;
         while(i < 104) {
             allWeeks.add(String.valueOf(LocalDate.now().plusDays(x)) + " - " + String.valueOf(LocalDate.now().plusDays(x + 6)));
             x += 7;
@@ -354,29 +354,40 @@ public class SchedulingHomeController implements Initializable {
     @FXML
     private void comboMonthAction(ActionEvent event) {
         ObservableList<Appointment>monthsSort = FXCollections.observableArrayList();
-        for(Appointment appt : Manager.getAllAppointments()) {
-            if(Month.from(Month.valueOf(monthCombo.getValue().toUpperCase())) == Month.from(appt.getStartDateTime())) {
-                monthsSort.add(appt);
+        
+        try {
+            for(Appointment appt : Manager.getAllAppointments()) {
+                if(Month.from(Month.valueOf(monthCombo.getValue().toUpperCase())) == Month.from(appt.getStartDateTime())) {
+                    monthsSort.add(appt);
+                }
             }
+            
+            
+            
+        } catch(Exception e) {
+            
         }
+        
         tableAppointments.setItems(monthsSort);
     }
 
     @FXML
     private void comboWeekAction(ActionEvent event) {
-        String[] arrStr = weekCombo.getValue().split(" - ");
-        LocalDate begDate = LocalDate.parse(arrStr[0]);
-        LocalDate endDate = LocalDate.parse(arrStr[1]);
-        System.out.println(begDate);
-        System.out.println(endDate);
-        
-        ObservableList<Appointment>weekSort = FXCollections.observableArrayList();
-        for(Appointment appt : Manager.getAllAppointments()) {
-            if(appt.getStartDateTime().toLocalDate().isBefore(endDate) && appt.getStartDateTime().toLocalDate().isAfter(begDate)) {
-                weekSort.add(appt);
+        try {
+            String[] arrStr = weekCombo.getValue().split(" - ");
+            LocalDate begDate = LocalDate.parse(arrStr[0]).minusDays(1);
+            LocalDate endDate = LocalDate.parse(arrStr[1]).plusDays(1);
+            ObservableList<Appointment>weekSort = FXCollections.observableArrayList();
+            for(Appointment appt : Manager.getAllAppointments()) {
+                if(appt.getStartDateTime().toLocalDate().isBefore(endDate) && appt.getStartDateTime().toLocalDate().isAfter(begDate)) {
+                    weekSort.add(appt);
+                }
             }
+            tableAppointments.setItems(weekSort);
+        } catch(Exception e) {
+            
         }
-        tableAppointments.setItems(weekSort);
+        
         
     }
 
