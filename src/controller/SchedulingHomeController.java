@@ -43,7 +43,7 @@ import javafx.scene.control.Label;
  * @author tyler
  */
 public class SchedulingHomeController implements Initializable {
-    private static ObservableList<String>months = FXCollections.observableArrayList();
+    public static ObservableList<String>months = FXCollections.observableArrayList();
     private static ObservableList<String>allWeeks = FXCollections.observableArrayList();
     Stage stage;
     Parent scene;

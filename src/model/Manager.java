@@ -259,6 +259,14 @@ public class Manager {
         }
         return allCustomerIDs;
     }
+    public static ObservableList<String> getAllCustomerNames() {
+        ObservableList<String>holdCustName = FXCollections.observableArrayList();
+        for(Customers cust : allCustomers) {
+            holdCustName.add(cust.getCustomerName());
+        }
+        return holdCustName;
+    }
+    
     /**
      * Returns a Boolean to check if the argument of Customer_ID has no appointments scheduled.
      * @param id
@@ -273,6 +281,20 @@ public class Manager {
             }
         }
         return remainingApts;
+    }
+    /**
+     * Return the ID of the customer with the name sent in as an argument
+     * @param name
+     * @return Integer of Customer ID
+     */
+    public static Integer getSpecificCustomerID(String name) {
+        int x = 0;
+        for(Customers cust : Manager.getAllCustomers()) {
+            if(cust.getCustomerName().equals(name)) {
+                x = cust.getId();
+            }
+        }
+        return x;
     }
     
     
