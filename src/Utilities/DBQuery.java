@@ -19,13 +19,21 @@ public class DBQuery {
     private static Statement statement;
     
     
-    // Create statement object
+    /**
+     * Calls the createStatement() method on your connection argument.
+     * 
+     * @param c
+     * @throws SQLException 
+     */
     public static void setStatement(Connection c) throws SQLException {
         statement = c.createStatement();
     }
     
     
-    // Return Statement object
+    /**
+     * Returns the statement that is actively set by the setStatement()
+     * @return 
+     */
     public static Statement getStatement() {
         return statement;
     }

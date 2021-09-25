@@ -38,6 +38,11 @@ public class DBConnection {
     private static final String password = "49814981";
     
     //ONLY CALL START CONNECTION ONCE
+    
+    /**
+     * Method returns a connection using static values that are put into the JDBC driver and obtains the connection from
+     * @return 
+     */
     public static Connection startConnection() {
         try {
             
@@ -57,11 +62,16 @@ public class DBConnection {
         return conn;
         
     }
-    
+    /**
+     * Returns the active SQL connection obtained from the JDBC driver.  Note it does not reconnect to the database, only returns the current connection
+     * @return 
+     */
     public static Connection getConnection() {
         return conn;
     }
-    
+    /**
+     * Terminates the Connection to the database
+     */
     public static void closeConnection() {
         
         try {
