@@ -27,7 +27,12 @@ public class DBAppointments {
     
     
     
-    
+    /**
+     * With connection from DBConnection, send a prepared statement to the database
+     * and retrieve all appointments with foreign keys.  Also iterate over result set and load 
+     * objects into Appointment
+     * @throws SQLException 
+     */
     public static void loadAppointments () throws SQLException {
         Manager.deleteAllAppointments();
         DBQuery.setStatement(DBConnection.getConnection());
@@ -79,7 +84,11 @@ public class DBAppointments {
         }
                 
     }
-    
+    /**
+     * With input Appointment, delete the appointment from the SQL database with a prepared statement
+     * @param apt   the appointment to delete
+     * @throws SQLException 
+     */
     public static void deleteAppointment(Appointment apt) throws SQLException {
         String deleteAppointment = "DELETE FROM appointments WHERE Appointment_ID = ?";
         PreparedStatement deleteAppointmentPS = DBConnection.getConnection().prepareStatement(deleteAppointment);
@@ -87,7 +96,26 @@ public class DBAppointments {
         
         deleteAppointmentPS.executeUpdate();
     }
-    
+    /**
+     * With given values to update, insert values into a prepared statement and update the SQL database with it
+     * 
+     * 
+     * @param id    the id of the appointment to update
+     * @param title
+     * @param desc
+     * @param location
+     * @param type
+     * @param start
+     * @param end
+     * @param createDate
+     * @param createBy
+     * @param lastUpdate
+     * @param updatedBy
+     * @param customerID
+     * @param userID
+     * @param contactID
+     * @throws SQLException 
+     */
     public static void updateAppointment(Integer id, String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createBy, Timestamp lastUpdate, String updatedBy, Integer customerID, Integer userID, Integer contactID) throws SQLException {
         
         String updateStatement = "UPDATE appointments SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Create_Date = ?, Created_By = ?, Last_Update = ?, Last_Updated_By = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?;";
@@ -112,7 +140,25 @@ public class DBAppointments {
         updateStatementPS.executeUpdate();
        
     }
-    
+    /**
+     * With given values, add an appointment to the SQL database with the use of a prepared statement
+     * 
+     * 
+     * @param title
+     * @param desc
+     * @param location
+     * @param type
+     * @param start
+     * @param end
+     * @param createDate
+     * @param createBy
+     * @param lastUpdate
+     * @param updatedBy
+     * @param customerID
+     * @param userID
+     * @param contactID
+     * @throws SQLException 
+     */
     public static void addAppointment(String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createBy, Timestamp lastUpdate, String updatedBy, Integer customerID, Integer userID, Integer contactID) throws SQLException {
 
         String addStatement = "INSERT INTO appointments(Title, Description, Location, Type, Start, End, Create_Date, Created_By, Last_Update, Last_Updated_By, Customer_ID, User_ID, Contact_ID)"
@@ -136,8 +182,6 @@ public class DBAppointments {
         System.out.println(addStatementPS);
         
         addStatementPS.executeUpdate();
-        
-        //String addAppointment = "INSERT INTO appointments"
     }
     
     

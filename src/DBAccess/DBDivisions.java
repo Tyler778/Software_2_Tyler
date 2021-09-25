@@ -24,7 +24,10 @@ public class DBDivisions {
     
     
     
-    
+    /**
+     * Load divisions from prepared statement from SQL database into a result set that is iterated over and put into Division objects
+     * @throws SQLException 
+     */
     public static void loadDivisions () throws SQLException {
         
         DBQuery.setStatement(DBConnection.getConnection());

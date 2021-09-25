@@ -18,7 +18,10 @@ import model.Manager;
  */
 public class DBCountries {
     
-    
+    /**
+     * Accepts no arguments and simply uses a prepared statement to load all countries
+     * into a result set that is iterated over and added as country objects.
+     */
     public static void loadCountries() {
         
         

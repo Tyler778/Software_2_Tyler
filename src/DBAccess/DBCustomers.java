@@ -27,7 +27,10 @@ public class DBCustomers {
     
     
     
-    
+    /**
+     * Load All Customers with a tableview in SQL that is selected, put into a result set, and iterated over to generate Customer objects
+     * @throws SQLException 
+     */
     public static void loadCustomers () throws SQLException {
         Manager.deleteAllCustomers();
         DBQuery.setStatement(DBConnection.getConnection());
@@ -60,7 +63,11 @@ public class DBCustomers {
     }
     
     
-    
+    /**
+     * Accepts a customer object as an argument and utilizes it in a prepared statement with Customer ID to delete it from the database
+     * @param customer
+     * @throws SQLException 
+     */
     public static void deleteCustomer (Customers customer) throws SQLException {
 
         

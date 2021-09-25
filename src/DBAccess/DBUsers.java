@@ -20,7 +20,10 @@ import model.Users;
  * @author tyler
  */
 public class DBUsers {
-    
+    /**
+     * Load all Users from SQL database that are put into a result set and iterated over to generate User objects
+     * @throws SQLException 
+     */
     public static void loadUsers () throws SQLException {
         DBQuery.setStatement(DBConnection.getConnection());
         

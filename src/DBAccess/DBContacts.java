@@ -21,7 +21,12 @@ import model.Manager;
  * @author tyler
  */
 public class DBContacts {
-    
+    /**
+     * With the use of a prepared statement, load the contacts from the SQL database and
+     * iterate over the result set and add them as a contact
+     * 
+     * @throws SQLException 
+     */
     public static void loadContacts() throws SQLException {
         DBQuery.setStatement(DBConnection.getConnection());
         Statement statement = DBQuery.getStatement();
