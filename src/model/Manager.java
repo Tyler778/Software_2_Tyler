@@ -45,7 +45,10 @@ public class Manager {
     private static ObservableList<Integer> allUserIDs = FXCollections.observableArrayList();
     
     
-    //Load all Data
+    /**
+     * Calls appropriate Database Access classes, populating the classes with instances of objects from the result sets that are returned.
+     * @throws SQLException 
+     */
     public static void loadData() throws SQLException {
         DBCustomers.loadCustomers();
         DBAppointments.loadAppointments();
@@ -56,7 +59,10 @@ public class Manager {
         
     }
     
-    //Delete all Data
+    /**
+     * Calls appropriate methods in Manager that will remove all instances of objects.  Typically done right before updating the objects with data from the current connection to the SQL server.
+     * @throws SQLException 
+     */
     public static void deleteData() throws SQLException {
         deleteAllAppointments();
         deleteAllCustomers();
@@ -71,20 +77,44 @@ public class Manager {
     }
     
     
-    //Appointments
+    /**
+     * Adds the Appointment argument to the allAppointments Observable List.
+     * @param appt 
+     */
     public static void addAppointmentNODB(Appointment appt) {
         allAppointments.add(appt);
     }
-    
+    /**
+     * Sends the arguments accepted into the DBAppointments to add the fields into the SQL Appointments Table.
+     * @param title
+     * @param desc
+     * @param location
+     * @param type
+     * @param start
+     * @param end
+     * @param createDate
+     * @param createBy
+     * @param lastUpdate
+     * @param updatedBy
+     * @param customerID
+     * @param userID
+     * @param contactID
+     * @throws SQLException 
+     */
     public static void addAppointment (String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createBy, Timestamp lastUpdate, String updatedBy, Integer customerID, Integer userID, Integer contactID) throws SQLException {
         DBAppointments.addAppointment(title, desc, location, type, start, end, createDate, createBy, lastUpdate, updatedBy, customerID, userID, contactID);
     }
     
-    
+    /**
+     * Returns allAppointments Observable List.
+     * @return ObservableList<Appointment>
+     */
     public static ObservableList<Appointment> getAllAppointments() {
         return allAppointments;
     }
-    
+    /**
+     * Deletes all Appointments from the allAppointments ObservableList.
+     */
     public static void deleteAllAppointments() {
         ObservableList<Appointment>holdAppt = FXCollections.observableArrayList();
         for (Appointment apt : allAppointments) {
@@ -92,14 +122,40 @@ public class Manager {
         }
         allAppointments.removeAll(holdAppt);
     }
+    /**
+     * Removes the Appointment argument from the allAppointments Observable List and sends the Appointment to the DBAppointments to delete it from the SQL server.
+     * @param apt
+     * @throws SQLException 
+     */
     public static void removeAppointment (Appointment apt) throws SQLException {
         allAppointments.remove(apt);
         DBAppointments.deleteAppointment(apt);
     }
+    /**
+     * Sends the accepted arguments to the DBAppointments class to use in a prepared statement and update the SQL instance.
+     * @param id
+     * @param title
+     * @param desc
+     * @param location
+     * @param type
+     * @param start
+     * @param end
+     * @param createDate
+     * @param createBy
+     * @param lastUpdate
+     * @param updatedBy
+     * @param customerID
+     * @param userID
+     * @param contactID
+     * @throws SQLException 
+     */
     public static void updateAppointment (Integer id, String title, String desc, String location, String type, LocalDateTime start, LocalDateTime end, LocalDateTime createDate, String createBy, Timestamp lastUpdate, String updatedBy, Integer customerID, Integer userID, Integer contactID) throws SQLException {
         DBAppointments.updateAppointment(id, title, desc, location, type, start, end, createDate, createBy, lastUpdate, updatedBy, customerID, userID, contactID);
     }
-    
+    /**
+     * Called on log in of the user, checks the allAppointments Observable List of appointments that have start times within 15 minutes of login.  Returns a Boolean.
+     * @return Boolean
+     */
     public static boolean checkAppointmentProximity() {
         boolean nearAppointment = false;
         
@@ -114,6 +170,11 @@ public class Manager {
         return nearAppointment;
         
     }
+    /**
+     * Returns a list of Appointments that have a specific Contact Name.
+     * @param contactName
+     * @return ObservableList<Appointment>
+     */
     public static ObservableList<Appointment> getFilteredAppointments(String contactName) {
         
         ObservableList<Appointment>holdAppt = FXCollections.observableArrayList();
@@ -126,7 +187,11 @@ public class Manager {
         return holdAppt;
         
     }
-    
+    /**
+     * Returns a list of Appointments that are associated with the user specified in the argument.
+     * @param user
+     * @return ObservableList<Appointment>
+     */
     public static ObservableList<Appointment> filterAppointmentsByUser(String user) {
         ObservableList<Appointment>holdAppt = FXCollections.observableArrayList();
         holdAppt.clear();
@@ -145,19 +210,32 @@ public class Manager {
     
     
     
-    //Customers
+    /**
+     * Add a Customer to the allCustomers Observable List
+     * @param cust 
+     */
     public static void addCustomer (Customers cust) {
         allCustomers.add(cust);
     }
+    /**
+     * Remove a Customer from the allCustomers Observable List and calls the DBCustomers method to delete the argument from the SQL server.
+     * @param cust
+     * @throws SQLException 
+     */
     public static void removeCustomer (Customers cust) throws SQLException {
         allCustomers.remove(cust);
         DBCustomers.deleteCustomer(cust);
     }
-    
+    /**
+     * Returns the allCustomers Observable List
+     * @return ObservableList<Customers>
+     */
     public static ObservableList<Customers> getAllCustomers() {
         return allCustomers;
     }
-    
+    /**
+     * Removes all objects from the allCustomers Observable List
+     */
     public static void deleteAllCustomers() {
         ObservableList<Customers>holdCust = FXCollections.observableArrayList();
         for (Customers cust : allCustomers) {
@@ -165,6 +243,10 @@ public class Manager {
         }
         allCustomers.removeAll(holdCust);
     }
+    /**
+     * Returns Observable List of all Customer IDs
+     * @return ObservableList<Integer>
+     */
     public static ObservableList<Integer> getAllCustomerIDs() {
         ObservableList<Integer>holdCustID = FXCollections.observableArrayList();
         for (Customers cust : allCustomers) {
@@ -177,6 +259,11 @@ public class Manager {
         }
         return allCustomerIDs;
     }
+    /**
+     * Returns a Boolean to check if the argument of Customer_ID has no appointments scheduled.
+     * @param id
+     * @return Boolean
+     */
     public static boolean checkAppointments(int id) {
         boolean remainingApts = false;
         for(Appointment appt : allAppointments) {
@@ -189,21 +276,37 @@ public class Manager {
     }
     
     
-    //Divisions
+    /**
+     * Add a Division to the allDivisions Observable List
+     * @param div 
+     */
     public static void addDivision (Divisions div) {
         allDivisions.add(div);
     }
+    /**
+     * Add a Division Name to the allDivisionsNames Observable List
+     * @param name 
+     */
     public static void addDivisionName (String name) {
         allDivisionsNames.add(name);
     }
+    /**
+     * Returns allDivisionNames Observable List
+     * @return ObservableList<String>
+     */
     public static ObservableList<String> getAllDivisionNames() {
         return allDivisionsNames;
     }
-    
+    /**
+     * Returns allDivisions Observable List
+     * @return ObservableList<Divisions>
+     */
     public static ObservableList<Divisions> getAllDivisions() {
         return allDivisions;
     }
-    
+    /**
+     * Removes every object from the allDivisions Observable List
+     */
     public static void deleteAllDivisions() {
         ObservableList<Divisions>holdDiv = FXCollections.observableArrayList();
         for (Divisions div : allDivisions) {
@@ -211,6 +314,9 @@ public class Manager {
         }
         allDivisions.removeAll(holdDiv);
     }
+    /**
+     * Removes every String from the allDivisionsNames Observable List
+     */
     public static void deleteAllDivisionNames() {
         ObservableList<String>holdDivisionNames = FXCollections.observableArrayList();
         for (String division : allDivisionsNames) {
@@ -218,7 +324,12 @@ public class Manager {
         }
         allDivisionsNames.removeAll(holdDivisionNames);
     }
-    
+    /**
+     * On Argument of the Country Name, select all divisions under the country with a SQL statement.  
+     * @param countryName
+     * @return ObservableList<String>
+     * @throws SQLException 
+     */
     public static ObservableList<String> getDivisionsBasedOnCountry(String countryName) throws SQLException {
         DBQuery.setStatement(DBConnection.getConnection());
         Statement statement = DBQuery.getStatement();
@@ -241,17 +352,30 @@ public class Manager {
         return currentDivisions;
     }
     
-    //Countries
+    /**
+     * Add a country to the allCountries Observable List
+     * @param country 
+     */
     public static void addCountry (Countries country) {
         allCountries.add(country);
     }
+    /**
+     * Add a country name to the allCountryNames Observable List
+     * @param name 
+     */
     public static void addCountryName (String name) {
         allCountryNames.add(name);
     }
+    /**
+     * Return the Observable List of allCountryNames
+     * @return ObservableList<String>
+     */
     public static ObservableList<String> getAllCountryNames() {
         return allCountryNames;
     }
-    
+    /**
+     * Remove all from the allCountryNames Observable List
+     */
     public static void deleteAllCountryNames() {
         ObservableList<String>holdCountryNames = FXCollections.observableArrayList();
         for (String country : allCountryNames) {
@@ -259,9 +383,16 @@ public class Manager {
         }
         allCountryNames.removeAll(holdCountryNames);
     }
+    /**
+     * Returns allCountries Observable List
+     * @return ObservableList<Countries>
+     */
     public static ObservableList<Countries> getAllCountries() {
         return allCountries;
     }
+    /**
+     * Remove all objects from the allCountries Observable List
+     */
     public static void deleteAllCountries() {
         ObservableList<Countries>holdCountry = FXCollections.observableArrayList();
         for (Countries country : allCountries) {
@@ -272,12 +403,17 @@ public class Manager {
     
     
     
-    //Credentials
     
+    /**
+     * Add user to the allUsers Observable List
+     * @param user 
+     */
     public static void addUser (Users user) {
         allUsers.add(user);
     }
-    
+    /**
+     * Remove all Users from the allUsers Observable List
+     */
     public static void deleteAllUsers() {
         ObservableList<Users>holdUsers = FXCollections.observableArrayList();
         for (Users user : allUsers) {
@@ -285,11 +421,17 @@ public class Manager {
         }
         allUsers.removeAll(holdUsers);
     }
-    
+    /**
+     * Returns allUsers Observable List
+     * @return ObservableList<Users>
+     */
     public static ObservableList<Users> getAllUsers() {
         return allUsers;
     }
-    
+    /**
+     * Returns an Observable List of Integers of allUserIDs
+     * @return ObservableList<Integer>
+     */
     public static ObservableList<Integer> getAllUserIDs() {
         ObservableList<Integer>holdUserIDs = FXCollections.observableArrayList();
         for (Users user : allUsers) {
@@ -302,7 +444,10 @@ public class Manager {
         }
         return allUserIDs;
     }
-    
+    /**
+     * Return an Observable List of Strings that are all Users names
+     * @return ObservableList<String>
+     */
     public static ObservableList<String> getAllUserNames() {
         ObservableList<String>holdUsers = FXCollections.observableArrayList();
         for(Users user : getAllUsers()) {
@@ -310,7 +455,11 @@ public class Manager {
         }
         return holdUsers;
     }
-    
+    /**
+     * Returns a specific ID given the argument of the username.  Used in the login.
+     * @param username
+     * @return Integer
+     */
     public static Integer getIDFromUserName(String username) {
         for(Users user : getAllUsers()) {
             if(user.getName().equals(username)) {
@@ -322,14 +471,16 @@ public class Manager {
     
     
     
-    
-    
-    
-    //Contacts
-    
+    /**
+     * Add a contact to the allContacts Observable List
+     * @param contact 
+     */
     public static void addContact (Contacts contact) {
         allContacts.add(contact);
     }
+    /**
+     * Remove every contact from the allContacts Observable List
+     */
     public static void deleteAllContacts() {
         ObservableList<Contacts>holdContacts = FXCollections.observableArrayList();
         for(Contacts contact : allContacts) {
@@ -337,11 +488,17 @@ public class Manager {
         }
         allContacts.removeAll(holdContacts);
     }
-    
+    /**
+     * Returns allContacts Observable List
+     * @return ObservableList<Contacts>
+     */
     public static ObservableList<Contacts> getAllContacts() {
         return allContacts;
     }
-    
+    /**
+     * Returns Observable List of allContactNames
+     * @return ObservableList<String>
+     */
     public static ObservableList<String> getAllContactNames() {
         ObservableList<String>holdContactName = FXCollections.observableArrayList();
         for (String contact : allContactNames) {
@@ -353,7 +510,9 @@ public class Manager {
         }
         return allContactNames;
     }
-    
+    /**
+     * Removes every String from allContactNames Observable List
+     */
      public static void deleteAllContactNames() {
         ObservableList<String>holdContactName = FXCollections.observableArrayList();
         for (String contact : allContactNames) {
