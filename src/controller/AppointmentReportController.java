@@ -67,12 +67,15 @@ public class AppointmentReportController implements Initializable {
     private ComboBox<String> monthCombo;
     @FXML
     private Label totalLabel;
+    @FXML
+    private Button resetButton;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        resetButton.setVisible(false);
         appointmentsTable.setItems(generateAppointmentsOL());
         monthCombo.setItems(SchedulingHomeController.months);
         custCombo.setItems(Manager.getAllCustomerNames());
@@ -104,30 +107,26 @@ public class AppointmentReportController implements Initializable {
         appointmentsTable.setItems(generateAppointmentsOL());
         listTypes.setItems(sort());
         totalLabel.setText(String.valueOf(generateAppointmentsOL().size()));
-        
+        resetButton.setVisible(true);
+
         //generateTypeOL
         
         
     }
     
     
-    //PROBLEM IN HERE!!!
-    //
-    //
-    //!!!!!!!!!!!!!!
-    //!!!!!!!!!!!!!!
     private ObservableList<Appointment> generateAppointmentsOL() {
         ObservableList<Appointment>holdAppt = FXCollections.observableArrayList();
         if(monthCombo.getValue() == null && custCombo.getValue() != null) {
             for(Appointment appt : Manager.getAllAppointments()) {
-                if(Manager.getSpecificCustomerID(custCombo.getValue()) == appt.getId()) {
+                if(Manager.getSpecificCustomerID(custCombo.getValue()) == appt.getCustomerID()) {
                     holdAppt.add(appt);
                 }
             }
             return holdAppt;
         } else if(monthCombo.getValue() != null && custCombo.getValue() != null) {
             for(Appointment appt : Manager.getAllAppointments()) {
-                if(Manager.getSpecificCustomerID(custCombo.getValue()) == appt.getId() && Month.from(Month.valueOf(monthCombo.getValue().toUpperCase())) == Month.from(appt.getStartDateTime())) {
+                if(Manager.getSpecificCustomerID(custCombo.getValue()) == appt.getCustomerID() && Month.from(Month.valueOf(monthCombo.getValue().toUpperCase())) == Month.from(appt.getStartDateTime())) {
                    holdAppt.add(appt);
                 }
             }
@@ -144,12 +143,6 @@ public class AppointmentReportController implements Initializable {
         } 
         return holdAppt;
     }
-    ////
-    ////
-    //// LAMBDA 
-    ////
-    ////
-    ////
     
     
     
@@ -158,10 +151,9 @@ public class AppointmentReportController implements Initializable {
         mapper.clear();
         displayAppointments.clear();
         ObservableList<String>holdTypes = FXCollections.observableArrayList();
-        System.out.println("Sort Ran");
         if(monthCombo.getValue() == null && custCombo.getValue() != null) {
-            System.out.println("Month null and Customer not null");
             int count = 1;
+            System.out.println(generateAppointmentsOL());
             for(Appointment appt : generateAppointmentsOL()) {
                 if(mapper.containsKey(appt.getType())) {
                     int save = mapper.get(appt.getType());
@@ -207,8 +199,9 @@ public class AppointmentReportController implements Initializable {
             
           mapper.forEach((k, v) -> {
             holdTypes.add(k + " : " + v);
-        });         
-        } else {
+        });
+        }  
+        else {
             int count = 1;
             for(Appointment appt: generateAppointmentsOL()) {
                 if(mapper.containsKey(appt.getType())) {
@@ -230,6 +223,17 @@ public class AppointmentReportController implements Initializable {
         appointmentsTable.setItems(generateAppointmentsOL());
         listTypes.setItems(sort());
         totalLabel.setText(String.valueOf(generateAppointmentsOL().size()));
+        resetButton.setVisible(true);
+    }
+
+    @FXML
+    private void onActionReset(ActionEvent event) {
+        custCombo.setValue(null);
+        monthCombo.setValue(null);
+        appointmentsTable.setItems(generateAppointmentsOL());
+        listTypes.setItems(sort());
+        totalLabel.setText(String.valueOf(generateAppointmentsOL().size()));
+        resetButton.setVisible(false);
     }
     
 }

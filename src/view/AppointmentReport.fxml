@@ -54,6 +54,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
+            <Button fx:id="resetButton" layoutX="1002.0" layoutY="597.0" mnemonicParsing="false" onAction="#onActionReset" text="Reset" />
          </children>
       </AnchorPane>
    </children>
