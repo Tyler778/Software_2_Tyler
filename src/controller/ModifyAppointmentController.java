@@ -85,7 +85,7 @@ public class ModifyAppointmentController implements Initializable {
     private Label conflictError;
 
     /**
-     * Initializes the controller class.
+     * Initializes the controller class and set errors to invisibiele while also populating the fields and combo boxes with appropriate strings and lists respectively.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -106,7 +106,10 @@ public class ModifyAppointmentController implements Initializable {
 
     
     
-    
+    /**
+     * Accepts the Appointment object that is selected and uses it to populate the fields and combo boxes on the page.
+     * @param appt 
+     */
     public void sendAppointment(Appointment appt) {
         apptTextField.setText(String.valueOf(appt.getId()));
         titleTextField.setText(String.valueOf(appt.getTitle()));
@@ -129,6 +132,9 @@ public class ModifyAppointmentController implements Initializable {
         
         
     }
+    /**
+     * Fills the observable Lists of hours and minutes with appropriate data to represent time.  
+     */
     public void fillObservableLists() {
         hoursOL.clear();
         minutesOL.clear();
@@ -144,7 +150,11 @@ public class ModifyAppointmentController implements Initializable {
         }
     }
 
-
+    /**
+     * Sets the stage as the Scheduling Home fxml page.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void onActionCancelModifyAppointment(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -152,7 +162,12 @@ public class ModifyAppointmentController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
     }
-
+    /**
+     * Resets the error messages and then attempts to call a Manager method to update the appointment in the database.  Updates a reload data value in Scheduling Home Controller and then sets the stage as Scheduling Home FXML.
+     * @param event
+     * @throws SQLException
+     * @throws IOException 
+     */
     @FXML
     private void onActionSaveAppointment(ActionEvent event) throws SQLException, IOException {
         conflictError.setVisible(false);
@@ -190,20 +205,31 @@ public class ModifyAppointmentController implements Initializable {
     }
     
     
-    
+    /**
+     * Gathers the start time inputted into the combo boxes and returns a localdatetime of such values.
+     * @return
+     */
     private LocalDateTime gatherStart() {
         LocalDateTime startDateTime = null;
         
         startDateTime = LocalDateTime.of(startDatePicker.getValue(),LocalTime.of(Integer.valueOf(startHourCombo.getValue()), Integer.valueOf(startMinuteCombo.getValue())));
         return startDateTime;
     }
-    
+    /**
+     * Gathers the end time inputted into the combo boxes and returns a localdatetime of such values.
+     * @return
+     */
     private LocalDateTime gatherEnd() {
         LocalDateTime endDateTime = null;
         
         endDateTime = LocalDateTime.of(endDatePicker.getValue(),LocalTime.of(Integer.valueOf(endHourCombo.getValue()), Integer.valueOf(endMinuteCombo.getValue())));
         return endDateTime;
     }
+    /**
+     * With the given string, iterate over allContacts and get the ID of the contact.
+     * @param name
+     * @return
+     */
     public static Integer getContactID(String name) {
         int cID = 0;
         for(Contacts contact : Manager.getAllContacts()) {
@@ -213,11 +239,19 @@ public class ModifyAppointmentController implements Initializable {
         }
         return cID;
     }
-    
+    /**
+     * Generate a timestmap of now and return it.
+     * @return
+     */
     private Timestamp gatherTimestamp() {
         return Timestamp.from(Instant.now());
     }
-    
+    /**
+     * With inputted LocalDateTimes representing start and end, check to ensure those times are within the business hours of the business.  8AM-10PM EST.
+     * @param start
+     * @param end
+     * @return
+     */
     private Boolean checkValidTime(LocalDateTime start, LocalDateTime end) {
         
         ZonedDateTime startBusinessHours = ZonedDateTime.of(LocalDateTime.of(3, 3, 3, 8, 0, 0, 0), ZoneId.of("America/New_York"));
@@ -232,6 +266,13 @@ public class ModifyAppointmentController implements Initializable {
         return false;
         
     }
+    /**
+     * With the arguments of start, end, and customer ID, check to ensure that no appointments would overlap that share customer IDs.  Returns Boolean.
+     * @param start
+     * @param end
+     * @param custID
+     * @return
+     */
      private Boolean checkOtherTimeConflicts(LocalDateTime start, LocalDateTime end, Integer id, Integer custID) {
         ObservableList<Appointment>holdAppt = FXCollections.observableArrayList();
         for(Appointment appt : Manager.getAllAppointments()) {

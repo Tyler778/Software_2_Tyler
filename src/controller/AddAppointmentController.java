@@ -105,13 +105,13 @@ public class AddAppointmentController implements Initializable {
         
         
         // TODO
-    }    
+    }
+    @FXML
     /**
      * Sets the stage as the Scheduling Home fxml page.
      * @param event
      * @throws IOException 
      */
-    @FXML
     private void onActionCancelAddAppointment(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/view/SchedulingHome.fxml"));

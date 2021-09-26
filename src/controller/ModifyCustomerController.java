@@ -64,14 +64,16 @@ public class ModifyCustomerController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //divisionBox.setValue("Ohio");
-        //divisionBox.setValue("Division Production");
-        // TODO
+        
     }    
     
     
     
-    
+    /**
+     * Receives the customer object and sets the fields and combo boxes the appropriate values retrieved from their getters.
+     * @param customer
+     * @throws SQLException 
+     */
     public void sendCustomer(Customers customer) throws SQLException {
         customerTextField.setText(String.valueOf(customer.getId()));
         addressTextField.setText(String.valueOf(customer.getAddress()));
@@ -87,6 +89,12 @@ public class ModifyCustomerController implements Initializable {
         
         
     }
+    /**
+     * Returns a string that is a count of all Appointments under a specific customer ID.  Uses a SQL statement that connects to the server to obtain.
+     * @param customer
+     * @return
+     * @throws SQLException 
+     */
     private String appointmentCount(Customers customer) throws SQLException {
         
         DBQuery.setStatement(DBConnection.getConnection());
@@ -102,7 +110,11 @@ public class ModifyCustomerController implements Initializable {
         return appointmentTotal;
         
     }
-
+    /**
+     * Save the Customer with the use of a statement object and inserts the correct values into a string to send to the SQL server to update the object in the database.  Then, if successful, sets the stage to the Scheduling Home FXML.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void onActionSaveCustomer(ActionEvent event) throws IOException {
         
@@ -141,7 +153,11 @@ public class ModifyCustomerController implements Initializable {
  
     }
 
-
+    /**
+     * Sets the stage to the Scheduling Home FXML without saving any of the modifications.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void onActionCancelModifyingCustomer(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -150,7 +166,11 @@ public class ModifyCustomerController implements Initializable {
         stage.show();
     }
 
-    
+    /**
+     * Sets the division box on a list of divisions that have a foreign key of the specified country from country combo box.
+     * @param event
+     * @throws SQLException 
+     */
     @FXML
     private void comboAction(ActionEvent event) throws SQLException {
         divisionBox.setItems(Manager.getDivisionsBasedOnCountry(countryBox.getValue()));
