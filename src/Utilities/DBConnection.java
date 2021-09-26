@@ -32,7 +32,7 @@ public class DBConnection {
     private static final String MYSQLJDBCDriver = "com.mysql.cj.jdbc.Driver";
     private static Connection conn = null;
     //Username
-    private static final String username = "tyler";
+    private static final String username = "tyler50";
     
     //Password
     private static final String password = "49814981";
