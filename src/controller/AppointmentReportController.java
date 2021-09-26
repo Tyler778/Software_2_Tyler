@@ -71,7 +71,7 @@ public class AppointmentReportController implements Initializable {
     private Button resetButton;
 
     /**
-     * Initializes the controller class.
+     * Initializes the controller class.  Sets the table to have appropriate values and preps the page for utility.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -91,7 +91,11 @@ public class AppointmentReportController implements Initializable {
         totalLabel.setText(String.valueOf(generateAppointmentsOL().size()));
         
     }    
-
+    /**
+     * Sets the stage to Scheduling Home FXML.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void onActionMainMenu(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -99,7 +103,10 @@ public class AppointmentReportController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
     }
-
+    /**
+     * Repopulates the appointmentsTable with new data as well as the typeListView.  Sets the totalLabel as well as enables the reset button.
+     * @param event 
+     */
     @FXML
     private void comboAction(ActionEvent event) {
         //listTypes.setItems(null);
@@ -114,7 +121,10 @@ public class AppointmentReportController implements Initializable {
         
     }
     
-    
+    /**
+     * Returns an Observable List of Appointments to be used in the main tableview that are selected upon matching criteria from the comboboxes that have been modified.  
+     * @return ObservableList<Appointment> 
+     */
     private ObservableList<Appointment> generateAppointmentsOL() {
         ObservableList<Appointment>holdAppt = FXCollections.observableArrayList();
         if(monthCombo.getValue() == null && custCombo.getValue() != null) {
@@ -146,7 +156,10 @@ public class AppointmentReportController implements Initializable {
     
     
     
-    
+    /**
+     * Returns an Observable List of Strings that are made up of the different distinct types of Appointments with a count of the amount of such type.  Uses a hashmap to create this.  
+     * @return 
+     */
     public ObservableList<String> sort() {
         mapper.clear();
         displayAppointments.clear();
@@ -217,7 +230,10 @@ public class AppointmentReportController implements Initializable {
         }
         return holdTypes;
     }
-
+    /**
+     * Sets the appointmentsTable to have repopulated data based on new combinations. Sets the listTypes to have appropriate values as well.  Updates totalLabel and resetButton.
+     * @param event 
+     */
     @FXML
     private void comboMonthAction(ActionEvent event) {
         appointmentsTable.setItems(generateAppointmentsOL());
@@ -225,7 +241,10 @@ public class AppointmentReportController implements Initializable {
         totalLabel.setText(String.valueOf(generateAppointmentsOL().size()));
         resetButton.setVisible(true);
     }
-
+    /**
+     * Sets the comboBoxes to null values and reupdates the data to be default with no restrictions.  Removes the ability to see the reset button.
+     * @param event 
+     */
     @FXML
     private void onActionReset(ActionEvent event) {
         custCombo.setValue(null);

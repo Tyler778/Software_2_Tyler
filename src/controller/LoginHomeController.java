@@ -72,7 +72,7 @@ public class LoginHomeController implements Initializable {
     private Button exitLabel;
 
     /**
-     * Initializes the controller class.
+     * Initializes the controller class.  Handles the change to french if it is recognizes as the system default.  Also loads up the timezone currently used.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -101,7 +101,12 @@ public class LoginHomeController implements Initializable {
         timeZoneLabel.setText(defaultTimezone);
     }    
     
-    
+    /**
+     * Collects the values inputted into the user and password textfield and attempts to match them to a User from the database.  Calls the alertCheck to check if an appointment starts within 15 minutes or not.
+     * @return Boolean
+     * @throws FileNotFoundException
+     * @throws UnsupportedEncodingException 
+     */
     public boolean validateUser() throws FileNotFoundException, UnsupportedEncodingException {
         boolean validCredentials = false;
         for(Users user : Manager.getAllUsers()) {
@@ -116,12 +121,19 @@ public class LoginHomeController implements Initializable {
         logActivity(usernameTextField.getText(), validCredentials);
         return validCredentials;
     }
-
+    /**
+     * Exits the application.
+     * @param event 
+     */
     @FXML
     private void onActionExit(ActionEvent event) {
         System.exit(0);
     }
-
+    /**
+     * Calls the validateUser method and sets the stage to Scheduling Home FXML if it validates as true.  Otherwise it sets the error message to visible.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void onActionLogin(ActionEvent event) throws IOException {
         if (validateUser()) {
@@ -136,7 +148,13 @@ public class LoginHomeController implements Initializable {
         }
         
     }
-    
+    /**
+     * Uses the FileWriter called on each press of the login button to log activity to the login_activity.txt file located withinh the root.
+     * @param username
+     * @param valid
+     * @throws FileNotFoundException
+     * @throws UnsupportedEncodingException 
+     */
     public void logActivity(String username, Boolean valid) throws FileNotFoundException, UnsupportedEncodingException {
         try (FileWriter writer = new FileWriter("login_activity.txt", true)) {
             writer.write("User: " + username + " attempted login at " + String.valueOf(LocalDateTime.now()) + ". Validated: " + String.valueOf(valid) + "\n");

@@ -107,7 +107,7 @@ public class Manager {
     
     /**
      * Returns allAppointments Observable List.
-     * @return ObservableList<Appointment>
+     * @return 
      */
     public static ObservableList<Appointment> getAllAppointments() {
         return allAppointments;
@@ -154,7 +154,7 @@ public class Manager {
     }
     /**
      * Called on log in of the user, checks the allAppointments Observable List of appointments that have start times within 15 minutes of login.  Returns a Boolean.
-     * @return Boolean
+     * @return
      */
     public static boolean checkAppointmentProximity() {
         boolean nearAppointment = false;
@@ -173,7 +173,7 @@ public class Manager {
     /**
      * Returns a list of Appointments that have a specific Contact Name.
      * @param contactName
-     * @return ObservableList<Appointment>
+     * @return
      */
     public static ObservableList<Appointment> getFilteredAppointments(String contactName) {
         
@@ -190,7 +190,7 @@ public class Manager {
     /**
      * Returns a list of Appointments that are associated with the user specified in the argument.
      * @param user
-     * @return ObservableList<Appointment>
+     * @return
      */
     public static ObservableList<Appointment> filterAppointmentsByUser(String user) {
         ObservableList<Appointment>holdAppt = FXCollections.observableArrayList();
@@ -228,7 +228,7 @@ public class Manager {
     }
     /**
      * Returns the allCustomers Observable List
-     * @return ObservableList<Customers>
+     * @return
      */
     public static ObservableList<Customers> getAllCustomers() {
         return allCustomers;
@@ -245,7 +245,7 @@ public class Manager {
     }
     /**
      * Returns Observable List of all Customer IDs
-     * @return ObservableList<Integer>
+     * @return
      */
     public static ObservableList<Integer> getAllCustomerIDs() {
         ObservableList<Integer>holdCustID = FXCollections.observableArrayList();
@@ -259,6 +259,10 @@ public class Manager {
         }
         return allCustomerIDs;
     }
+    /**
+     * Returns Observable List of all Customer Names in the form of strings
+     * @return
+     */
     public static ObservableList<String> getAllCustomerNames() {
         ObservableList<String>holdCustName = FXCollections.observableArrayList();
         for(Customers cust : allCustomers) {
@@ -270,7 +274,7 @@ public class Manager {
     /**
      * Returns a Boolean to check if the argument of Customer_ID has no appointments scheduled.
      * @param id
-     * @return Boolean
+     * @return
      */
     public static boolean checkAppointments(int id) {
         boolean remainingApts = false;
@@ -285,7 +289,7 @@ public class Manager {
     /**
      * Return the ID of the customer with the name sent in as an argument
      * @param name
-     * @return Integer of Customer ID
+     * @return
      */
     public static Integer getSpecificCustomerID(String name) {
         int x = 0;
@@ -314,14 +318,14 @@ public class Manager {
     }
     /**
      * Returns allDivisionNames Observable List
-     * @return ObservableList<String>
+     * @return
      */
     public static ObservableList<String> getAllDivisionNames() {
         return allDivisionsNames;
     }
     /**
      * Returns allDivisions Observable List
-     * @return ObservableList<Divisions>
+     * @return
      */
     public static ObservableList<Divisions> getAllDivisions() {
         return allDivisions;
@@ -349,7 +353,7 @@ public class Manager {
     /**
      * On Argument of the Country Name, select all divisions under the country with a SQL statement.  
      * @param countryName
-     * @return ObservableList<String>
+     * @return
      * @throws SQLException 
      */
     public static ObservableList<String> getDivisionsBasedOnCountry(String countryName) throws SQLException {
@@ -390,7 +394,7 @@ public class Manager {
     }
     /**
      * Return the Observable List of allCountryNames
-     * @return ObservableList<String>
+     * @return
      */
     public static ObservableList<String> getAllCountryNames() {
         return allCountryNames;
@@ -407,7 +411,7 @@ public class Manager {
     }
     /**
      * Returns allCountries Observable List
-     * @return ObservableList<Countries>
+     * @return
      */
     public static ObservableList<Countries> getAllCountries() {
         return allCountries;
@@ -445,14 +449,14 @@ public class Manager {
     }
     /**
      * Returns allUsers Observable List
-     * @return ObservableList<Users>
+     * @return
      */
     public static ObservableList<Users> getAllUsers() {
         return allUsers;
     }
     /**
      * Returns an Observable List of Integers of allUserIDs
-     * @return ObservableList<Integer>
+     * @return
      */
     public static ObservableList<Integer> getAllUserIDs() {
         ObservableList<Integer>holdUserIDs = FXCollections.observableArrayList();
@@ -468,7 +472,7 @@ public class Manager {
     }
     /**
      * Return an Observable List of Strings that are all Users names
-     * @return ObservableList<String>
+     * @return
      */
     public static ObservableList<String> getAllUserNames() {
         ObservableList<String>holdUsers = FXCollections.observableArrayList();
@@ -480,7 +484,7 @@ public class Manager {
     /**
      * Returns a specific ID given the argument of the username.  Used in the login.
      * @param username
-     * @return Integer
+     * @return
      */
     public static Integer getIDFromUserName(String username) {
         for(Users user : getAllUsers()) {
@@ -512,14 +516,14 @@ public class Manager {
     }
     /**
      * Returns allContacts Observable List
-     * @return ObservableList<Contacts>
+     * @return
      */
     public static ObservableList<Contacts> getAllContacts() {
         return allContacts;
     }
     /**
      * Returns Observable List of allContactNames
-     * @return ObservableList<String>
+     * @return
      */
     public static ObservableList<String> getAllContactNames() {
         ObservableList<String>holdContactName = FXCollections.observableArrayList();

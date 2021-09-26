@@ -53,20 +53,29 @@ public class AddCustomerController implements Initializable {
     private ChoiceBox<String> countryBox;
 
     /**
-     * Initializes the controller class.
+     * Initializes the controller class. Sets the ComboBox country to have country names.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         countryBox.setItems(Manager.getAllCountryNames());
         // TODOf
     }    
-
+    /**
+     * Sets the division box to have the appropriate sub values based on the countryBox selection value.
+     * @param event
+     * @throws SQLException 
+     */
     @FXML
     private void comboAction(ActionEvent event) throws SQLException {
         divisionBox.setItems(Manager.getDivisionsBasedOnCountry(countryBox.getValue()));
         
     }
-
+    /**
+     * Uses the database connection and sends the new customer data to the SQL server to be saved.  Then loads the Scheduling Home FXML.
+     * @param event
+     * @throws SQLException
+     * @throws IOException 
+     */
     @FXML
     private void onActionAddCustomer(ActionEvent event) throws SQLException, IOException {
         String timeStamp = String.valueOf(LocalDateTime.now());
@@ -101,7 +110,11 @@ public class AddCustomerController implements Initializable {
         stage.show();
               
     }
-
+    /**
+     * Switches the stage to Scheduling Home FXML.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void onActionCancelAddingCustomer(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();

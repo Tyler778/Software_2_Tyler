@@ -56,7 +56,7 @@ public class ModificationReportController implements Initializable {
     private TableColumn<Appointment, LocalDateTime> updateCol;
 
     /**
-     * Initializes the controller class.
+     * Initializes the controller class and sets the userComboBox to the appropriate Observable List.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -64,7 +64,11 @@ public class ModificationReportController implements Initializable {
         
         // TODO
     }    
-
+    /**
+     * Sets the stage to the Scheduling Home FXML.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void onActionMainMenu(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -75,7 +79,10 @@ public class ModificationReportController implements Initializable {
         
         
     }
-    
+    /**
+     * Fills the appointmentTable with the appropriate Observable List.
+     * @param user 
+     */
     private void fillTable(String user) {
         appointmentTable.setItems(Manager.filterAppointmentsByUser(user));
         //apptCount.setText(String.valueOf(Manager.getFilteredAppointments(contact).size()));
@@ -83,7 +90,11 @@ public class ModificationReportController implements Initializable {
     }
 
     
-    
+    /**
+     * Sets the appointmentTable with data based on the selected User.
+     * @param event
+     * @throws SQLException 
+     */
     @FXML
     private void comboAction(ActionEvent event) throws SQLException {
         

@@ -82,7 +82,7 @@ public class AddAppointmentController implements Initializable {
     private Label conflictError;
 
     /**
-     * Initializes the controller class.
+     * Initializes the controller class.  Sets appropriate error messages to invisible, fills the Observable Lists by calling other methods, and sets the combo boxes to have appropriate Lists and default values.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -106,7 +106,11 @@ public class AddAppointmentController implements Initializable {
         
         // TODO
     }    
-
+    /**
+     * Sets the stage as the Scheduling Home fxml page.
+     * @param event
+     * @throws IOException 
+     */
     @FXML
     private void onActionCancelAddAppointment(ActionEvent event) throws IOException {
         stage = (Stage)((Button)event.getSource()).getScene().getWindow();
@@ -114,7 +118,12 @@ public class AddAppointmentController implements Initializable {
         stage.setScene(new Scene(scene));
         stage.show();
     }
-
+    /**
+     * Resets the Error messages and then attempts to add an appointment to the Manager class, if that is successful, sets the stage as the Scheduling Home fxml page.
+     * @param event
+     * @throws SQLException
+     * @throws IOException 
+     */
     @FXML
     private void onActionAddAppointment(ActionEvent event) throws SQLException, IOException {  
         conflictError.setVisible(false);
@@ -151,7 +160,9 @@ public class AddAppointmentController implements Initializable {
         
     }
     
-    
+    /**
+     * Fills Observable Lists like hoursOL and minutesOL with appropriate values and types.
+     */
     public void fillObservableLists() {
         hoursOL.clear();
         minutesOL.clear();
@@ -166,27 +177,46 @@ public class AddAppointmentController implements Initializable {
             minutes ++;
         }
     }
-    
+    /**
+     * Gathers the start time inputted into the combo boxes and returns a localdatetime of such values.
+     * @return
+     */
     private LocalDateTime gatherStart() {
         LocalDateTime startDateTime = null;
         startDateTime = LocalDateTime.of(startDatePicker.getValue(),LocalTime.of(Integer.valueOf(startHourCombo.getValue()), Integer.valueOf(startMinuteCombo.getValue())));
         return startDateTime;
     }
-    
+    /**
+     * Gathers the end time inputted into the combo boxes and returns a localdatetime of such values.
+     * @return
+     */
     private LocalDateTime gatherEnd() {
         LocalDateTime endDateTime = null;
         endDateTime = LocalDateTime.of(endDatePicker.getValue(),LocalTime.of(Integer.valueOf(endHourCombo.getValue()), Integer.valueOf(endMinuteCombo.getValue())));
         return endDateTime;
     }
+    /**
+     * Generates a localdatetime of now and return it.
+     * @return
+     */
     private static LocalDateTime createDate() {
         LocalDateTime current = null;
         current = LocalDateTime.now();
         return current;
         
     }
+    /**
+     * Generate a timestmap of now and return it.
+     * @return
+     */
     private Timestamp gatherTimestamp() {
         return Timestamp.from(Instant.now());
     }
+    /**
+     * With the given string, iterate over allContacts and get the ID of the contact.
+     * @param name
+     * @return
+     */
     private Integer getContactID(String name) {
         int cID = 0;
         for(Contacts contact : Manager.getAllContacts()) {
@@ -196,7 +226,12 @@ public class AddAppointmentController implements Initializable {
         }
         return cID;
     }
-    
+    /**
+     * With inputted LocalDateTimes representing start and end, check to ensure those times are within the business hours of the business.  8AM-10PM EST.
+     * @param start
+     * @param end
+     * @return
+     */
     private Boolean checkValidTime(LocalDateTime start, LocalDateTime end) {
         
         ZonedDateTime startBusinessHours = ZonedDateTime.of(LocalDateTime.of(3, 3, 3, 8, 0, 0, 0), ZoneId.of("America/New_York"));
@@ -211,6 +246,13 @@ public class AddAppointmentController implements Initializable {
         return false;
         
     }
+    /**
+     * With the arguments of start, end, and customer ID, check to ensure that no appointments would overlap that share customer IDs.  Returns Boolean.
+     * @param start
+     * @param end
+     * @param custID
+     * @return
+     */
     private Boolean checkOtherTimeConflicts(LocalDateTime start, LocalDateTime end, Integer custID) {
         ObservableList<Appointment>holdAppt = FXCollections.observableArrayList();
         for(Appointment appt : Manager.getAllAppointments()) {
