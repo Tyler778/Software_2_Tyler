@@ -157,7 +157,7 @@ public class AppointmentReportController implements Initializable {
     
     
     /**
-     * Returns an Observable List of Strings that are made up of the different distinct types of Appointments with a count of the amount of such type.  Uses a hashmap to create this.  
+     * Returns an Observable List of Strings that are made up of the different distinct types of Appointments with a count of the amount of such type.  Uses a hashmap to create this and utilize a Lambda expression to concatinate the keys and values together into a string that can be added to the observable List.
      * @return 
      */
     public ObservableList<String> sort() {

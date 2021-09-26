@@ -113,13 +113,13 @@ public class Manager {
         return allAppointments;
     }
     /**
-     * Deletes all Appointments from the allAppointments ObservableList.
+     * Uses Lambda expression to delete all Appointments from the allAppointments ObservableList and the lambda expressions avoids a ConcurrentModificationException because it creates and populates a seperate Observable List that can be used to delete all from at once.
      */
     public static void deleteAllAppointments() {
         ObservableList<Appointment>holdAppt = FXCollections.observableArrayList();
-        for (Appointment apt : allAppointments) {
-            holdAppt.add(apt);
-        }
+        allAppointments.forEach((x) -> {
+            holdAppt.add(x);
+        });
         allAppointments.removeAll(holdAppt);
     }
     /**

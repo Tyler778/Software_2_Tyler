@@ -323,7 +323,9 @@ public class SchedulingHomeController implements Initializable {
         stage.show();
     }
     
-    
+    /**
+     * Populates the observable list months and allWeeks with data that is current and accurate.
+     */
     public static void fillOL() {
         months.clear();
         allWeeks.clear();
@@ -350,7 +352,10 @@ public class SchedulingHomeController implements Initializable {
         
         
     }
-
+    /**
+     * Method compares the month selected with the combo box month to all appointments start date month and if they match, adds it to the observable list to be populated in the appointments table.
+     * @param event 
+     */
     @FXML
     private void comboMonthAction(ActionEvent event) {
         ObservableList<Appointment>monthsSort = FXCollections.observableArrayList();
@@ -370,7 +375,10 @@ public class SchedulingHomeController implements Initializable {
         
         tableAppointments.setItems(monthsSort);
     }
-
+    /**
+     * With the list of strings formatted as two dates, this method splits the dates apart, sets them as beginning and end dates, then checks all appointments to see which appointments have a start time between those dates.  If the appointment does, it is added to the Observable List and finally tableAppoiontments items are set as the new filtered observable list.
+     * @param event 
+     */
     @FXML
     private void comboWeekAction(ActionEvent event) {
         try {
@@ -390,7 +398,10 @@ public class SchedulingHomeController implements Initializable {
         
         
     }
-
+    /**
+     * Sets the combo boxes Month and Week to null and sets the tableView to default all appointments.
+     * @param event 
+     */
     @FXML
     private void onActionResetSortMonth(ActionEvent event) {
         monthCombo.setValue(null);
