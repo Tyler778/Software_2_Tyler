@@ -71,6 +71,7 @@ public class Manager {
         deleteAllUsers();
         deleteAllContacts();
         deleteAllContactNames();
+        deleteAllCountryNames();
         deleteAllDivisionNames();
         
         
